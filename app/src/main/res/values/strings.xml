@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">HairNote</string>
+
+    <string-array name="PehTypes">
+        <item>E</item>
+        <item>P</item>
+        <item>H</item>
+        <item>EH</item>
+        <item>PE</item>
+        <item>PH</item>
+        <item>PEH</item>
+    </string-array>
+
+    <string-array name="CosTypes">
+        <item>Szampon Delikatny</item>
+        <item>Szmpon Średni</item>
+        <item>Szmpon Mocny</item>
+        <item>Odżywka</item>
+        <item>Maska</item>
+        <item>Żel</item>
+        <item>Pianka</item>
+        <item>Krem</item>
+        <item>Olejek</item>
+    </string-array>
+
 </resources>

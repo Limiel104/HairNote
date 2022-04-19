@@ -22,21 +22,63 @@
         android:layout_marginVertical="10dp"
         android:layout_below="@id/editCosmeticName" />
 
-    <EditText
-        android:id="@+id/editCosmeticPehType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Typ PEH"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticBrand" />
+    <RelativeLayout
 
-    <EditText
-        android:id="@+id/editCosmeticType"
+        android:id="@+id/relAdditional1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Typ Kosmetyku"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticPehType" />
+        android:layout_below="@id/editCosmeticBrand"
+        android:layout_marginVertical="10dp" >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:hint="Typ PEH"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTVPehType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none" >
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/relAdditional2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relAdditional1"
+        android:layout_marginVertical="10dp" >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:hint="Typ Kosmetyku"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTVCosType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none" >
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/editCosmeticInciList"
@@ -44,7 +86,7 @@
         android:layout_height="wrap_content"
         android:hint="Lista Inci"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticType" />
+        android:layout_below="@id/relAdditional2" />
 
     <EditText
         android:id="@+id/editCosmeticDesc"
@@ -61,6 +103,7 @@
         android:hint="Obraz"
         android:layout_marginVertical="10dp"
         android:layout_below="@id/editCosmeticDesc" />
+
 
     <Button
         android:id="@+id/btnAddCosmetic"
