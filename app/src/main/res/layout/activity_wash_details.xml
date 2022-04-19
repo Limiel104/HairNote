@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WashDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/det_washDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Data"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftWash"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/det_washDate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/det_washIsCleansing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Mycie czyszczące"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washDate" />
+
+            <TextView
+                android:id="@+id/det_washIsCleansing2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washDate2" />
+
+            <TextView
+                android:id="@+id/det_washUsedPeeling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Peeling"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washIsCleansing" />
+
+            <TextView
+                android:id="@+id/det_washUsedPeeling2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washIsCleansing2" />
+
+            <TextView
+                android:id="@+id/det_washUsedOiling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Olejowanie"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washUsedPeeling" />
+
+            <TextView
+                android:id="@+id/det_washUsedOiling2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washUsedPeeling2" />
+
+            <TextView
+                android:id="@+id/det_washDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Opis"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washUsedOiling" />
+
+            <TextView
+                android:id="@+id/det_washDesc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washUsedOiling2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeftWash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="25dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRightWash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="25dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMiddleWash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="205dp" />
+
+            <Button
+                android:id="@+id/det_editWashBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Edytuj"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washDesc2" />
+
+            <Button
+                android:id="@+id/det_deleteWashBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Usuń"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineRightWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washDesc2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

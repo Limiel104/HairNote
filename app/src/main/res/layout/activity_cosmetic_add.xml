@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CosmeticAdd">
+
+    <EditText
+        android:id="@+id/editCosmeticName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nazwa"
+        android:layout_marginVertical="10dp"/>
+
+    <EditText
+        android:id="@+id/editCosmeticBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Producent"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticName" />
+
+    <EditText
+        android:id="@+id/editCosmeticPehType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Typ PEH"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticBrand" />
+
+    <EditText
+        android:id="@+id/editCosmeticType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Typ Kosmetyku"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticPehType" />
+
+    <EditText
+        android:id="@+id/editCosmeticInciList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Lista Inci"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticType" />
+
+    <EditText
+        android:id="@+id/editCosmeticDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Opis"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticInciList" />
+
+    <EditText
+        android:id="@+id/editCosmeticImgPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Obraz"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticDesc" />
+
+    <Button
+        android:id="@+id/btnAddCosmetic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editCosmeticImgPath"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:text="Dodaj"/>
+
+
+
+
+
+</RelativeLayout>

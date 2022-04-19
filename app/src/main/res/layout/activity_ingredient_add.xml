@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IngredientAdd">
+
+    <EditText
+        android:id="@+id/editIngredientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nazwa"
+        android:layout_marginVertical="10dp" />
+
+    <EditText
+        android:id="@+id/editIngredientType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Typ"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editIngredientName" />
+
+
+    <EditText
+        android:id="@+id/editIngredientDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Szczegóły"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editIngredientType" />
+
+    <Button
+        android:id="@+id/btnAddIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editIngredientDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:text="Dodaj"/>
+
+</RelativeLayout>

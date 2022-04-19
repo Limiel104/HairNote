@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/guidline"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CosmeticDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgCosDet"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/det_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Nazwa"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/imgCosDet" />
+
+
+            <TextView
+                android:id="@+id/det_cosName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleCos"
+                app:layout_constraintTop_toBottomOf="@id/imgCosDet" />
+
+            <TextView
+                android:id="@+id/det_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Producent"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_name" />
+
+            <TextView
+                android:id="@+id/det_cosBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosName" />
+
+            <TextView
+                android:id="@+id/det_pehType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Typ PEH"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_brand" />
+
+            <TextView
+                android:id="@+id/det_cosPehType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosBrand" />
+
+            <TextView
+                android:id="@+id/det_cosmeticType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Typ kosmetyku"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_pehType" />
+
+            <TextView
+                android:id="@+id/det_cosCosmeticType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosPehType" />
+
+            <!--<TextView
+                android:id="@+id/det_cg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Zgodny z CG"
+                app:layout_constraintLeft_toRightOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/det_cosmeticType" />
+
+            <TextView
+                android:id="@+id/det_cosCG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/det_cosCosmeticType" />-->
+
+            <TextView
+                android:id="@+id/det_inciList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Skład"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosmeticType" />
+
+            <TextView
+                android:id="@+id/det_cosInciList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="jdsfksjbf"
+                android:padding="10dp"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_inciList"
+                app:layout_constraintRight_toLeftOf="@id/guidelineRightCos"/>
+
+            <TextView
+                android:id="@+id/det_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Opis"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosInciList" />
+
+            <TextView
+                android:id="@+id/det_cosDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="jadsbakjbkajs"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRightCos"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_desc" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeftCos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="25dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMiddleCos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="205dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRightCos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="25dp" />
+
+            <Button
+                android:id="@+id/det_editCosBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Edytuj"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc" />
+
+            <Button
+                android:id="@+id/det_deleteCosBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Usuń"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineRightCos"
+                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

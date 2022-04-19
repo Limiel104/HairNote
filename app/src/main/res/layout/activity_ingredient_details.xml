@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WashDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/det_ingName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Nazwa"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftIng"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/det_ingName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/det_ingType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Typ"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftIng"
+                app:layout_constraintTop_toBottomOf="@+id/det_ingName" />
+
+            <TextView
+                android:id="@+id/det_ingType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
+                app:layout_constraintTop_toBottomOf="@+id/det_ingName2" />
+
+            <TextView
+                android:id="@+id/det_ingDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Opis"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftIng"
+                app:layout_constraintTop_toBottomOf="@+id/det_ingType" />
+
+            <TextView
+                android:id="@+id/det_ingDesc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
+                app:layout_constraintTop_toBottomOf="@id/det_ingType2"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeftIng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="25dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRightIng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="25dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMiddleIng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="205dp" />
+
+            <Button
+                android:id="@+id/det_editIngBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Edytuj"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftIng"
+                app:layout_constraintTop_toBottomOf="@+id/det_ingDesc2" />
+
+            <Button
+                android:id="@+id/det_deleteIngBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Usuń"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineRightIng"
+                app:layout_constraintTop_toBottomOf="@+id/det_ingDesc2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

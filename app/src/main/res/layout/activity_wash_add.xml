@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WashAdd">
+
+    <EditText
+        android:id="@+id/editWashDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Data"
+        android:layout_marginVertical="10dp"/>
+
+    <Switch
+        android:id="@+id/swWashIsCleansing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mycie oczyszczające"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editWashDate" />
+
+    <Switch
+        android:id="@+id/swWashUsedPeeling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peeling"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/swWashIsCleansing" />
+
+    <Switch
+        android:id="@+id/swWashUsedOiling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Olejowanie"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/swWashUsedPeeling" />
+
+    <EditText
+        android:id="@+id/editWashDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Szczegóły"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/swWashUsedOiling" />
+
+    <Button
+        android:id="@+id/btnAddWash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editWashDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:text="Dodaj"/>
+
+</RelativeLayout>
