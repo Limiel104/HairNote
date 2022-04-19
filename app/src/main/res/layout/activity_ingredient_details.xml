@@ -67,8 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="TextView"
-                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
-                app:layout_constraintTop_toBottomOf="@id/det_ingType2"/>
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRightIng"
+                app:layout_constraintStart_toStartOf="@id/guidelineLeftIng"
+                app:layout_constraintTop_toBottomOf="@id/det_ingDesc"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineLeftIng"

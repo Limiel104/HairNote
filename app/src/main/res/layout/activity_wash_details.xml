@@ -102,8 +102,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="TextView"
-                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleWash"
-                app:layout_constraintTop_toBottomOf="@id/det_washUsedOiling2" />
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRightWash"
+                app:layout_constraintStart_toStartOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washDesc" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineLeftWash"

@@ -23,4 +23,15 @@
         <item>Olejek</item>
     </string-array>
 
+    <string-array name="IngrTypes">
+        <item>Emolient</item>
+        <item>Proteiny</item>
+        <item>Humektant</item>
+        <item>Alkohol</item>
+        <item>Olej</item>
+        <item>Konserwant</item>
+        <item>Paraben</item>
+        <item>Kwas</item>
+    </string-array>
+
 </resources>
