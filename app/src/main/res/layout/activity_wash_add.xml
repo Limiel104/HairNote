@@ -7,12 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".WashAdd">
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editWashDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Data"
-        android:layout_marginVertical="10dp"/>
+        android:layout_marginVertical="10dp"/>-->
+
+    <TextView
+        android:id="@+id/tvWashDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:text="Wybierz date" />
 
     <Switch
         android:id="@+id/swWashIsCleansing"
@@ -20,7 +31,8 @@
         android:layout_height="wrap_content"
         android:text="Mycie oczyszczające"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/editWashDate" />
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tvWashDate" />
 
     <Switch
         android:id="@+id/swWashUsedPeeling"
@@ -28,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Peeling"
         android:layout_marginVertical="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@id/swWashIsCleansing" />
 
     <Switch
@@ -36,6 +49,7 @@
         android:layout_height="wrap_content"
         android:text="Olejowanie"
         android:layout_marginVertical="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@id/swWashUsedPeeling" />
 
     <EditText

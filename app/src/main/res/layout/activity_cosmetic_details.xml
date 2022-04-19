@@ -185,7 +185,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Edytuj"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineLeftCos"
-                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc2" />
 
             <Button
                 android:id="@+id/det_deleteCosBtn"
@@ -194,7 +194,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Usuń"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineRightCos"
-                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

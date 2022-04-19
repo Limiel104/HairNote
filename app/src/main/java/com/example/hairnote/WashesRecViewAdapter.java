@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdapter.ViewHolder> {
 
@@ -56,6 +58,7 @@ public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdap
     public void setWashes(ArrayList<Wash> washes) {
         this.washes = washes;
         notifyDataSetChanged();
+        Collections.reverse(washes);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
