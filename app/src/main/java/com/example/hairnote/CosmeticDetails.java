@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CosmeticDetails extends AppCompatActivity {
 
@@ -31,12 +35,6 @@ public class CosmeticDetails extends AppCompatActivity {
         initViews();
 
         dataBaseHelper = new DataBaseHelper(CosmeticDetails.this);
-
-        //Cosmetic cosmetic;
-        /*Cosmetic cosmetic = new Cosmetic(2,"fddsf","OnlyBio","Humektanty",
-                "Odżywka","dfgjgl idhsd hgldkf hgdkfhgkdjh glkhgweri;gsdjkfh;webgou erwogbq guqg ergqwoipqer gnerbopqwg remw g;erg r;jdfsalknf;wai weqfonfew;lkf welef jwaeokf ewaieonf;oa wefl;aik erw igpr gkwg kjweogle rgs",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et libero sodales dui imperdiet lobortis. Etiam turpis augue, faucibus eu consectetur a, volutpat sed mi. Proin tellus turpis, finibus ut urna sit amet, tristique blandit lectus. Ut eu dolor non libero placerat mollis sed eu nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In libero sapien, mollis vitae posuere at, lacinia sed ante. Maecenas eleifend id turpis id ullamcorper. Pellentesque laoreet fermentum ligula. Suspendisse ante elit, bibendum posuere maximus eget, semper quis dolor. Donec at cursus felis. Sed purus erat, efficitur ac metus id, elementum interdum leo. Phasellus et felis felis. Sed molestie dignissim orci, vel posuere risus commodo eget. Morbi eu purus quis lorem sollicitudin sodales. Sed consequat, sapien quis pulvinar varius, ex erat sagittis massa, eget mollis justo ante nec leo.",
-                "https://darmarsklep.pl/img/product_media/46001-47000/5902811787765.png");*/
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -59,7 +57,6 @@ public class CosmeticDetails extends AppCompatActivity {
         det_deleteCosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(CosmeticDetails.this, "usun",Toast.LENGTH_SHORT).show();
 
                 dataBaseHelper.deleteCosmetic(cosmetic);
                 Intent intent = new Intent(CosmeticDetails.this, CosmeticActivity.class);
@@ -77,7 +74,7 @@ public class CosmeticDetails extends AppCompatActivity {
         det_cosPehType.setText(cosmetic.getPehType());
         det_cosCosmeticType.setText(cosmetic.getCosmeticType());
         //det_cosCG.setText(String.valueOf(cosmetic.isCgCompatible()));
-        det_cosInciList.setText(cosmetic.getInciList());
+        det_cosInciList.setText(inciListToString());
         det_cosDesc.setText(cosmetic.getDescription());
         Glide.with(this)
                 .asBitmap()
@@ -98,4 +95,25 @@ public class CosmeticDetails extends AppCompatActivity {
 
         imgCosDet = findViewById(R.id.imgCosDet);
     }
+
+    private String inciListToString(){
+
+        String inciList = "";
+
+        int ingredientId;
+
+        for (int i=0; i<cosmetic.getInciList().size(); i++) {
+            ingredientId = cosmetic.getInciList().get(i);
+            Ingredient ingredient = dataBaseHelper.findIngredient(ingredientId);
+            if (i+1==cosmetic.getInciList().size()){
+                inciList = inciList + ingredient.getName();
+            }
+            else{
+                inciList = inciList + ingredient.getName() + ", ";
+            }
+        }
+
+        return inciList;
+    }
+
 }

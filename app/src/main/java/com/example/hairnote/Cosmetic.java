@@ -9,24 +9,21 @@ public class Cosmetic {
     private String brand;
     private String pehType;
     private String cosmeticType;
-    //change to List of ingredients!!!!
-    private  String inciList;
     private String description;
     //private boolean cgCompatible;
     private String imgPath;
-    private List<Integer> inciList2;
+    private List<Integer> inciList;
 
-    public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String inciList, String description, String imgPath, List<Integer> inciList2) {
+    public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String description, String imgPath, List<Integer> inciList) {
         this.id = id;
         this.name = name;
         this.brand = brand;
         this.pehType = pehType;
         this.cosmeticType = cosmeticType;
-        this.inciList = inciList;
         this.description = description;
         //this.cgCompatible = cgCompatible;
         this.imgPath = imgPath;
-        this.inciList2 = inciList2;
+        this.inciList = inciList;
     }
 
     public int getId() {
@@ -69,14 +66,6 @@ public class Cosmetic {
         this.cosmeticType = cosmeticType;
     }
 
-    public String getInciList() {
-        return inciList;
-    }
-
-    public void setInciList(String inciList) {
-        this.inciList = inciList;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -93,12 +82,12 @@ public class Cosmetic {
         this.imgPath = imgPath;
     }
 
-    public List<Integer> getInciList2() {
-        return inciList2;
+    public List<Integer> getInciList() {
+        return inciList;
     }
 
-    public void setInciList2(List<Integer> inciList2) {
-        this.inciList2 = inciList2;
+    public void setInciList(List<Integer> inciList) {
+        this.inciList = inciList;
     }
 
     @Override
@@ -109,10 +98,9 @@ public class Cosmetic {
                 ", brand='" + brand + '\'' +
                 ", pehType='" + pehType + '\'' +
                 ", cosmeticType='" + cosmeticType + '\'' +
-                ", inciList='" + inciList + '\'' +
                 ", description='" + description + '\'' +
                 ", imgPath='" + imgPath + '\'' +
-                ", inciList2=" + inciList2 +
+                ", inciList2=" + inciList +
                 '}';
     }
 }

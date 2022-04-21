@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -18,7 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_INGREDIENT_NAME = "INGREDIENT_NAME";
     public static final String COLUMN_INGREDIENT_TYPE = "INGREDIENT_TYPE";
     public static final String COLUMN_INGREDIENT_DESC = "INGREDIENT_DESC";
-    public static final String COLUMN_INGREDIENT_ID = "ID";
+    public static final String COLUMN_INGREDIENT_ID = "INGREDIENT_ID";
     public static final String WASH_TABLE = "WASH_TABLE";
     public static final String COLUMN_WASH_ID = "WASH_ID";
     public static final String COLUMN_WASH_DATE = "WASH_DATE";
@@ -32,9 +33,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COSMETIC_BRAND = "COSMETIC_BRAND";
     public static final String COLUMN_COSMETIC_PEHTYPE = "COSMETIC_PEHTYPE";
     public static final String COLUMN_COSMETIC_COSMETICTYPE = "COSMETIC_COSMETICTYPE";
-    public static final String COLUMN_COSMETIC_INCILIST = "COSMETIC_INCILIST";
     public static final String COLUMN_COSMETIC_DESC = "COSMETIC_DESC";
     public static final String COLUMN_COSMETIC_IMGPATH = "COSMETIC_IMGPATH";
+    public static final String COSMETIC_INGREDIENT_TABLE = "COSMETIC_INREDIENT_TABLE";
+    public static final String COLUMN_COSMETIC_INGREDIENT_ID = "COSMETIC_INGREDIENT_ID";
+    public static final String COLUMN_COS_ID = "COS_ID";
+    public static final String COLUMN_INGR_ID = "INGR_ID";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "appDatabase.db", null, 1);
@@ -67,11 +71,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMN_COSMETIC_BRAND + " TEXT, "
                 + COLUMN_COSMETIC_PEHTYPE + " TEXT, "
                 + COLUMN_COSMETIC_COSMETICTYPE + " TEXT, "
-                + COLUMN_COSMETIC_INCILIST + " TEXT, "
                 + COLUMN_COSMETIC_DESC + " TEXT, "
                 + COLUMN_COSMETIC_IMGPATH + " TEXT)";
 
         sqLiteDatabase.execSQL(createTableStatement3);
+
+        String createTableStatement4 = "CREATE TABLE " + COSMETIC_INGREDIENT_TABLE + " ("
+                + COLUMN_COSMETIC_INGREDIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_COS_ID + " INTEGER, "
+                + COLUMN_INGR_ID + " INTEGER, "
+                + " FOREIGN KEY (" + COLUMN_COS_ID + ") REFERENCES " + COSMETIC_TABLE + "(" + COLUMN_COSMETIC_ID + "), "
+                + "FOREIGN KEY (" + COLUMN_INGR_ID + ") REFERENCES " + INGREDIENT_TABLE + "(" + COLUMN_INGREDIENT_ID + "))";
+
+        sqLiteDatabase.execSQL(createTableStatement4);
+
+        /*String createTableStatement6 = "CREATE TABLE COSMETIC_INGREDIENT_TABLE (COSMETIC_INGREDIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, COS_ID INTEGER, INGR_ID INTEGER, FOREIGN KEY (COS_ID) REFERENCES COSMETIC_TABLE(COSMETIC_ID), FOREIGN KEY (INGR_ID) REFERENCES INGREDIENT_TABLE(INGREDIENT_ID))";
+        sqLiteDatabase.execSQL(createTableStatement6);*/
+
     }
 
     @Override
@@ -125,6 +141,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnAList;
+    }
+
+    public HashMap<Integer, String> getAllIngredientsNameAndID() {
+
+        HashMap<Integer, String> returnHM = new HashMap<>();
+
+        String queryString = "SELECT * FROM " + INGREDIENT_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                int ingredientID = cursor.getInt(0);
+                String ingredientName = cursor.getString(1);
+
+                returnHM.put(ingredientID,ingredientName);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnHM;
     }
 
     public Ingredient findIngredient(int ingredientID) {
@@ -253,7 +295,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     //---------------------------------------COSMETIC METHODS ------------------------------------------------
 
-    public boolean addCosmetic(Cosmetic cosmetic) {
+    public long addCosmetic(Cosmetic cosmetic) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -262,16 +304,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_COSMETIC_BRAND, cosmetic.getBrand());
         cv.put(COLUMN_COSMETIC_PEHTYPE, cosmetic.getPehType());
         cv.put(COLUMN_COSMETIC_COSMETICTYPE, cosmetic.getCosmeticType());
-        cv.put(COLUMN_COSMETIC_INCILIST, cosmetic.getInciList());
         cv.put(COLUMN_COSMETIC_DESC, cosmetic.getDescription());
         cv.put(COLUMN_COSMETIC_IMGPATH, cosmetic.getImgPath());
 
         long insert = db.insert(COSMETIC_TABLE, null, cv);
 
-        if (insert == -1)
-            return false;
-        else
-            return true;
+        return insert;
     }
 
     public ArrayList<Cosmetic> getAllCosmetics() {
@@ -293,11 +331,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String cosmeticBrand = cursor.getString(2);
                 String cosmeticPehType = cursor.getString(3);
                 String cosmeticCosmeticType = cursor.getString(4);
-                String cosmeticInciList = cursor.getString(5);
-                String cosmeticDesc = cursor.getString(6);
-                String cosmeticImgPath = cursor.getString(7);
+                String cosmeticDesc = cursor.getString(5);
+                String cosmeticImgPath = cursor.getString(6);
 
-                Cosmetic newCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticInciList, cosmeticDesc, cosmeticImgPath, inciList2);
+                Cosmetic newCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList2);
                 returnAList.add(newCosmetic);
 
             }while (cursor.moveToNext());
@@ -317,20 +354,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 
-        List inciList2 = new ArrayList();
-        inciList2.add(1);
-
         if(cursor.moveToFirst()){
             //int cosmeticID2 = cursor.getInt(0);
             String cosmeticName = cursor.getString(1);
             String cosmeticBrand = cursor.getString(2);
             String cosmeticPehType = cursor.getString(3);
             String cosmeticCosmeticType = cursor.getString(4);
-            String cosmeticInciList = cursor.getString(5);
-            String cosmeticDesc = cursor.getString(6);
-            String cosmeticImgPath = cursor.getString(7);
+            String cosmeticDesc = cursor.getString(5);
+            String cosmeticImgPath = cursor.getString(6);
 
-            Cosmetic returnCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticInciList, cosmeticDesc, cosmeticImgPath, inciList2);
+            ArrayList<Integer> inciList = getAllCosmeticIngredientsIDs(cosmeticID);
+
+            Cosmetic returnCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList);
             cursor.close();
             db.close();
             return returnCosmetic;
@@ -340,6 +375,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
 
     public boolean deleteCosmetic(Cosmetic cosmetic) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -352,6 +388,52 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    //---------------------------------------COSMETIC-INGREDIENT METHODS ------------------------------------------------
+
+    public boolean addCosmeticIngredient(Integer cosmeticID, Integer ingredientID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_COS_ID, cosmeticID);
+        cv.put(COLUMN_INGR_ID, ingredientID);
+
+        long insert = db.insert(COSMETIC_INGREDIENT_TABLE, null, cv);
+
+        if (insert == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public ArrayList<Integer> getAllCosmeticIngredientsIDs(int cosmeticID) {
+
+        ArrayList<Integer> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + COSMETIC_INGREDIENT_TABLE+ " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+                do{
+                    int ingredientID = cursor.getInt(2);
+                    returnAList.add(ingredientID);
+
+                }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
+
+
+
+
 
 
 

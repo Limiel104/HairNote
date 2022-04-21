@@ -99,24 +99,6 @@
                 app:layout_constraintLeft_toRightOf="@id/guidelineMiddleCos"
                 app:layout_constraintTop_toBottomOf="@id/det_cosPehType2" />
 
-            <!--<TextView
-                android:id="@+id/det_cg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Zgodny z CG"
-                app:layout_constraintLeft_toRightOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/det_cosmeticType" />
-
-            <TextView
-                android:id="@+id/det_cosCG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                app:layout_constraintLeft_toRightOf="@id/guideline3"
-                app:layout_constraintTop_toBottomOf="@id/det_cosCosmeticType" />-->
-
             <TextView
                 android:id="@+id/det_cosInciList"
                 android:layout_width="wrap_content"
@@ -144,7 +126,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Opis"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
-                app:layout_constraintTop_toBottomOf="@id/det_cosInciList" />
+                app:layout_constraintTop_toBottomOf="@id/det_cosInciList2" />
 
             <TextView
                 android:id="@+id/det_cosDesc2"

@@ -80,13 +80,22 @@
 
     </RelativeLayout>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editCosmeticInciList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Lista Inci"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/relAdditionalCos2" />
+        android:layout_below="@id/relAdditionalCos2" />-->
+
+    <Button
+        android:id="@+id/btnAddIngredientsToInciList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:text="Dodaj Składniki Kosmetyku"
+        android:layout_below="@id/relAdditionalCos2"/>
 
     <EditText
         android:id="@+id/editCosmeticDesc"
@@ -94,7 +103,7 @@
         android:layout_height="wrap_content"
         android:hint="Opis"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticInciList" />
+        android:layout_below="@id/btnAddIngredientsToInciList" />
 
     <EditText
         android:id="@+id/editCosmeticImgPath"
