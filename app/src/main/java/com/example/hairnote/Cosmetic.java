@@ -26,6 +26,16 @@ public class Cosmetic {
         this.inciList = inciList;
     }
 
+    public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String description, String imgPath) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.pehType = pehType;
+        this.cosmeticType = cosmeticType;
+        this.description = description;
+        this.imgPath = imgPath;
+    }
+
     public int getId() {
         return id;
     }

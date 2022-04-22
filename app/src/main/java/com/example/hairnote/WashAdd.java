@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class WashAdd extends AppCompatActivity {
         sw_washUsedPeeling = findViewById(R.id.swWashUsedPeeling);
         sw_washUsedOiling = findViewById(R.id.swWashUsedOiling);
 
-        chosenDate = "";
+        setTodaysDate();
 
         calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -162,6 +163,14 @@ public class WashAdd extends AppCompatActivity {
 
         });
 
+    }
+
+    public void setTodaysDate(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        setDate(day, month, year);
     }
 
     public void setDate(int day, int month, int year){

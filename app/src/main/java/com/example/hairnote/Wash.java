@@ -22,6 +22,15 @@ public class Wash {
         this.usedCosmetics = usedCosmetics;
     }
 
+    public Wash(int id, String date, boolean isCleansing, boolean usedPeeling, boolean usedOiling, String description) {
+        this.id = id;
+        this.date = date;
+        this.isCleansing = isCleansing;
+        this.usedPeeling = usedPeeling;
+        this.usedOiling = usedOiling;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }

@@ -246,9 +246,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 
-        List test = new ArrayList();
-        test.add(1);
-
         if (cursor.moveToFirst()) {
             do{
                 int washID = cursor.getInt(0);
@@ -258,7 +255,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 boolean washUsedOiling = cursor.getInt(4) == 1 ? true : false;
                 String washDesc = cursor.getString(5);
 
-                Wash newWash = new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc, test);
+                Wash newWash = new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc);
                 returnAList.add(newWash);
 
             }while (cursor.moveToNext());
@@ -341,9 +338,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 
-        List inciList2 = new ArrayList();
-        inciList2.add(1);
-
         if (cursor.moveToFirst()) {
             do{
                 int cosmeticID = cursor.getInt(0);
@@ -354,7 +348,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String cosmeticDesc = cursor.getString(5);
                 String cosmeticImgPath = cursor.getString(6);
 
-                Cosmetic newCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList2);
+                Cosmetic newCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath);
                 returnAList.add(newCosmetic);
 
             }while (cursor.moveToNext());
