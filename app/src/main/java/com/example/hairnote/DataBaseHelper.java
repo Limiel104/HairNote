@@ -193,9 +193,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean deleteIngredient(Ingredient ingredient) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + INGREDIENT_TABLE + " WHERE " + COLUMN_INGREDIENT_ID + " = " + ingredient.getId();
         Cursor cursor = db.rawQuery(queryString, null);
+
+        deleteIngredientInAllCosmetics(ingredient.getId());
 
         if (cursor.moveToFirst()) {
             return true;
@@ -282,6 +285,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean deleteWash(Wash wash) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + WASH_TABLE + " WHERE " + COLUMN_WASH_ID + " = " + wash.getId();
         Cursor cursor = db.rawQuery(queryString, null);
@@ -378,9 +382,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     public boolean deleteCosmetic(Cosmetic cosmetic) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + COSMETIC_TABLE + " WHERE " + COLUMN_COSMETIC_ID + " = " + cosmetic.getId();
         Cursor cursor = db.rawQuery(queryString, null);
+
+        deleteAllIngredientsInCosmetic(cosmetic.getId());
 
         if (cursor.moveToFirst()) {
             return true;
@@ -431,7 +438,44 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnAList;
     }
 
+    public boolean deleteAllIngredientsInCosmetic(int cosmeticID) {
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean deleteIngredientInAllCosmetics(int ingredientID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_INGR_ID + " = " + ingredientID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean deleteOneCosmeticIngredient(int cosmeticID, int ingredientID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID + " AND " +  COLUMN_COS_ID + " = " + cosmeticID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 
