@@ -120,7 +120,7 @@ public class CosmeticAdd extends AppCompatActivity {
                 builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i=0; i<checkedIngredients.length; i++) {
+                        for (int i = 0; i < checkedIngredients.length; i++) {
                             checkedIngredients[i] = false;
                             chosenIngredients.clear();
                         }

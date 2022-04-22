@@ -39,6 +39,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COSMETIC_INGREDIENT_ID = "COSMETIC_INGREDIENT_ID";
     public static final String COLUMN_COS_ID = "COS_ID";
     public static final String COLUMN_INGR_ID = "INGR_ID";
+    public static final String WASH_COSMETIC_TABLE = "WASH_COSMETIC_TABLE";
+    public static final String COLUMN_WASH_COSMETIC_ID = "WASH_COSMETIC_ID";
+    public static final String COLUMN_WAS_ID = "WAS_ID";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "appDatabase.db", null, 1);
@@ -77,13 +80,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableStatement3);
 
         String createTableStatement4 = "CREATE TABLE " + COSMETIC_INGREDIENT_TABLE + " ("
-                + COLUMN_COSMETIC_INGREDIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_COSMETIC_INGREDIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_COS_ID + " INTEGER, "
                 + COLUMN_INGR_ID + " INTEGER, "
-                + " FOREIGN KEY (" + COLUMN_COS_ID + ") REFERENCES " + COSMETIC_TABLE + "(" + COLUMN_COSMETIC_ID + "), "
+                + "FOREIGN KEY (" + COLUMN_COS_ID + ") REFERENCES " + COSMETIC_TABLE + "(" + COLUMN_COSMETIC_ID + "), "
                 + "FOREIGN KEY (" + COLUMN_INGR_ID + ") REFERENCES " + INGREDIENT_TABLE + "(" + COLUMN_INGREDIENT_ID + "))";
 
         sqLiteDatabase.execSQL(createTableStatement4);
+
+        String createTableStatement5 = "CREATE TABLE " + WASH_COSMETIC_TABLE + " ("
+                + COLUMN_WASH_COSMETIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_WAS_ID + " INTEGER, "
+                + COLUMN_COS_ID + " INTEGER, "
+                + "FOREIGN KEY (" + COLUMN_COS_ID + ") REFERENCES " + COSMETIC_TABLE + "(" + COLUMN_COSMETIC_ID + "), "
+                + "FOREIGN KEY (" + COLUMN_WAS_ID + ") REFERENCES " + WASH_TABLE + "(" + COLUMN_WASH_ID + "))";
+
+        sqLiteDatabase.execSQL(createTableStatement5);
 
         /*String createTableStatement6 = "CREATE TABLE COSMETIC_INGREDIENT_TABLE (COSMETIC_INGREDIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, COS_ID INTEGER, INGR_ID INTEGER, FOREIGN KEY (COS_ID) REFERENCES COSMETIC_TABLE(COSMETIC_ID), FOREIGN KEY (INGR_ID) REFERENCES INGREDIENT_TABLE(INGREDIENT_ID))";
         sqLiteDatabase.execSQL(createTableStatement6);*/
@@ -95,7 +107,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //---------------------------------------INGREDIENT METHODS ------------------------------------------------
+    //--------------------------------------- INGREDIENT METHODS ------------------------------------------------
 
     public boolean addIngredient(Ingredient ingredient) {
 
@@ -207,9 +219,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //---------------------------------------WASH METHODS ------------------------------------------------
+    //--------------------------------------- WASH METHODS ------------------------------------------------
 
-    public boolean addWash(Wash wash) {
+    public long addWash(Wash wash) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -222,10 +234,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         long insert = db.insert(WASH_TABLE, null, cv);
 
-        if (insert == -1)
-            return false;
-        else
-            return true;
+        return insert;
     }
 
     public ArrayList<Wash> getAllWashes() {
@@ -237,6 +246,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 
+        List test = new ArrayList();
+        test.add(1);
+
         if (cursor.moveToFirst()) {
             do{
                 int washID = cursor.getInt(0);
@@ -246,7 +258,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 boolean washUsedOiling = cursor.getInt(4) == 1 ? true : false;
                 String washDesc = cursor.getString(5);
 
-                Wash newWash = new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc);
+                Wash newWash = new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc, test);
                 returnAList.add(newWash);
 
             }while (cursor.moveToNext());
@@ -273,7 +285,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             boolean washUsedOiling = cursor.getInt(4) == 1 ? true : false;
             String washDesc = cursor.getString(5);
 
-            Wash returnWash= new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc);
+            ArrayList<Integer> cosmeticList = getAllWashCosmeticsIDs(washID);
+
+            Wash returnWash= new Wash(washID, washDate, washIsCleansing, washUsedPeeling, washUsedOiling, washDesc, cosmeticList);
             cursor.close();
             db.close();
             return returnWash;
@@ -290,6 +304,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String queryString = "DELETE FROM " + WASH_TABLE + " WHERE " + COLUMN_WASH_ID + " = " + wash.getId();
         Cursor cursor = db.rawQuery(queryString, null);
 
+        deleteAllCosmeticsInWash(wash.getId());
+
         if (cursor.moveToFirst()) {
             return true;
         }else{
@@ -297,7 +313,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //---------------------------------------COSMETIC METHODS ------------------------------------------------
+    //--------------------------------------- COSMETIC METHODS ------------------------------------------------
 
     public long addCosmetic(Cosmetic cosmetic) {
 
@@ -351,6 +367,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnAList;
     }
 
+    public HashMap<Integer, String> getAllCosmeticsNameAndID() {
+
+        HashMap<Integer, String> returnHM = new HashMap<>();
+
+        String queryString = "SELECT * FROM " + COSMETIC_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                int cosmeticID = cursor.getInt(0);
+                String cosmeticName = cursor.getString(1);
+
+                returnHM.put(cosmeticID,cosmeticName);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnHM;
+    }
+
     public Cosmetic findCosmetic(int cosmeticID) {
 
         String queryString = "SELECT * FROM " + COSMETIC_TABLE + " WHERE " + COLUMN_COSMETIC_ID + "=" + cosmeticID;
@@ -388,6 +430,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
 
         deleteAllIngredientsInCosmetic(cosmetic.getId());
+        deleteCosmeticInAllWashes(cosmetic.getId());
 
         if (cursor.moveToFirst()) {
             return true;
@@ -396,9 +439,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //---------------------------------------COSMETIC-INGREDIENT METHODS ------------------------------------------------
+    //--------------------------------------- COSMETIC-INGREDIENT METHODS ------------------------------------------------
 
-    public boolean addCosmeticIngredient(Integer cosmeticID, Integer ingredientID) {
+    public boolean addCosmeticIngredient(int cosmeticID, int ingredientID) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -477,7 +520,86 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //--------------------------------------- WASH-COSMETIC METHODS ------------------------------------------------
 
+    public boolean addWashCosmetic(int washID, int cosmeticID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_WAS_ID, washID);
+        cv.put(COLUMN_COS_ID, cosmeticID);
+
+        long insert = db.insert(WASH_COSMETIC_TABLE, null, cv);
+
+        if (insert == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public ArrayList<Integer> getAllWashCosmeticsIDs(int washID) {
+
+        ArrayList<Integer> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + WASH_COSMETIC_TABLE+ " WHERE " + COLUMN_WAS_ID + " = " + washID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            do{
+                int ingredientID = cursor.getInt(2);
+                returnAList.add(ingredientID);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
+
+    public boolean deleteAllCosmeticsInWash(int washID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + WASH_COSMETIC_TABLE + " WHERE " + COLUMN_WAS_ID + " = " + washID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean deleteCosmeticInAllWashes(int cosmeticID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + WASH_COSMETIC_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /*public boolean deleteOneCosmeticIngredient(int cosmeticID, int ingredientID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID + " AND " +  COLUMN_COS_ID + " = " + cosmeticID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }*/
 
 
 

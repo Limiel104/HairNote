@@ -1,22 +1,25 @@
 package com.example.hairnote;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Wash {
     private int id;
-    //TO DO change date type or make more variables
-    private String date; //dd-mm-yyyy for now
+    private String date;
     private boolean isCleansing;
-    // TO DO Cosmetics List
     private boolean usedPeeling;
     private boolean usedOiling;
     private String description;
+    private List<Integer> usedCosmetics;
 
-    public Wash(int id, String date, boolean isCleansing, boolean usedPeeling, boolean usedOiling, String description) {
+    public Wash(int id, String date, boolean isCleansing, boolean usedPeeling, boolean usedOiling, String description, List<Integer> usedCosmetics) {
         this.id = id;
         this.date = date;
         this.isCleansing = isCleansing;
         this.usedPeeling = usedPeeling;
         this.usedOiling = usedOiling;
         this.description = description;
+        this.usedCosmetics = usedCosmetics;
     }
 
     public int getId() {
@@ -67,6 +70,14 @@ public class Wash {
         this.description = description;
     }
 
+    public List<Integer> getUsedCosmetics() {
+        return usedCosmetics;
+    }
+
+    public void setUsedCosmetics(List<Integer> usedCosmetics) {
+        this.usedCosmetics = usedCosmetics;
+    }
+
     @Override
     public String toString() {
         return "Wash{" +
@@ -76,6 +87,7 @@ public class Wash {
                 ", usedPeeling=" + usedPeeling +
                 ", usedOiling=" + usedOiling +
                 ", description='" + description + '\'' +
+                ", usedCosmetics=" + usedCosmetics +
                 '}';
     }
 }

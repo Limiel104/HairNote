@@ -88,13 +88,33 @@
                 app:layout_constraintTop_toBottomOf="@id/det_washUsedPeeling2" />
 
             <TextView
+                android:id="@+id/det_washUsedCosmetics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Użyte kosmetyki"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@+id/det_washUsedOiling" />
+
+            <TextView
+                android:id="@+id/det_washUsedCosmetics2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRightWash"
+                app:layout_constraintStart_toStartOf="@id/guidelineLeftWash"
+                app:layout_constraintTop_toBottomOf="@id/det_washUsedCosmetics" />
+
+            <TextView
                 android:id="@+id/det_washDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Opis"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftWash"
-                app:layout_constraintTop_toBottomOf="@+id/det_washUsedOiling" />
+                app:layout_constraintTop_toBottomOf="@+id/det_washUsedCosmetics2" />
 
             <TextView
                 android:id="@+id/det_washDesc2"

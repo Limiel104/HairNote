@@ -99,20 +99,20 @@ public class CosmeticDetails extends AppCompatActivity {
     private String inciListToString(){
 
         String inciList = "";
+        int ingredientID;
 
-        int ingredientId;
+        for (int i = 0;  i < cosmetic.getInciList().size(); i++) {
 
-        for (int i=0; i<cosmetic.getInciList().size(); i++) {
-            ingredientId = cosmetic.getInciList().get(i);
-            Ingredient ingredient = dataBaseHelper.findIngredient(ingredientId);
-            if (i+1==cosmetic.getInciList().size()){
+            ingredientID = cosmetic.getInciList().get(i);
+            Ingredient ingredient = dataBaseHelper.findIngredient(ingredientID);
+
+            if ( i+1 == cosmetic.getInciList().size()) {
                 inciList = inciList + ingredient.getName();
             }
             else{
                 inciList = inciList + ingredient.getName() + ", ";
             }
         }
-
         return inciList;
     }
 

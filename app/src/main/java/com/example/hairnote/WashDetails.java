@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class WashDetails extends AppCompatActivity {
 
     public static final String WASH_ID_KEY = "washID";
-    private TextView det_washDate, det_washIsCleansing, det_washUsedPeeling, det_washUsedOiling, det_washDesc;
+    private TextView det_washDate, det_washIsCleansing, det_washUsedPeeling, det_washUsedOiling, det_washUsedCosmetics, det_washDesc;
     private Button det_editWashBtn, det_deleteWashBtn;
 
     DataBaseHelper dataBaseHelper;
@@ -28,12 +28,9 @@ public class WashDetails extends AppCompatActivity {
 
         dataBaseHelper = new DataBaseHelper(WashDetails.this);
 
-        //Wash wash;
-
         Intent intent = getIntent();
         if (intent != null) {
             int washID = intent.getIntExtra(WASH_ID_KEY,-1);
-            //Toast.makeText(IngredientDetails.this,"Dostałam " + ingredientID,Toast.LENGTH_SHORT).show();
             if(washID != -1) {
                 wash = dataBaseHelper.findWash(washID);
                 if (wash != null) {
@@ -52,7 +49,7 @@ public class WashDetails extends AppCompatActivity {
         det_deleteWashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(WashDetails.this, "usun",Toast.LENGTH_SHORT).show();
+
                 dataBaseHelper.deleteWash(wash);
                 Intent intent = new Intent(WashDetails.this, MainActivity.class);
                 WashDetails.this.startActivity(intent);
@@ -67,6 +64,7 @@ public class WashDetails extends AppCompatActivity {
         det_washIsCleansing.setText(wash.isCleansing() == true ? "tak" : "nie");
         det_washUsedPeeling.setText(wash.isUsedPeeling() == true ? "tak" : "nie");
         det_washUsedOiling.setText(wash.isUsedOiling() == true ? "tak" : "nie");
+        det_washUsedCosmetics.setText(cosmeticListToString());
         det_washDesc.setText(wash.getDescription());
     }
 
@@ -77,7 +75,28 @@ public class WashDetails extends AppCompatActivity {
         det_washIsCleansing = findViewById(R.id.det_washIsCleansing2);
         det_washUsedPeeling = findViewById(R.id.det_washUsedPeeling2);
         det_washUsedOiling = findViewById(R.id.det_washUsedOiling2);
+        det_washUsedCosmetics = findViewById(R.id.det_washUsedCosmetics2);
         det_washDesc = findViewById(R.id.det_washDesc2);
+    }
+
+    private String cosmeticListToString(){
+
+        String cosmeticList = "";
+        int cosmeticID;
+
+        for (int i = 0; i < wash.getUsedCosmetics().size(); i++) {
+
+            cosmeticID = wash.getUsedCosmetics().get(i);
+            Ingredient ingredient = dataBaseHelper.findIngredient(cosmeticID);
+
+            if ( i+1 == wash.getUsedCosmetics().size()) {
+                cosmeticList = cosmeticList + ingredient.getName();
+            }
+            else{
+                cosmeticList = cosmeticList + ingredient.getName() + "\n";
+            }
+        }
+        return cosmeticList;
     }
 
 }
