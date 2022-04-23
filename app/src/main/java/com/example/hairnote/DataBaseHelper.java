@@ -435,6 +435,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateCosmetic(Cosmetic cosmetic) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COSMETIC_NAME, cosmetic.getName());
+        contentValues.put(COLUMN_COSMETIC_BRAND, cosmetic.getBrand());
+        contentValues.put(COLUMN_COSMETIC_PEHTYPE, cosmetic.getPehType());
+        contentValues.put(COLUMN_COSMETIC_COSMETICTYPE, cosmetic.getCosmeticType());
+        contentValues.put(COLUMN_COSMETIC_DESC, cosmetic.getDescription());
+        contentValues.put(COLUMN_COSMETIC_IMGPATH, cosmetic.getImgPath());
+
+        String[] cosmeticID = new String[]{String.valueOf(cosmetic.getId())};
+
+        long update = db.update(COSMETIC_TABLE, contentValues,   COLUMN_COSMETIC_ID + " = ? ", cosmeticID);
+
+        if (update == -1)
+            return false;
+        else
+            return true;
+    }
+
 
     public boolean deleteCosmetic(Cosmetic cosmetic) {
 

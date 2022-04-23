@@ -128,7 +128,7 @@ public class CosmeticAdd extends AppCompatActivity {
                 });
 
                 AlertDialog dialog = builder.create();
-                dialog.show();;
+                dialog.show();
             }
         });
 

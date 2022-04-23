@@ -50,7 +50,10 @@ public class CosmeticDetails extends AppCompatActivity {
         det_editCosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CosmeticDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CosmeticDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CosmeticDetails.this, CosmeticEdit.class);
+                intent.putExtra(COSMETIC_ID_KEY,cosmetic.getId());
+                CosmeticDetails.this.startActivity(intent);
             }
         });
 
