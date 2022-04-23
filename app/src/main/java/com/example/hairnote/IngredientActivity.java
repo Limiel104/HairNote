@@ -37,12 +37,6 @@ public class IngredientActivity extends AppCompatActivity {
 
         //ponizej jet z innego tutoriala
 
-        //ArrayList<Ingredient> ingredients = new ArrayList<>();
-        //ingredients.add(new Ingredient(1,"lorem","olej","dsf sfdger er er ty sreteter"));
-        //ingredients.add(new Ingredient(2,"ipsum","antystatyk","lsbdiusdud sdffsdf"));
-        //ingredients.add(new Ingredient(3,"asdbu","proteiny","sdfafsdfausdud sdfdg gdfgd"));
-        //ingredients.add(new Ingredient(4,"effe","olej","ewtqegea errw we yt wree wrt"));
-
         //IngredientsRecViewAdapter adapter = new IngredientsRecViewAdapter();
         //adapter.setIngredients(ingredients);
 

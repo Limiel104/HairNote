@@ -45,7 +45,10 @@ public class IngredientDetails extends AppCompatActivity {
         det_editIngBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(IngredientDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(IngredientDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(IngredientDetails.this, IngredientEdit.class);
+                intent.putExtra(INGREDIENT_ID_KEY,ingredient.getId());
+                IngredientDetails.this.startActivity(intent);
             }
         });
 

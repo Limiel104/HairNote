@@ -12,31 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairNote">
         <activity
-            android:name="com.example.hairnote.IngredientAdd"
+            android:name=".IngredientEdit"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.IngredientDetails"
+            android:name=".IngredientAdd"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.WashDetails"
+            android:name=".IngredientDetails"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.CosmeticAdd"
+            android:name=".WashDetails"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.WashAdd"
+            android:name=".CosmeticAdd"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.CosmeticDetails"
+            android:name=".WashAdd"
             android:exported="false" />
         <activity
-            android:name="com.example.hairnote.IngredientActivity"
+            android:name=".CosmeticDetails"
+            android:exported="false" />
+        <activity
+            android:name=".IngredientActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.hairnote.CosmeticActivity"
+            android:name=".CosmeticActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.hairnote.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

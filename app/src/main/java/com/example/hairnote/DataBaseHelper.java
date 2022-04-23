@@ -204,6 +204,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateIngredient(Ingredient ingredient) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_INGREDIENT_NAME, ingredient.getName());
+        contentValues.put(COLUMN_INGREDIENT_TYPE, ingredient.getType());
+        contentValues.put(COLUMN_INGREDIENT_DESC, ingredient.getDescription());
+
+        String[] ingredientID = new String[]{String.valueOf(ingredient.getId())};
+
+        long update = db.update(INGREDIENT_TABLE, contentValues,   COLUMN_INGREDIENT_ID + " = ? ", ingredientID);
+
+        if (update == -1)
+            return false;
+        else
+            return true;
+    }
+
     public boolean deleteIngredient(Ingredient ingredient) {
 
         SQLiteDatabase db = this.getWritableDatabase();
