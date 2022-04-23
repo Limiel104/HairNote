@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WashDetails extends AppCompatActivity {
 
@@ -42,7 +41,10 @@ public class WashDetails extends AppCompatActivity {
         det_editWashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(WashDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(WashDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(WashDetails.this, WashEdit.class);
+                intent.putExtra(WASH_ID_KEY,wash.getId());
+                WashDetails.this.startActivity(intent);
             }
         });
 
@@ -87,13 +89,13 @@ public class WashDetails extends AppCompatActivity {
         for (int i = 0; i < wash.getUsedCosmetics().size(); i++) {
 
             cosmeticID = wash.getUsedCosmetics().get(i);
-            Ingredient ingredient = dataBaseHelper.findIngredient(cosmeticID);
+            Cosmetic cosmetic = dataBaseHelper.findCosmetic(cosmeticID);
 
             if ( i+1 == wash.getUsedCosmetics().size()) {
-                cosmeticList = cosmeticList + ingredient.getName();
+                cosmeticList = cosmeticList + cosmetic.getName();
             }
             else{
-                cosmeticList = cosmeticList + ingredient.getName() + "\n";
+                cosmeticList = cosmeticList + cosmetic.getName() + "\n";
             }
         }
         return cosmeticList;

@@ -14,13 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class CosmeticEdit extends AppCompatActivity {
 
@@ -82,7 +79,6 @@ public class CosmeticEdit extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
                         if (isChecked){
                             edt_chosenIngredients.add(position);
-                            Toast.makeText(CosmeticEdit.this, "dodano "+position, Toast.LENGTH_SHORT).show();
                         }
                         else {
                             edt_chosenIngredients.remove(Integer.valueOf(position));
@@ -141,16 +137,6 @@ public class CosmeticEdit extends AppCompatActivity {
                     updatedCosmetic = new Cosmetic(-1,"","","","","","");
                 }
 
-                /*Toast.makeText(CosmeticEdit.this,
-                        updatedCosmetic.getName()+" "
-                                +updatedCosmetic.getBrand()+" "
-                                +updatedCosmetic.getPehType()+" "
-                                +updatedCosmetic.getCosmeticType()+" "
-                                +inciListToString(updatedCosmetic)+" "
-                                +updatedCosmetic.getDescription()+" "
-                                +updatedCosmetic.getImgPath(),
-                        Toast.LENGTH_SHORT).show();*/
-
                 boolean success = dataBaseHelper.updateCosmetic(updatedCosmetic);
                 dataBaseHelper.deleteAllIngredientsInCosmetic(updatedCosmetic.getId());
 
@@ -162,13 +148,8 @@ public class CosmeticEdit extends AppCompatActivity {
                 Intent intent = new Intent(CosmeticEdit.this, CosmeticActivity.class);
                 CosmeticEdit.this.startActivity(intent);
                 finish();
-
-
             }
         });
-
-
-
 
     }
 
@@ -187,7 +168,6 @@ public class CosmeticEdit extends AppCompatActivity {
             edt_checkedIngredients[idx-1] = true;
             edt_chosenIngredients.add(idx-1);
         }
-
     }
 
     private void initViews(){
@@ -221,26 +201,6 @@ public class CosmeticEdit extends AppCompatActivity {
 
         edt_autoCompleteTVPehType.setAdapter(adapterPehTypes);
         edt_autoCompleteTVCosType.setAdapter(adapterCosTypes);
-    }
-
-    private String inciListToString(Cosmetic cosmetic){
-
-        String inciList = "";
-        int ingredientID;
-
-        for (int i = 0;  i < cosmetic.getInciList().size(); i++) {
-
-            ingredientID = cosmetic.getInciList().get(i)+1;
-            Ingredient ingredient = dataBaseHelper.findIngredient(ingredientID);
-
-            if ( i+1 == cosmetic.getInciList().size()) {
-                inciList = inciList + ingredient.getName();
-            }
-            else{
-                inciList = inciList + ingredient.getName() + ", ";
-            }
-        }
-        return inciList;
     }
 
 

@@ -314,6 +314,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateWash(Wash wash) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_WASH_DATE, wash.getDate());
+        contentValues.put(COLUMN_WASH_IS_CLEANSING, wash.isCleansing());
+        contentValues.put(COLUMN_WASH_USED_PEELING, wash.isUsedPeeling());
+        contentValues.put(COLUMN_WASH_USED_OILING, wash.isUsedOiling());
+        contentValues.put(COLUMN_WASH_DESC, wash.getDescription());
+
+        String[] washID = new String[]{String.valueOf(wash.getId())};
+
+        long update = db.update(WASH_TABLE, contentValues,   COLUMN_WASH_ID + " = ? ", washID);
+
+        if (update == -1)
+            return false;
+        else
+            return true;
+    }
+
     public boolean deleteWash(Wash wash) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -542,19 +563,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deleteOneCosmeticIngredient(int cosmeticID, int ingredientID) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID + " AND " +  COLUMN_COS_ID + " = " + cosmeticID;
-        Cursor cursor = db.rawQuery(queryString, null);
-
-        if (cursor.moveToFirst()) {
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     //--------------------------------------- WASH-COSMETIC METHODS ------------------------------------------------
 
     public boolean addWashCosmetic(int washID, int cosmeticID) {
@@ -623,18 +631,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /*public boolean deleteOneCosmeticIngredient(int cosmeticID, int ingredientID) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID + " AND " +  COLUMN_COS_ID + " = " + cosmeticID;
-        Cursor cursor = db.rawQuery(queryString, null);
-
-        if (cursor.moveToFirst()) {
-            return true;
-        }else{
-            return false;
-        }
-    }*/
 
 
 

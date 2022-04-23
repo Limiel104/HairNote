@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairNote">
         <activity
+            android:name=".WashEdit"
+            android:exported="false" />
+        <activity
             android:name=".CosmeticEdit"
             android:exported="false" />
         <activity
