@@ -97,23 +97,31 @@
         android:layout_marginVertical="10dp"
         android:layout_below="@id/btnAddIngredientsToInciList" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editCosmeticImgPath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Obraz"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticDesc" />
+        android:layout_below="@id/editCosmeticDesc" />-->
 
+    <Button
+        android:id="@+id/btnAddCosImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:layout_below="@id/editCosmeticDesc"
+        android:text="Wybierz zdjęcie" />
 
     <Button
         android:id="@+id/btnAddCosmetic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editCosmeticImgPath"
+        android:layout_below="@id/btnAddCosImg"
         android:layout_centerHorizontal="true"
         android:layout_marginVertical="10dp"
-        android:text="Dodaj"/>
+        android:text="Dodaj" />
 
 
 
