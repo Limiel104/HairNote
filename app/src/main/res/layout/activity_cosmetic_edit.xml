@@ -97,20 +97,20 @@
         android:layout_marginVertical="10dp"
         android:layout_below="@id/edt_btnEditIngredientsInInciList" />
 
-    <EditText
-        android:id="@+id/edt_cosmeticImgPath"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/edt_btnEditCosImg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Obraz"
+        android:layout_centerHorizontal="true"
         android:layout_marginVertical="10dp"
-        android:layout_below="@id/edt_cosmeticDesc" />
-
+        android:layout_below="@id/edt_cosmeticDesc"
+        android:text="Zmień zdjęcie" />
 
     <Button
         android:id="@+id/edt_btnEditCosmetic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edt_cosmeticImgPath"
+        android:layout_below="@id/edt_btnEditCosImg"
         android:layout_centerHorizontal="true"
         android:layout_marginVertical="10dp"
         android:text="Zapisz"/>

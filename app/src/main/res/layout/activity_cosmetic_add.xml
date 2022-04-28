@@ -97,14 +97,6 @@
         android:layout_marginVertical="10dp"
         android:layout_below="@id/btnAddIngredientsToInciList" />
 
-    <!--<EditText
-        android:id="@+id/editCosmeticImgPath"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Obraz"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticDesc" />-->
-
     <Button
         android:id="@+id/btnAddCosImg"
         android:layout_width="wrap_content"
