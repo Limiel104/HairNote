@@ -1,12 +1,18 @@
 package com.example.hairnote;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,28 +31,18 @@ public class CosmeticActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cosmetic);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        setActionBar();
 
-        //cosmeticAdapter = new CosmeticsRecViewAdapter(this);
         cosmeticsRecView = findViewById(R.id.cosmeticsRecView);
         btn_addCosmeticMain = findViewById(R.id.btnAddCosmeticMain);
 
         dataBaseHelper = new DataBaseHelper(CosmeticActivity.this);
-
-        //cosmeticsRecView.setAdapter(cosmeticAdapter);
-        //cosmeticsRecView.setLayoutManager(new GridLayoutManager(this, 2));
-
-        //ArrayList<Cosmetic> cosmetics = new ArrayList<>();
-        //cosmetics.add(new Cosmetic(1,"sdbakj","OnlyBio","Proteiny","Odżywka","asdad,sadsa,dasd,as,d,as,dasd","dasfdasdfsafsa", "https://www.hebe.pl/on/demandware.static/-/Sites-PL_Master_Catalog/default/dw7b35f56f/images/hi-res/389490__odzywka_proteinowa_do_wlosow_kazdej_porowatosci__200_ml__abc__2__reviewed__p.png"));
-        //cosmetics.add(new Cosmetic(2,"fddsf","OnlyBio","Humektanty","Odżywka","dfgs","dasfdasdfsafsa","https://darmarsklep.pl/img/product_media/46001-47000/5902811787765.png"));
-
-        //cosmeticAdapter.setCosmetics(cosmetics);
 
         ShowAllCosmeticsOnRecView(dataBaseHelper);
 
         btn_addCosmeticMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(MainActivity.this,"Dodaj1",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CosmeticActivity.this, CosmeticAdd.class);
                 CosmeticActivity.this.startActivity(intent);
                 finish();
@@ -57,11 +53,56 @@ public class CosmeticActivity extends AppCompatActivity {
 
     public void ShowAllCosmeticsOnRecView(DataBaseHelper dataBaseHelper) {
         cosmeticAdapter = new CosmeticsRecViewAdapter(this);
-        //cosmeticAdapter.setCosmetics(dataBaseHelper.getAllCosmetics());
         cosmeticsRecView.setAdapter(cosmeticAdapter);
         cosmeticsRecView.setLayoutManager(new GridLayoutManager(this, 2));
-        //cosmeticAdapter.setCosmetics(cosmetics);
         cosmeticAdapter.setCosmetics(dataBaseHelper.getAllCosmetics());
+    }
+
+    public void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setTitle("Kosmetyki");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                cosmeticAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }else{
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void ClickMenu(View view){

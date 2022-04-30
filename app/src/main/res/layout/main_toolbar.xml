@@ -7,13 +7,14 @@
     android:padding="12dp"
     android:gravity="center_vertical">
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="ClickMenu"
         android:src="@drawable/ic_menu"/>
 
     <TextView
+        android:id="@+id/layoutName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -21,13 +22,6 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="#636363"/>
+        android:textColor="#636363"/>-->
 
-    <!--<ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_more"/>-->
-
-
-</LinearLayout
- >
+</LinearLayout>

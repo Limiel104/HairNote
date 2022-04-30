@@ -1,6 +1,9 @@
 package com.example.hairnote;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,14 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    //AKTYWNOSC Z MYCIAMI
-
-    //Initialize variable
     DrawerLayout drawerLayout;
     Button btn_addWashMain;
 
@@ -24,15 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     WashesRecViewAdapter washesAdapter;
     DataBaseHelper dataBaseHelper;
-    //adapter.setWashes(washes);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
+        setActionBar();
 
         washesRecView = findViewById(R.id.washesRecView);
         btn_addWashMain = findViewById(R.id.btnAddWashMain);
@@ -40,19 +41,11 @@ public class MainActivity extends AppCompatActivity {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
 
-        /*ArrayList<Wash> washes = new ArrayList<>();
-        washes = dataBaseHelper.getAllWashes();
-        washesAdapter = new WashesRecViewAdapter();
-        washesAdapter.setWashes(washes);
-        washesRecView.setAdapter(washesAdapter);
-        washesRecView.setLayoutManager(new LinearLayoutManager(this));*/
-
         ShowAllWashesOnRecView(dataBaseHelper);
 
         btn_addWashMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(MainActivity.this,"Dodaj1",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, WashAdd.class);
                 MainActivity.this.startActivity(intent);
                 finish();
@@ -62,12 +55,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ShowAllWashesOnRecView(DataBaseHelper dataBaseHelper) {
-        //ArrayList<Wash> washes = new ArrayList<>();
-        //washes = dataBaseHelper.getAllWashes();
         washesAdapter = new WashesRecViewAdapter(this);
-        washesAdapter.setWashes(dataBaseHelper.getAllWashes()); //tutaj skracamy tak ze nie potrzebujemy tych 2 wyrzej
+        washesAdapter.setWashes(dataBaseHelper.getAllWashes());
         washesRecView.setAdapter(washesAdapter);
         washesRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+    }
+
+    public void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setTitle("Mycia");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                washesAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }else{
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void ClickMenu(View view){

@@ -1,12 +1,19 @@
 package com.example.hairnote;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +23,7 @@ public class IngredientActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     private RecyclerView ingredientsRecView;
 
-    Button btn_addIngredientMain, btn_viewAll;
-    EditText et_name, et_type, et_description;
+    Button btn_addIngredientMain;
     IngredientsRecViewAdapter ingredientAdapter;
     DataBaseHelper dataBaseHelper;
 
@@ -27,6 +33,7 @@ public class IngredientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredient);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        setActionBar();
 
         ingredientsRecView = findViewById(R.id.ingredientsRecView);
         btn_addIngredientMain = findViewById(R.id.btnAddIngredientMain);
@@ -35,72 +42,69 @@ public class IngredientActivity extends AppCompatActivity {
 
         ShowAllIngredientsOnRecView(dataBaseHelper);
 
-        //ponizej jet z innego tutoriala
-
-        //IngredientsRecViewAdapter adapter = new IngredientsRecViewAdapter();
-        //adapter.setIngredients(ingredients);
-
-        //ingredientsRecView.setAdapter(adapter);
-        //ingredientsRecView.setLayoutManager(new LinearLayoutManager(this));
-
-        //tu sie konczy
-
         btn_addIngredientMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*Ingredient ingredient;
-
-                try {
-                    ingredient = new Ingredient(-1,et_name.getText().toString(),et_type.getText().toString(),et_description.getText().toString());
-                    //Toast.makeText(IngredientActivity.this,ingredient.toString(),Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e) {
-                    //Toast.makeText(IngredientActivity.this,"Wystąpił błąd",Toast.LENGTH_SHORT).show();
-                    ingredient = new Ingredient(-1, "error","","");
-                }
-
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(IngredientActivity.this);
-                boolean success = dataBaseHelper.addIngredient(ingredient);
-                Toast.makeText(IngredientActivity.this, "Success= " + success, Toast.LENGTH_SHORT).show();
-                ShowAllIngredientsOnRecView(dataBaseHelper);*/
-
                 Intent intent = new Intent(IngredientActivity.this, IngredientAdd.class);
                 IngredientActivity.this.startActivity(intent);
                 finish();
 
             }
         });
-
-        /*btn_viewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(IngredientActivity.this);
-                ShowAllIngredientsOnRecView(dataBaseHelper);
-
-                //Toast.makeText(IngredientActivity.this, allIngredients.toString(), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(IngredientActivity.this,"Wszystkie",Toast.LENGTH_SHORT).show();
-
-                /*ingredientAdapter = new IngredientsRecViewAdapter();
-                ingredientAdapter.setIngredients(allIngredients);
-                ingredientsRecView.setAdapter(ingredientAdapter);
-                ingredientsRecView.setLayoutManager(new LinearLayoutManager(IngredientActivity.this));*/
-
-           /* }
-        });
-
-        */
-
-
     }
 
     private void ShowAllIngredientsOnRecView(DataBaseHelper dataBaseHelper) {
-        //ArrayList<Ingredient> allIngredients = dataBaseHelper.getAllIngredients();
         ingredientAdapter = new IngredientsRecViewAdapter(this);
         ingredientAdapter.setIngredients(dataBaseHelper.getAllIngredients());
         ingredientsRecView.setAdapter(ingredientAdapter);
         ingredientsRecView.setLayoutManager(new LinearLayoutManager(IngredientActivity.this));
+    }
+
+    public void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setTitle("Składniki");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ingredientAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }else{
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void ClickMenu(View view){

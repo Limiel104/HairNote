@@ -13,25 +13,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/main_toolbar"/>
-
-        <TextView
-            android:id="@+id/cosmeticTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Katalog Kosmetykow"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cosmeticsRecView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cosmeticTitle"
-            android:layout_margin="15dp"
-            android:layout_marginTop="15dp" />
+            android:layout_height="match_parent"
+            android:padding="10dp" />
 
         <Button
             android:id="@+id/btnAddCosmeticMain"

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecViewAdapter.ViewHolder> {
 
     private static final String TAG = "CosmeticRecViewAdapter";
-    //public static final String COSMETIC_ID_KEY = "cosmeticID";
 
     private ArrayList<Cosmetic> cosmetics = new ArrayList<>();
+    private ArrayList<Cosmetic> cosmeticsAll = new ArrayList<>();
     private Context mContext;
 
     public CosmeticsRecViewAdapter(Context mContext) {
@@ -65,8 +68,42 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
 
     public void setCosmetics(ArrayList<Cosmetic> cosmetics) {
         this.cosmetics = cosmetics;
+        this.cosmeticsAll = new ArrayList<>(cosmetics);
         notifyDataSetChanged();
     }
+
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            List<Cosmetic> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()) {
+                filteredList.addAll(cosmeticsAll);
+            }else {
+                for (Cosmetic cosmetic: cosmeticsAll) {
+                    if (cosmetic.getName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(cosmetic);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            cosmetics.clear();
+            cosmetics.addAll((Collection<? extends Cosmetic>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

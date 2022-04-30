@@ -13,63 +13,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/main_toolbar"/>
-
-        <TextView
-            android:id="@+id/ingredientTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Składniki"
-            android:textSize="30sp"
-            android:textStyle="bold"/>
-
-        <!--<EditText
-            android:id="@+id/editNameIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nazwa"
-            android:layout_below="@+id/ingredientTitle"/>
-
-        <EditText
-            android:id="@+id/editTypIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Typ"
-            android:layout_below="@+id/editNameIngredient"/>
-
-        <EditText
-            android:id="@+id/editDescIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Opis"
-            android:layout_below="@+id/editTypIngredient"/>
-
-        <Button
-            android:id="@+id/btnAllIngredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wszystkie"
-            android:layout_gravity="center"
-            android:layout_marginLeft="70dp"
-            android:layout_below="@+id/editDescIngredient"/>
-
-        <Button
-            android:id="@+id/btnAddIngredient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dodaj"
-            android:layout_gravity="center"
-            android:layout_below="@+id/editDescIngredient"
-            android:layout_marginLeft="30dp"
-            android:layout_centerInParent="true"/>-->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ingredientsRecView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ingredientTitle"
             android:padding="10dp" />
 
         <Button
@@ -87,13 +34,6 @@
             android:text="Dodaj Składnik"/>
 
     </RelativeLayout>
-
-    <!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ingredientRecView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>-->
 
     <RelativeLayout
         android:layout_width="300dp"

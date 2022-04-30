@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,10 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
-public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdapter.ViewHolder> {
+public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdapter.ViewHolder> implements Filterable {
 
     private ArrayList<Wash> washes = new ArrayList<>();
+    private ArrayList<Wash> washesAll = new ArrayList<>();
     private Context context;
 
     public WashesRecViewAdapter(Context context) {
@@ -57,9 +61,44 @@ public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdap
 
     public void setWashes(ArrayList<Wash> washes) {
         this.washes = washes;
+        this.washesAll = new ArrayList<>(washes);
         notifyDataSetChanged();
         Collections.reverse(washes);
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            List<Wash> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()) {
+                filteredList.addAll(washesAll);
+            }else {
+                for (Wash wash: washesAll) {
+                    if (wash.getDate().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(wash);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            washes.clear();
+            washes.addAll((Collection<? extends Wash>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
