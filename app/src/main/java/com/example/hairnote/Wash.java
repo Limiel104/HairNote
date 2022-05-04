@@ -1,9 +1,11 @@
 package com.example.hairnote;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wash {
+public class Wash implements Comparable<Wash>{
     private int id;
     private String date;
     private boolean isCleansing;
@@ -99,4 +101,24 @@ public class Wash {
                 ", usedCosmetics=" + usedCosmetics +
                 '}';
     }
+
+    @Override
+    public int compareTo(Wash wash) {
+
+        String d1 = this.date.substring(0,2);
+        String m1 = this.date.substring(5,7);
+        String y1 = this.date.substring(10,14);
+
+        String d2 = wash.date.substring(0,2);
+        String m2 = wash.date.substring(5,7);
+        String y2 = wash.date.substring(10,14);
+
+        String date1 = y1+m1+d1;
+        String date2 = y2+m2+d2;
+
+        int number1 = Integer.parseInt(date1);
+        int number2 = Integer.parseInt(date2);
+
+        return Integer.compare(number1,number2);
+   }
 }

@@ -213,43 +213,21 @@ public class WashEdit extends AppCompatActivity {
 
     public void setDate(int day, int month, int year){
 
-        switch (month) {
-            case 0:
-                edt_chosenDate = day +" STY " + year;
-                break;
-            case 1:
-                edt_chosenDate = day +" LUT " + year;
-                break;
-            case 2:
-                edt_chosenDate = day +" MAR " + year;
-                break;
-            case 3:
-                edt_chosenDate = day +" KWI " + year;
-                break;
-            case 4:
-                edt_chosenDate = day +" MAJ " + year;
-                break;
-            case 5:
-                edt_chosenDate = day +" CZE " + year;
-                break;
-            case 6:
-                edt_chosenDate = day +" LIP " + year;
-                break;
-            case 7:
-                edt_chosenDate = day +" SIE " + year;
-                break;
-            case 8:
-                edt_chosenDate = day +" WRZ " + year;
-                break;
-            case 9:
-                edt_chosenDate = day +" PAŹ " + year;
-                break;
-            case 10:
-                edt_chosenDate = day +" LIS " + year;
-                break;
-            case 11:
-                edt_chosenDate = day +" GRU " + year;
-                break;
+        if (day < 10) {
+            if ((month+1) < 10) {
+                edt_chosenDate = "0" + day + " - 0" + (month+1) + " - " + year;
+            }
+            else {
+                edt_chosenDate = "0" + day + " - " + (month+1) + " - " + year;
+            }
+        }
+        else{
+            if ((month+1) < 10) {
+                edt_chosenDate = day + " - 0" + (month+1) + " - " + year;
+            }
+            else {
+                edt_chosenDate = day + " - " + (month+1) + " - " + year;
+            }
         }
     }
 

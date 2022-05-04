@@ -176,43 +176,21 @@ public class WashAdd extends AppCompatActivity {
 
     public void setDate(int day, int month, int year){
 
-        switch (month) {
-            case 0:
-                chosenDate = day +" STY " + year;
-                break;
-            case 1:
-                chosenDate = day +" LUT " + year;
-                break;
-            case 2:
-                chosenDate = day +" MAR " + year;
-                break;
-            case 3:
-                chosenDate = day +" KWI " + year;
-                break;
-            case 4:
-                chosenDate = day +" MAJ " + year;
-                break;
-            case 5:
-                chosenDate = day +" CZE " + year;
-                break;
-            case 6:
-                chosenDate = day +" LIP " + year;
-                break;
-            case 7:
-                chosenDate = day +" SIE " + year;
-                break;
-            case 8:
-                chosenDate = day +" WRZ " + year;
-                break;
-            case 9:
-                chosenDate = day +" PAŹ " + year;
-                break;
-            case 10:
-                chosenDate = day +" LIS " + year;
-                break;
-            case 11:
-                chosenDate = day +" GRU " + year;
-                break;
+        if (day < 10) {
+            if ((month+1) < 10) {
+                chosenDate = "0" + day + " - 0" + (month+1) + " - " + year;
+            }
+            else {
+                chosenDate = "0" + day + " - " + (month+1) + " - " + year;
+            }
+        }
+        else{
+            if ((month+1) < 10) {
+                chosenDate = day + " - 0" + (month+1) + " - " + year;
+            }
+            else {
+                chosenDate = day + " - " + (month+1) + " - " + year;
+            }
         }
     }
 

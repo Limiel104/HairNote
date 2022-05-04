@@ -440,7 +440,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         /*      Washes     */
 
         ContentValues wash1 = new ContentValues();
-        wash1.put(COLUMN_WASH_DATE,"12 MAR 2022");
+        wash1.put(COLUMN_WASH_DATE,"12 - 03 - 2022");
         wash1.put(COLUMN_WASH_IS_CLEANSING,0);
         wash1.put(COLUMN_WASH_USED_PEELING,0);
         wash1.put(COLUMN_WASH_USED_OILING,0);
@@ -451,7 +451,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash1);
 
         ContentValues wash2 = new ContentValues();
-        wash2.put(COLUMN_WASH_DATE,"17 MAR 2022");
+        wash2.put(COLUMN_WASH_DATE,"17 - 03 - 2022");
         wash2.put(COLUMN_WASH_IS_CLEANSING,0);
         wash2.put(COLUMN_WASH_USED_PEELING,0);
         wash2.put(COLUMN_WASH_USED_OILING,1);
@@ -461,7 +461,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash2);
 
         ContentValues wash3 = new ContentValues();
-        wash3.put(COLUMN_WASH_DATE,"23 MAR 2022");
+        wash3.put(COLUMN_WASH_DATE,"23 - 03 - 2022");
         wash3.put(COLUMN_WASH_IS_CLEANSING,1);
         wash3.put(COLUMN_WASH_USED_PEELING,0);
         wash3.put(COLUMN_WASH_USED_OILING,1);
@@ -472,7 +472,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash3);
 
         ContentValues wash4 = new ContentValues();
-        wash4.put(COLUMN_WASH_DATE,"29 MAR 2022");
+        wash4.put(COLUMN_WASH_DATE,"29 - 03 - 2022");
         wash4.put(COLUMN_WASH_IS_CLEANSING,0);
         wash4.put(COLUMN_WASH_USED_PEELING,0);
         wash4.put(COLUMN_WASH_USED_OILING,0);
@@ -482,7 +482,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash4);
 
         ContentValues wash5 = new ContentValues();
-        wash5.put(COLUMN_WASH_DATE,"3 KWI 2022");
+        wash5.put(COLUMN_WASH_DATE,"03 - 04 - 2022");
         wash5.put(COLUMN_WASH_IS_CLEANSING,0);
         wash5.put(COLUMN_WASH_USED_PEELING,1);
         wash5.put(COLUMN_WASH_USED_OILING,1);
@@ -492,7 +492,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash5);
 
         ContentValues wash6 = new ContentValues();
-        wash6.put(COLUMN_WASH_DATE,"10 KWI 2022");
+        wash6.put(COLUMN_WASH_DATE,"10 - 04 - 2022");
         wash6.put(COLUMN_WASH_IS_CLEANSING,1);
         wash6.put(COLUMN_WASH_USED_PEELING,0);
         wash6.put(COLUMN_WASH_USED_OILING,0);
@@ -502,7 +502,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash6);
 
         ContentValues wash7 = new ContentValues();
-        wash7.put(COLUMN_WASH_DATE,"15 KWI 2022");
+        wash7.put(COLUMN_WASH_DATE,"15 - 04 - 2022");
         wash7.put(COLUMN_WASH_IS_CLEANSING,0);
         wash7.put(COLUMN_WASH_USED_PEELING,1);
         wash7.put(COLUMN_WASH_USED_OILING,1);
@@ -515,7 +515,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash7);
 
         ContentValues wash8 = new ContentValues();
-        wash8.put(COLUMN_WASH_DATE,"20 KWI 2022");
+        wash8.put(COLUMN_WASH_DATE,"20 - 04 - 2022");
         wash8.put(COLUMN_WASH_IS_CLEANSING,1);
         wash8.put(COLUMN_WASH_USED_PEELING,1);
         wash8.put(COLUMN_WASH_USED_OILING,1);
@@ -526,7 +526,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash8);
 
         ContentValues wash9 = new ContentValues();
-        wash9.put(COLUMN_WASH_DATE,"24 KWI 2022");
+        wash9.put(COLUMN_WASH_DATE,"24 - 04 - 2022");
         wash9.put(COLUMN_WASH_IS_CLEANSING,0);
         wash9.put(COLUMN_WASH_USED_PEELING,0);
         wash9.put(COLUMN_WASH_USED_OILING,0);
@@ -537,7 +537,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash9);
 
         ContentValues wash10 = new ContentValues();
-        wash10.put(COLUMN_WASH_DATE,"6 MAJ 2022");
+        wash10.put(COLUMN_WASH_DATE,"06 - 05 - 2022");
         wash10.put(COLUMN_WASH_IS_CLEANSING,1);
         wash10.put(COLUMN_WASH_USED_PEELING,0);
         wash10.put(COLUMN_WASH_USED_OILING,1);
@@ -549,7 +549,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash10);
 
         ContentValues wash11 = new ContentValues();
-        wash11.put(COLUMN_WASH_DATE,"7 MAR 2022");
+        wash11.put(COLUMN_WASH_DATE,"07 - 03 - 2022");
         wash11.put(COLUMN_WASH_IS_CLEANSING,0);
         wash11.put(COLUMN_WASH_USED_PEELING,0);
         wash11.put(COLUMN_WASH_USED_OILING,0);
@@ -560,7 +560,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash11);
 
         ContentValues wash12 = new ContentValues();
-        wash12.put(COLUMN_WASH_DATE,"21 MAR 2022");
+        wash12.put(COLUMN_WASH_DATE,"21 - 03 - 2022");
         wash12.put(COLUMN_WASH_IS_CLEANSING,0);
         wash12.put(COLUMN_WASH_USED_PEELING,0);
         wash12.put(COLUMN_WASH_USED_OILING,1);
@@ -570,7 +570,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash12);
 
         ContentValues wash13 = new ContentValues();
-        wash13.put(COLUMN_WASH_DATE,"16 MAR 2022");
+        wash13.put(COLUMN_WASH_DATE,"16 - 03 - 2022");
         wash13.put(COLUMN_WASH_IS_CLEANSING,1);
         wash13.put(COLUMN_WASH_USED_PEELING,0);
         wash13.put(COLUMN_WASH_USED_OILING,1);
@@ -581,7 +581,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash13);
 
         ContentValues wash14 = new ContentValues();
-        wash14.put(COLUMN_WASH_DATE,"19 MAR 2022");
+        wash14.put(COLUMN_WASH_DATE,"19 - 03 - 2022");
         wash14.put(COLUMN_WASH_IS_CLEANSING,0);
         wash14.put(COLUMN_WASH_USED_PEELING,0);
         wash14.put(COLUMN_WASH_USED_OILING,0);
@@ -591,7 +591,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(WASH_TABLE, null, wash14);
 
         ContentValues wash15 = new ContentValues();
-        wash15.put(COLUMN_WASH_DATE,"30 KWI 2022");
+        wash15.put(COLUMN_WASH_DATE,"30 - 4 - 2022");
         wash15.put(COLUMN_WASH_IS_CLEANSING,0);
         wash15.put(COLUMN_WASH_USED_PEELING,1);
         wash15.put(COLUMN_WASH_USED_OILING,1);

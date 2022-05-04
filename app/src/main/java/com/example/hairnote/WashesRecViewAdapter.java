@@ -41,7 +41,7 @@ public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtWashTitle.setText(washes.get(position).getDate()); //!!!!!!! tutaj trzeba pamietac
+        holder.txtWashTitle.setText(washes.get(position).getDate());
 
         holder.parentWash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +62,9 @@ public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdap
     public void setWashes(ArrayList<Wash> washes) {
         this.washes = washes;
         this.washesAll = new ArrayList<>(washes);
-        notifyDataSetChanged();
+        Collections.sort(washes,Wash::compareTo);
         Collections.reverse(washes);
+        notifyDataSetChanged();
     }
 
     @Override
