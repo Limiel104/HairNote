@@ -2,6 +2,7 @@ package com.example.hairnote;
 
 import static com.example.hairnote.CosmeticDetails.COSMETIC_ID_KEY;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,6 +61,9 @@ public class CosmeticEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmetic_edit);
+
+        getSupportActionBar().setTitle("Edytuj Kosmetyk");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dataBaseHelper = new DataBaseHelper(CosmeticEdit.this);
 
@@ -180,6 +185,16 @@ public class CosmeticEdit extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return true;
     }
 
     private void setData(Cosmetic cosmetic){

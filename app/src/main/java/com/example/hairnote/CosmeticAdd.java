@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CosmeticAdd extends AppCompatActivity {
 
@@ -53,6 +52,9 @@ public class CosmeticAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmetic_add);
+
+        getSupportActionBar().setTitle("Dodaj Kosmetyk");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(CosmeticAdd.this);
 
@@ -159,7 +161,6 @@ public class CosmeticAdd extends AppCompatActivity {
                 }
             }
         });
-
 
         btn_addCosmetic.setOnClickListener(new View.OnClickListener() {
             @Override

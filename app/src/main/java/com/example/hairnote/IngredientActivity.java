@@ -11,12 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 public class IngredientActivity extends AppCompatActivity {
 
@@ -47,8 +45,6 @@ public class IngredientActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(IngredientActivity.this, IngredientAdd.class);
                 IngredientActivity.this.startActivity(intent);
-                finish();
-
             }
         });
     }
@@ -117,14 +113,16 @@ public class IngredientActivity extends AppCompatActivity {
 
     public void  ClickWash(View view){
         MainActivity.redirectActivity(this,MainActivity.class);
+        finish();
     }
 
     public void ClickCosmetic(View view){
         MainActivity.redirectActivity(this, CosmeticActivity.class);
+        finish();
     }
 
     public void ClickIngredient(View view){
-        recreate();
+        MainActivity.closeDrawer(drawerLayout);
     }
 
     @Override

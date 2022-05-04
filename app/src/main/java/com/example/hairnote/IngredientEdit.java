@@ -2,17 +2,18 @@ package com.example.hairnote;
 
 import static com.example.hairnote.IngredientDetails.INGREDIENT_ID_KEY;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class IngredientEdit extends AppCompatActivity {
 
@@ -31,6 +32,9 @@ public class IngredientEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_edit);
 
+        getSupportActionBar().setTitle("Edytuj Składnik");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         dataBaseHelper = new DataBaseHelper(IngredientEdit.this);
 
         initViews();
@@ -38,7 +42,6 @@ public class IngredientEdit extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             int ingredientID = intent.getIntExtra(INGREDIENT_ID_KEY,-1);
-            //Toast.makeText(IngredientEdit.this,"Dostałam " + ingredientID, Toast.LENGTH_SHORT).show();
             if(ingredientID != -1) {
                 ingredient = dataBaseHelper.findIngredient(ingredientID);
                 if (ingredient != null) {
@@ -80,9 +83,16 @@ public class IngredientEdit extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return true;
     }
 
     private void setData(Ingredient ingredient){

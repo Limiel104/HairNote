@@ -1,27 +1,23 @@
 package com.example.hairnote;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CosmeticDetails extends AppCompatActivity {
 
     public static final String COSMETIC_ID_KEY = "cosmeticID";
     private TextView det_cosName, det_cosBrand, det_cosPehType, det_cosCosmeticType, det_cosInciList, det_cosDesc;
     private ImageView imgCosDet;
-    private Button det_editCosBtn, det_deleteCosBtn;
 
     DataBaseHelper dataBaseHelper;
 
@@ -31,6 +27,9 @@ public class CosmeticDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmetic_details);
+
+        getSupportActionBar().setTitle("Szczegóły");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initViews();
 
@@ -47,28 +46,32 @@ public class CosmeticDetails extends AppCompatActivity {
             }
         }
 
-        det_editCosBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(CosmeticDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.more_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
                 Intent intent = new Intent(CosmeticDetails.this, CosmeticEdit.class);
                 intent.putExtra(COSMETIC_ID_KEY,cosmetic.getId());
                 CosmeticDetails.this.startActivity(intent);
-            }
-        });
-
-        det_deleteCosBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                return true;
+            case R.id.action_delete:
                 dataBaseHelper.deleteCosmetic(cosmetic);
-                Intent intent = new Intent(CosmeticDetails.this, CosmeticActivity.class);
+                intent = new Intent(CosmeticDetails.this, CosmeticActivity.class);
                 CosmeticDetails.this.startActivity(intent);
                 finish();
-            }
-        });
-
-
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setData(Cosmetic cosmetic){
@@ -86,8 +89,6 @@ public class CosmeticDetails extends AppCompatActivity {
     }
 
     private void initViews(){
-        det_editCosBtn = findViewById(R.id.det_editCosBtn);
-        det_deleteCosBtn = findViewById(R.id.det_deleteCosBtn);
         det_cosName = findViewById(R.id.det_cosName2);
         det_cosBrand = findViewById(R.id.det_cosBrand2);
         det_cosPehType = findViewById(R.id.det_cosPehType2);
@@ -95,7 +96,6 @@ public class CosmeticDetails extends AppCompatActivity {
         //det_cosCG = findViewById(R.id.det_cosCG);
         det_cosInciList = findViewById(R.id.det_cosInciList2);
         det_cosDesc = findViewById(R.id.det_cosDesc2);
-
         imgCosDet = findViewById(R.id.imgCosDet);
     }
 

@@ -1,18 +1,19 @@
 package com.example.hairnote;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class WashDetails extends AppCompatActivity {
 
     public static final String WASH_ID_KEY = "washID";
     private TextView det_washDate, det_washIsCleansing, det_washUsedPeeling, det_washUsedOiling, det_washUsedCosmetics, det_washDesc;
-    private Button det_editWashBtn, det_deleteWashBtn;
 
     DataBaseHelper dataBaseHelper;
 
@@ -22,6 +23,9 @@ public class WashDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wash_details);
+
+        getSupportActionBar().setTitle("Szczegóły");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initViews();
 
@@ -38,27 +42,32 @@ public class WashDetails extends AppCompatActivity {
             }
         }
 
-        det_editWashBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(WashDetails.this, "edytuj",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.more_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
                 Intent intent = new Intent(WashDetails.this, WashEdit.class);
                 intent.putExtra(WASH_ID_KEY,wash.getId());
                 WashDetails.this.startActivity(intent);
-            }
-        });
-
-        det_deleteWashBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                return true;
+            case R.id.action_delete:
                 dataBaseHelper.deleteWash(wash);
-                Intent intent = new Intent(WashDetails.this, MainActivity.class);
+                intent = new Intent(WashDetails.this, MainActivity.class);
                 WashDetails.this.startActivity(intent);
                 finish();
-            }
-        });
-
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setData(Wash wash){
@@ -71,8 +80,6 @@ public class WashDetails extends AppCompatActivity {
     }
 
     private void initViews(){
-        det_editWashBtn = findViewById(R.id.det_editWashBtn);
-        det_deleteWashBtn = findViewById(R.id.det_deleteWashBtn);
         det_washDate = findViewById(R.id.det_washDate2);
         det_washIsCleansing = findViewById(R.id.det_washIsCleansing2);
         det_washUsedPeeling = findViewById(R.id.det_washUsedPeeling2);

@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, WashAdd.class);
                 MainActivity.this.startActivity(intent);
-                finish();
             }
         });
 
@@ -135,17 +134,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClickWash(View view){
         //Recreate this activity
-        recreate();
+        //recreate();
+        closeDrawer(drawerLayout);
     }
 
     public void ClickCosmetic(View view){
         //Redirect activity to Kosmetyki
         redirectActivity(this, CosmeticActivity.class);
+        finish();
     }
 
     public void ClickIngredient(View view){
         //Redirect activity to Skladniki
         redirectActivity(this,IngredientActivity.class);
+        finish();
     }
 
     public static void redirectActivity(Activity activity, Class aClass){

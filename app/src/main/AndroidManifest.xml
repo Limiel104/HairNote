@@ -15,31 +15,40 @@
         android:theme="@style/Theme.HairNote">
         <activity
             android:name=".WashEdit"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".WashDetails"/>
         <activity
             android:name=".CosmeticEdit"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".CosmeticDetails"/>
         <activity
             android:name=".IngredientEdit"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".IngredientDetails"/>
         <activity
             android:name=".IngredientAdd"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".IngredientActivity"/>
         <activity
             android:name=".IngredientDetails"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".IngredientActivity"/>
         <activity
             android:name=".WashDetails"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".CosmeticAdd"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".CosmeticActivity"/>
         <activity
             android:name=".WashAdd"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".CosmeticDetails"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".CosmeticActivity"/>
         <activity
             android:name=".IngredientActivity"
             android:exported="true" />

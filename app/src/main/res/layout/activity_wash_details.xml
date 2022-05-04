@@ -148,24 +148,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="205dp" />
 
-            <Button
-                android:id="@+id/det_editWashBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Edytuj"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftWash"
-                app:layout_constraintTop_toBottomOf="@+id/det_washDesc2" />
-
-            <Button
-                android:id="@+id/det_deleteWashBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Usuń"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineRightWash"
-                app:layout_constraintTop_toBottomOf="@+id/det_washDesc2" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

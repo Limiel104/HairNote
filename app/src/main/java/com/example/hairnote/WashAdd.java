@@ -17,9 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 public class WashAdd extends AppCompatActivity {
 
@@ -38,6 +36,9 @@ public class WashAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wash_add);
+
+        getSupportActionBar().setTitle("Dodaj Mycie");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(WashAdd.this);
 

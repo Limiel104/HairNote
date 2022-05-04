@@ -25,6 +25,9 @@ public class IngredientAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_add);
 
+        getSupportActionBar().setTitle("Dodaj Składnik");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String[] ingrTypes = getResources().getStringArray(R.array.IngrTypes);
 
         adapterIngrTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_ingredient_type, ingrTypes);

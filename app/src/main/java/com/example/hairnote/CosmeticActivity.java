@@ -45,7 +45,6 @@ public class CosmeticActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CosmeticActivity.this, CosmeticAdd.class);
                 CosmeticActivity.this.startActivity(intent);
-                finish();
             }
         });
 
@@ -54,7 +53,7 @@ public class CosmeticActivity extends AppCompatActivity {
     public void ShowAllCosmeticsOnRecView(DataBaseHelper dataBaseHelper) {
         cosmeticAdapter = new CosmeticsRecViewAdapter(this);
         cosmeticsRecView.setAdapter(cosmeticAdapter);
-        cosmeticsRecView.setLayoutManager(new GridLayoutManager(this, 2));
+        cosmeticsRecView.setLayoutManager(new GridLayoutManager(this, 3));
         cosmeticAdapter.setCosmetics(dataBaseHelper.getAllCosmetics());
     }
 
@@ -98,10 +97,8 @@ public class CosmeticActivity extends AppCompatActivity {
                 }else{
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
-
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -115,15 +112,16 @@ public class CosmeticActivity extends AppCompatActivity {
 
     public void  ClickWash(View view){
         MainActivity.redirectActivity(this, MainActivity.class);
+        finish();
     }
 
     public void ClickCosmetic(View view){
-        recreate();
+        MainActivity.closeDrawer(drawerLayout);
     }
 
     public void ClickIngredient(View view){
-        //Redirect activity to Skladniki
         MainActivity.redirectActivity(this,IngredientActivity.class);
+        finish();
     }
 
     @Override

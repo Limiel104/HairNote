@@ -19,8 +19,9 @@
                 android:id="@+id/imgCosDet"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +35,6 @@
                 android:text="Nazwa"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
                 app:layout_constraintTop_toBottomOf="@id/imgCosDet" />
-
 
             <TextView
                 android:id="@+id/det_cosName2"
@@ -159,24 +159,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="25dp" />
-
-            <Button
-                android:id="@+id/det_editCosBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Edytuj"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftCos"
-                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc2" />
-
-            <Button
-                android:id="@+id/det_deleteCosBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Usuń"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineRightCos"
-                app:layout_constraintTop_toBottomOf="@+id/det_cosDesc2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

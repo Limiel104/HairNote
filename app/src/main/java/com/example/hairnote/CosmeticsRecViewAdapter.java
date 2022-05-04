@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -44,7 +43,6 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder: Called");
-        holder.txtName.setText(cosmetics.get(position).getName());
         Glide.with(mContext)
                 .asBitmap()
                 .load(cosmetics.get(position).getImgPath())
@@ -53,7 +51,6 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(mContext, cosmetics.get(position).getName() + "Selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, CosmeticDetails.class);
                 intent.putExtra(COSMETIC_ID_KEY,cosmetics.get(position).getId());
                 mContext.startActivity(intent);
@@ -109,13 +106,11 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
 
         private CardView parent;
         private ImageView imgCosmetic;
-        private TextView txtName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.parent);
             imgCosmetic = itemView.findViewById(R.id.imgCosmetic);
-            txtName = itemView.findViewById(R.id.txtCosmeticName);
         }
     }
 
