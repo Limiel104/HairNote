@@ -100,6 +100,649 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         /*String createTableStatement6 = "CREATE TABLE COSMETIC_INGREDIENT_TABLE (COSMETIC_INGREDIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, COS_ID INTEGER, INGR_ID INTEGER, FOREIGN KEY (COS_ID) REFERENCES COSMETIC_TABLE(COSMETIC_ID), FOREIGN KEY (INGR_ID) REFERENCES INGREDIENT_TABLE(INGREDIENT_ID))";
         sqLiteDatabase.execSQL(createTableStatement6);*/
 
+        /*      INGREDIENTS     */
+
+        ContentValues ingr1 = new ContentValues();
+        ingr1.put(COLUMN_INGREDIENT_NAME,"12345678SKBKJB");
+        ingr1.put(COLUMN_INGREDIENT_TYPE,"Alkohol");
+        ingr1.put(COLUMN_INGREDIENT_DESC,"Praesent vitae metus nulla. Sed ullamcorper orci at elit semper, nec finibus" +
+                " justo hendrerit. Quisque eu odio nunc. Pellentesque in mollis eros. Vestibulum sollicitudin lectus" +
+                " eget orci ullamcorper pellentesque. Etiam maximus diam et turpis gravida, sit amet finibus neque" +
+                " volutpat. Morbi dictum hendrerit sodales. Praesent pretium, felis a ultrices efficitur, elit mauris" +
+                " vulputate lorem, at hendrerit magna elit eu nisi.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr1);
+
+        ContentValues ingr2 = new ContentValues();
+        ingr2.put(COLUMN_INGREDIENT_NAME,"Skałdnik1");
+        ingr2.put(COLUMN_INGREDIENT_TYPE,"Emolient");
+        ingr2.put(COLUMN_INGREDIENT_DESC,"Praesent accumsan consectetur vehicula. Morbi vel est ut lorem consequat " +
+                "commodo. Sed vitae libero erat. Mauris id nibh ut sapien bibendum faucibus elementum vitae nulla. " +
+                "Ut eget ultricies turpis, vel tempus turpis. Praesent auctor at mauris non porttitor. Duis a metus" +
+                " ut eros scelerisque faucibus sed eu eros. Duis tincidunt ante et dui dictum, at sodales justo consequat.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr2);
+
+        ContentValues ingr3 = new ContentValues();
+        ingr3.put(COLUMN_INGREDIENT_NAME,"Skłądnik 2");
+        ingr3.put(COLUMN_INGREDIENT_TYPE,"Kwas");
+        ingr3.put(COLUMN_INGREDIENT_DESC,"Nullam vulputate, lorem sit amet viverra eleifend, diam lectus dictum quam," +
+                " non auctor ante mi ac mauris. Donec venenatis dolor a laoreet laoreet. Suspendisse pulvinar, augue" +
+                " ac tempus fermentum, sem velit laoreet risus, sed vehicula metus nisi vitae nisi. Suspendisse " +
+                "facilisis sollicitudin tellus a molestie. Phasellus metus ante, accumsan non viverra sed, sollicitudin" +
+                " in felis. Mauris ut urna iaculis, blandit leo sit amet, aliquet ipsum.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr3);
+
+        ContentValues ingr4 = new ContentValues();
+        ingr4.put(COLUMN_INGREDIENT_NAME,"Nowa nazwa");
+        ingr4.put(COLUMN_INGREDIENT_TYPE,"Proteiny");
+        ingr4.put(COLUMN_INGREDIENT_DESC,"Maecenas molestie mauris vel elit elementum egestas. Class aptent taciti" +
+                " sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce nec velit hendrerit, " +
+                "pulvinar orci non, euismod diam. Maecenas nibh enim, rutrum at enim non, ultrices vehicula magna. " +
+                "Morbi elementum sed ipsum eleifend semper. Quisque velit quam, accumsan id neque sit amet, viverra " +
+                "laoreet metus.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr4);
+
+        ContentValues ingr5 = new ContentValues();
+        ingr5.put(COLUMN_INGREDIENT_NAME,"Skłsdnik");
+        ingr5.put(COLUMN_INGREDIENT_TYPE,"Paraben");
+        ingr5.put(COLUMN_INGREDIENT_DESC,"Maecenas placerat mi velit, ac sollicitudin massa dignissim vel. Nullam" +
+                " vulputate, lorem sit amet viverra eleifend, diam lectus dictum quam, non auctor ante mi ac mauris. " +
+                "Donec venenatis dolor a laoreet laoreet. Suspendisse pulvinar, augue ac tempus fermentum, sem velit " +
+                "laoreet risus, sed vehicula metus nisi vitae nisi. Suspendisse facilisis sollicitudin tellus a" +
+                " molestie. Phasellus metus ante, accumsan non viverra sed, sollicitudin in felis.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr5);
+
+        ContentValues ingr6 = new ContentValues();
+        ingr6.put(COLUMN_INGREDIENT_NAME,"ĄĘĆŚŻŹąćęśżź");
+        ingr6.put(COLUMN_INGREDIENT_TYPE,"Olej");
+        ingr6.put(COLUMN_INGREDIENT_DESC,"Sed vitae libero erat. Mauris id nibh ut sapien bibendum faucibus elementum" +
+                " vitae nulla. Ut eget ultricies turpis, vel tempus turpis. Praesent auctor at mauris non porttitor. " +
+                "Duis a metus ut eros scelerisque faucibus sed eu eros. Duis tincidunt ante et dui dictum, at sodales" +
+                " justo consequat.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr6);
+
+        ContentValues ingr7 = new ContentValues();
+        ingr7.put(COLUMN_INGREDIENT_NAME,"Gliceryna");
+        ingr7.put(COLUMN_INGREDIENT_TYPE,"Humektant");
+        ingr7.put(COLUMN_INGREDIENT_DESC,"Orci varius natoque penatibus et magnis dis parturient montes, nascetur" +
+                " ridiculus mus. Aliquam at pharetra quam, malesuada scelerisque purus. Proin scelerisque sodales dui," +
+                " laoreet feugiat odio vulputate sed. Aliquam vitae enim sit amet lectus congue sagittis in id urna.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr7);
+
+        ContentValues ingr8 = new ContentValues();
+        ingr8.put(COLUMN_INGREDIENT_NAME,"Panthenol");
+        ingr8.put(COLUMN_INGREDIENT_TYPE,"Emolient");
+        ingr8.put(COLUMN_INGREDIENT_DESC,"Curabitur neque tellus, tincidunt nec turpis vel, ullamcorper facilisis elit." +
+                " Sed consequat nisl eget gravida viverra. Duis ac interdum lorem. Etiam in quam eget massa consectetur" +
+                " sagittis. Aenean scelerisque id arcu eu mollis. Fusce vulputate elementum enim, at convallis nulla" +
+                " vulputate at. Aliquam sit amet sem pulvinar, euismod elit et, tincidunt mauris. In elit lectus, feugiat" +
+                " vel justo eget, efficitur consequat tortor. Morbi hendrerit mauris eget posuere placerat.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr8);
+
+        ContentValues ingr9 = new ContentValues();
+        ingr9.put(COLUMN_INGREDIENT_NAME,"Asdfsdfds");
+        ingr9.put(COLUMN_INGREDIENT_TYPE,"Alkohol");
+        ingr9.put(COLUMN_INGREDIENT_DESC,"Integer vehicula est mauris, sed malesuada lorem aliquam ac. Praesent accumsan" +
+                " consectetur vehicula. Morbi vel est ut lorem consequat commodo. Sed vitae libero erat. Mauris id nibh" +
+                " ut sapien bibendum faucibus elementum vitae nulla. Ut eget ultricies turpis, vel tempus turpis." +
+                " Praesent auctor at mauris non porttitor. Duis a metus ut eros scelerisque faucibus sed eu eros. Duis" +
+                " tincidunt ante et dui dictum, at sodales justo consequat.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr9);
+
+        ContentValues ingr10 = new ContentValues();
+        ingr10.put(COLUMN_INGREDIENT_NAME,"vjsb asdo ds adsod a");
+        ingr10.put(COLUMN_INGREDIENT_TYPE,"Olej");
+        ingr10.put(COLUMN_INGREDIENT_DESC,"Praesent vitae metus nulla. Sed ullamcorper orci at elit semper, nec " +
+                "finibus justo hendrerit. Quisque eu odio nunc. Pellentesque in mollis eros. Vestibulum sollicitudin l" +
+                "ectus eget orci ullamcorper pellentesque. Etiam maximus diam et turpis gravida, sit amet finibus neque " +
+                "volutpat. Morbi dictum hendrerit sodales. Praesent pretium, felis a ultrices efficitur, elit mauris " +
+                "vulputate lorem, at hendrerit magna elit eu nisi. Nunc tristique imperdiet nulla, et viverra quam " +
+                "tincidunt vestibulum. Maecenas molestie mauris vel elit elementum egestas. Class aptent taciti sociosqu " +
+                "ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce nec velit hendrerit, pulvinar orci " +
+                "non, euismod diam. Maecenas nibh enim, rutrum at enim non, ultrices vehicula magna. Morbi elementum sed " +
+                "ipsum eleifend semper. Quisque velit quam, accumsan id neque sit amet, viverra laoreet metus.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr10);
+
+        ContentValues ingr11 = new ContentValues();
+        ingr11.put(COLUMN_INGREDIENT_NAME,"JBASK SJKD  KJDFSJSK");
+        ingr11.put(COLUMN_INGREDIENT_TYPE,"Alkohol");
+        ingr11.put(COLUMN_INGREDIENT_DESC,"Praesent vitae metus nulla. Sed ullamcorper orci at elit semper, nec finibus" +
+                " justo hendrerit. Quisque eu odio nunc. Pellentesque in mollis eros. Vestibulum sollicitudin lectus" +
+                " eget orci ullamcorper pellentesque. Etiam maximus diam et turpis gravida, sit amet finibus neque" +
+                " volutpat. Morbi dictum hendrerit sodales. Praesent pretium, felis a ultrices efficitur, elit mauris" +
+                " vulputate lorem, at hendrerit magna elit eu nisi.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr11);
+
+        ContentValues ingr12 = new ContentValues();
+        ingr12.put(COLUMN_INGREDIENT_NAME,"Asdfsdfds");
+        ingr12.put(COLUMN_INGREDIENT_TYPE,"Olej");
+        ingr12.put(COLUMN_INGREDIENT_DESC,"Integer vehicula est mauris, sed malesuada lorem aliquam ac. Praesent accumsan" +
+                " consectetur vehicula. Morbi vel est ut lorem consequat commodo. Sed vitae libero erat. Mauris id nibh" +
+                " ut sapien bibendum faucibus elementum vitae nulla. Ut eget ultricies turpis, vel tempus turpis." +
+                " Praesent auctor at mauris non porttitor. Duis a metus ut eros scelerisque faucibus sed eu eros. Duis" +
+                " tincidunt ante et dui dictum, at sodales justo consequat.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr12);
+
+        ContentValues ingr13 = new ContentValues();
+        ingr13.put(COLUMN_INGREDIENT_NAME,"Alkohol denat");
+        ingr13.put(COLUMN_INGREDIENT_TYPE,"Humektant");
+        ingr13.put(COLUMN_INGREDIENT_DESC,"Orci varius natoque penatibus et magnis dis parturient montes, nascetur" +
+                " ridiculus mus. Aliquam at pharetra quam, malesuada scelerisque purus. Proin scelerisque sodales dui," +
+                " laoreet feugiat odio vulputate sed. Aliquam vitae enim sit amet lectus congue sagittis in id urna.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr13);
+
+        ContentValues ingr14 = new ContentValues();
+        ingr14.put(COLUMN_INGREDIENT_NAME,"sdjbdsj fsd fds fjksd");
+        ingr14.put(COLUMN_INGREDIENT_TYPE,"Kwas");
+        ingr14.put(COLUMN_INGREDIENT_DESC,"Praesent vitae metus nulla. Sed ullamcorper orci at elit semper, nec " +
+                "finibus justo hendrerit. Quisque eu odio nunc. Pellentesque in mollis eros. Vestibulum sollicitudin l" +
+                "ectus eget orci ullamcorper pellentesque. Etiam maximus diam et turpis gravida, sit amet finibus neque " +
+                "volutpat. Morbi dictum hendrerit sodales. Praesent pretium, felis a ultrices efficitur, elit mauris " +
+                "vulputate lorem, at hendrerit magna elit eu nisi. Nunc tristique imperdiet nulla, et viverra quam " +
+                "tincidunt vestibulum. Maecenas molestie mauris vel elit elementum egestas. Class aptent taciti sociosqu " +
+                "ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce nec velit hendrerit, pulvinar orci " +
+                "non, euismod diam. Maecenas nibh enim, rutrum at enim non, ultrices vehicula magna. Morbi elementum sed " +
+                "ipsum eleifend semper. Quisque velit quam, accumsan id neque sit amet, viverra laoreet metus.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr14);
+
+        ContentValues ingr15 = new ContentValues();
+        ingr15.put(COLUMN_INGREDIENT_NAME,"Składnik 15");
+        ingr15.put(COLUMN_INGREDIENT_TYPE,"Paraben");
+        ingr15.put(COLUMN_INGREDIENT_DESC,"Maecenas placerat mi velit, ac sollicitudin massa dignissim vel. Nullam" +
+                " vulputate, lorem sit amet viverra eleifend, diam lectus dictum quam, non auctor ante mi ac mauris. " +
+                "Donec venenatis dolor a laoreet laoreet. Suspendisse pulvinar, augue ac tempus fermentum, sem velit " +
+                "laoreet risus, sed vehicula metus nisi vitae nisi. Suspendisse facilisis sollicitudin tellus a" +
+                " molestie. Phasellus metus ante, accumsan non viverra sed, sollicitudin in felis.");
+        sqLiteDatabase.insert(INGREDIENT_TABLE, null, ingr15);
+
+
+        /*      Cosmetics     */
+
+        ContentValues cos1 = new ContentValues();
+        cos1.put(COLUMN_COSMETIC_NAME,"Wcierka kawowa");
+        cos1.put(COLUMN_COSMETIC_BRAND,"Anwen");
+        cos1.put(COLUMN_COSMETIC_PEHTYPE,"E");
+        cos1.put(COLUMN_COSMETIC_COSMETICTYPE,"Wcierka");
+        cos1.put(COLUMN_COSMETIC_DESC,"Pellentesque eu nulla fermentum, bibendum nisl nec, dictum nulla. Sed erat tellus," +
+                " ornare quis semper sit amet, consequat eget lacus. Suspendisse ipsum enim, vestibulum eget quam quis, " +
+                "feugiat scelerisque ipsum. Donec in elementum leo, et eleifend justo. Fusce consectetur urna scelerisque " +
+                "risus congue condimentum at in orci. Integer eu purus dictum, lobortis lacus vitae, pellentesque lorem.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos1);
+
+        ContentValues cos2 = new ContentValues();
+        cos2.put(COLUMN_COSMETIC_NAME,"Odżywka nawilżająca");
+        cos2.put(COLUMN_COSMETIC_BRAND,"Derma Cosmetics");
+        cos2.put(COLUMN_COSMETIC_PEHTYPE,"H");
+        cos2.put(COLUMN_COSMETIC_COSMETICTYPE,"Odżywka");
+        cos2.put(COLUMN_COSMETIC_DESC,"Donec purus est, dignissim vel mattis et, fermentum at arcu. Maecenas suscipit velit" +
+                " et neque dapibus convallis. Nullam vitae gravida massa, quis ultrices dui. Duis et nisi auctor, vestibulum" +
+                " arcu ac, pellentesque odio. In at massa in ipsum consectetur hendrerit. Phasellus vehicula, purus nec" +
+                " sollicitudin laoreet, odio libero semper tortor, at egestas lectus risus aliquam arcu. Quisque tempor" +
+                " tempor sapien, id hendrerit lorem venenatis in. Interdum et malesuada fames ac ante ipsum primis in faucibus." +
+                " Sed volutpat vel mi quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa. Sed pharetra" +
+                " elementum augue, in semper justo convallis eu. Sed lobortis at ligula in aliquet. Etiam faucibus massa " +
+                "eget mi elementum, dictum blandit dui consectetur.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos2);
+
+        ContentValues cos3 = new ContentValues();
+        cos3.put(COLUMN_COSMETIC_NAME,"Delikatny szampon z koziego mleka");
+        cos3.put(COLUMN_COSMETIC_BRAND,"Pantene");
+        cos3.put(COLUMN_COSMETIC_PEHTYPE,"EH");
+        cos3.put(COLUMN_COSMETIC_COSMETICTYPE,"Szampon Delikatny");
+        cos3.put(COLUMN_COSMETIC_DESC,"Phasellus tincidunt, quam a malesuada placerat, lorem est consectetur est, at " +
+                "imperdiet nisl magna eget neque. Fusce in feugiat felis. Fusce scelerisque ex risus, vitae mattis " +
+                "augue rhoncus dignissim. Proin rhoncus semper massa eget sodales. Cras venenatis ut ipsum vel lacinia.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos3);
+
+        ContentValues cos4 = new ContentValues();
+        cos4.put(COLUMN_COSMETIC_NAME,"2138598 Szampon oczyszczający");
+        cos4.put(COLUMN_COSMETIC_BRAND,"Vianek");
+        cos4.put(COLUMN_COSMETIC_PEHTYPE,"PEH");
+        cos4.put(COLUMN_COSMETIC_COSMETICTYPE,"Szampon Mocny");
+        cos4.put(COLUMN_COSMETIC_DESC,"Vestibulum sodales vehicula ante, sed pretium lorem finibus quis. Suspendisse a " +
+                "felis vitae mi fringilla tempor. Aliquam in neque eu arcu lacinia suscipit. Donec eleifend hendrerit ipsum " +
+                "eu egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas " +
+                "ullamcorper nisl nec tincidunt pulvinar. Duis eu risus dignissim, eleifend metus a, iaculis est. Maecenas " +
+                "ultricies dui justo, vel accumsan magna tincidunt semper.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos4);
+
+        ContentValues cos5 = new ContentValues();
+        cos5.put(COLUMN_COSMETIC_NAME,"Maska z asbjk sjkda");
+        cos5.put(COLUMN_COSMETIC_BRAND,"Anwen");
+        cos5.put(COLUMN_COSMETIC_PEHTYPE,"P");
+        cos5.put(COLUMN_COSMETIC_COSMETICTYPE,"Maska");
+        cos5.put(COLUMN_COSMETIC_DESC,"Cras tincidunt consequat imperdiet. Sed vel massa sed quam faucibus varius vel et felis." +
+                " Pellentesque consequat ultricies ultrices. Maecenas lacinia dapibus vestibulum. In aliquet placerat " +
+                "tortor eget eleifend. Fusce elementum interdum eros, sit amet pretium arcu sagittis id. Sed velit tellus," +
+                " venenatis sollicitudin condimentum ac, dictum id nulla. Sed faucibus, magna ac feugiat blandit, risus " +
+                "est finibus lorem, ut tincidunt libero magna a quam.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos5);
+
+        ContentValues cos6 = new ContentValues();
+        cos6.put(COLUMN_COSMETIC_NAME,"sabd U DKJAS jsa dasj");
+        cos6.put(COLUMN_COSMETIC_BRAND,"Joanna");
+        cos6.put(COLUMN_COSMETIC_PEHTYPE,"PE");
+        cos6.put(COLUMN_COSMETIC_COSMETICTYPE,"Pianka");
+        cos6.put(COLUMN_COSMETIC_DESC,"Sed rutrum ultricies lacinia. Curabitur non finibus magna. Cras magna massa, cursus" +
+                " ut justo quis, interdum faucibus erat. Quisque tellus urna, pharetra at commodo ultrices, ultrices et diam." +
+                " Sed vitae tellus in sem pellentesque accumsan. Proin viverra fringilla elit, a aliquam leo vehicula vitae. " +
+                "Vestibulum malesuada enim in malesuada lacinia.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos6);
+
+        ContentValues cos7 = new ContentValues();
+        cos7.put(COLUMN_COSMETIC_NAME,"Ala ma kota, kot ma ale");
+        cos7.put(COLUMN_COSMETIC_BRAND,"EcoBio");
+        cos7.put(COLUMN_COSMETIC_PEHTYPE,"PH");
+        cos7.put(COLUMN_COSMETIC_COSMETICTYPE,"Żel");
+        cos7.put(COLUMN_COSMETIC_DESC,"Donec purus est, dignissim vel mattis et, fermentum at arcu. Maecenas suscipit velit et" +
+                " neque dapibus convallis. Nullam vitae gravida massa, quis ultrices dui. Duis et nisi auctor, vestibulum arcu" +
+                " ac, pellentesque odio. In at massa in ipsum consectetur hendrerit. Phasellus vehicula, purus nec sollicitudin" +
+                " laoreet, odio libero semper tortor, at egestas lectus risus aliquam arcu. Quisque tempor tempor sapien, id " +
+                "hendrerit lorem venenatis in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed volutpat vel mi" +
+                " quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos7);
+
+        ContentValues cos8 = new ContentValues();
+        cos8.put(COLUMN_COSMETIC_NAME,"Kosmetyk 8");
+        cos8.put(COLUMN_COSMETIC_BRAND,"Sylveco");
+        cos8.put(COLUMN_COSMETIC_PEHTYPE,"E");
+        cos8.put(COLUMN_COSMETIC_COSMETICTYPE,"Krem");
+        cos8.put(COLUMN_COSMETIC_DESC,"Curabitur interdum, erat sed ultrices tempus, mauris orci aliquet eros, quis volutpat turpis " +
+                "libero vitae quam. Aenean dapibus, nibh vitae fringilla faucibus, justo dui facilisis lorem, sed finibus libero " +
+                "tellus vitae purus. Aliquam laoreet risus neque, vitae rhoncus dolor pulvinar sit amet. Aliquam purus urna, vehicula " +
+                "ac tincidunt in, tempor a lorem. Sed id tortor dui. Orci varius natoque penatibus et magnis dis parturient montes, " +
+                "nascetur ridiculus mus. Cras vel risus leo.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos8);
+
+        ContentValues cos9 = new ContentValues();
+        cos9.put(COLUMN_COSMETIC_NAME,"BKSDB SDUI askj sj");
+        cos9.put(COLUMN_COSMETIC_BRAND,"Nivea");
+        cos9.put(COLUMN_COSMETIC_PEHTYPE,"H");
+        cos9.put(COLUMN_COSMETIC_COSMETICTYPE,"Szampon Średni");
+        cos9.put(COLUMN_COSMETIC_DESC,"Curabitur nec vulputate orci. Donec quis magna ex. Aliquam tempus justo non nulla tincidunt commodo." +
+                " Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce tristique cursus tellus" +
+                " eu mattis. Pellentesque eu nulla fermentum, bibendum nisl nec, dictum nulla. Sed erat tellus, ornare quis semper sit" +
+                " amet, consequat eget lacus. Suspendisse ipsum enim, vestibulum eget quam quis, feugiat scelerisque ipsum.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos9);
+
+        ContentValues cos10 = new ContentValues();
+        cos10.put(COLUMN_COSMETIC_NAME,"ążćęśĄŻĆŹŚĘ");
+        cos10.put(COLUMN_COSMETIC_BRAND,"OnlyBio");
+        cos10.put(COLUMN_COSMETIC_PEHTYPE,"PEH");
+        cos10.put(COLUMN_COSMETIC_COSMETICTYPE,"Olejek");
+        cos10.put(COLUMN_COSMETIC_DESC,"Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas " +
+                "ullamcorper nisl nec tincidunt pulvinar. Duis eu risus dignissim, eleifend metus a, iaculis est. Maecenas ultricies " +
+                "dui justo, vel accumsan magna tincidunt semper.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos10);
+
+        ContentValues cos11 = new ContentValues();
+        cos11.put(COLUMN_COSMETIC_NAME,"jkdbfkjs dkfhs fdhk fhj sfhds");
+        cos11.put(COLUMN_COSMETIC_BRAND,"Nivea");
+        cos11.put(COLUMN_COSMETIC_PEHTYPE,"H");
+        cos11.put(COLUMN_COSMETIC_COSMETICTYPE,"Szampon Średni");
+        cos11.put(COLUMN_COSMETIC_DESC,"Curabitur nec vulputate orci. Donec quis magna ex. Aliquam tempus justo non nulla tincidunt commodo." +
+                " Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce tristique cursus tellus" +
+                " eu mattis. Pellentesque eu nulla fermentum, bibendum nisl nec, dictum nulla. Sed erat tellus, ornare quis semper sit" +
+                " amet, consequat eget lacus. Suspendisse ipsum enim, vestibulum eget quam quis, feugiat scelerisque ipsum.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos11);
+
+        ContentValues cos12 = new ContentValues();
+        cos12.put(COLUMN_COSMETIC_NAME,"AAJKSBDJA sudb skdf skj s");
+        cos12.put(COLUMN_COSMETIC_BRAND,"Derma Cosmetics");
+        cos12.put(COLUMN_COSMETIC_PEHTYPE,"H");
+        cos12.put(COLUMN_COSMETIC_COSMETICTYPE,"Odżywka");
+        cos12.put(COLUMN_COSMETIC_DESC,"Donec purus est, dignissim vel mattis et, fermentum at arcu. Maecenas suscipit velit" +
+                " et neque dapibus convallis. Nullam vitae gravida massa, quis ultrices dui. Duis et nisi auctor, vestibulum" +
+                " arcu ac, pellentesque odio. In at massa in ipsum consectetur hendrerit. Phasellus vehicula, purus nec" +
+                " sollicitudin laoreet, odio libero semper tortor, at egestas lectus risus aliquam arcu. Quisque tempor" +
+                " tempor sapien, id hendrerit lorem venenatis in. Interdum et malesuada fames ac ante ipsum primis in faucibus." +
+                " Sed volutpat vel mi quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa. Sed pharetra" +
+                " elementum augue, in semper justo convallis eu. Sed lobortis at ligula in aliquet. Etiam faucibus massa " +
+                "eget mi elementum, dictum blandit dui consectetur.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos12);
+
+        ContentValues cos13 = new ContentValues();
+        cos13.put(COLUMN_COSMETIC_NAME,"ergz 12398 sdvdqjs 324432");
+        cos13.put(COLUMN_COSMETIC_BRAND,"EcoBio");
+        cos13.put(COLUMN_COSMETIC_PEHTYPE,"PH");
+        cos13.put(COLUMN_COSMETIC_COSMETICTYPE,"Żel");
+        cos13.put(COLUMN_COSMETIC_DESC,"Donec purus est, dignissim vel mattis et, fermentum at arcu. Maecenas suscipit velit et" +
+                " neque dapibus convallis. Nullam vitae gravida massa, quis ultrices dui. Duis et nisi auctor, vestibulum arcu" +
+                " ac, pellentesque odio. In at massa in ipsum consectetur hendrerit. Phasellus vehicula, purus nec sollicitudin" +
+                " laoreet, odio libero semper tortor, at egestas lectus risus aliquam arcu. Quisque tempor tempor sapien, id " +
+                "hendrerit lorem venenatis in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed volutpat vel mi" +
+                " quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos13);
+
+        ContentValues cos14 = new ContentValues();
+        cos14.put(COLUMN_COSMETIC_NAME,"Szampon z wyciągu z manuka");
+        cos14.put(COLUMN_COSMETIC_BRAND,"Vianek");
+        cos14.put(COLUMN_COSMETIC_PEHTYPE,"PEH");
+        cos14.put(COLUMN_COSMETIC_COSMETICTYPE,"Szampon Mocny");
+        cos14.put(COLUMN_COSMETIC_DESC,"Vestibulum sodales vehicula ante, sed pretium lorem finibus quis. Suspendisse a " +
+                "felis vitae mi fringilla tempor. Aliquam in neque eu arcu lacinia suscipit. Donec eleifend hendrerit ipsum " +
+                "eu egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas " +
+                "ullamcorper nisl nec tincidunt pulvinar. Duis eu risus dignissim, eleifend metus a, iaculis est. Maecenas " +
+                "ultricies dui justo, vel accumsan magna tincidunt semper.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos14);
+
+        ContentValues cos15 = new ContentValues();
+        cos15.put(COLUMN_COSMETIC_NAME,"Maska odżywcza z wyciągu z aloesu");
+        cos15.put(COLUMN_COSMETIC_BRAND,"Anwen");
+        cos15.put(COLUMN_COSMETIC_PEHTYPE,"P");
+        cos15.put(COLUMN_COSMETIC_COSMETICTYPE,"Maska");
+        cos15.put(COLUMN_COSMETIC_DESC,"Cras tincidunt consequat imperdiet. Sed vel massa sed quam faucibus varius vel et felis." +
+                " Pellentesque consequat ultricies ultrices. Maecenas lacinia dapibus vestibulum. In aliquet placerat " +
+                "tortor eget eleifend. Fusce elementum interdum eros, sit amet pretium arcu sagittis id. Sed velit tellus," +
+                " venenatis sollicitudin condimentum ac, dictum id nulla. Sed faucibus, magna ac feugiat blandit, risus " +
+                "est finibus lorem, ut tincidunt libero magna a quam.");
+        sqLiteDatabase.insert(COSMETIC_TABLE, null, cos15);
+
+        /*      Washes     */
+
+        ContentValues wash1 = new ContentValues();
+        wash1.put(COLUMN_WASH_DATE,"12 MAR 2022");
+        wash1.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash1.put(COLUMN_WASH_USED_PEELING,0);
+        wash1.put(COLUMN_WASH_USED_OILING,0);
+        wash1.put(COLUMN_WASH_DESC,"Maecenas eu auctor felis. Cras lacinia lacinia nibh, sed sodales sapien porttitor a. Pellentesque" +
+                " egestas est ac ultrices maximus. Vivamus sit amet condimentum magna, non vestibulum felis. Phasellus a dolor eget ex" +
+                " finibus egestas. Nam mollis malesuada nisl, a euismod ex vestibulum in. Duis mauris lectus, fringilla ac iaculis quis," +
+                " tincidunt vel tortor.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash1);
+
+        ContentValues wash2 = new ContentValues();
+        wash2.put(COLUMN_WASH_DATE,"17 MAR 2022");
+        wash2.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash2.put(COLUMN_WASH_USED_PEELING,0);
+        wash2.put(COLUMN_WASH_USED_OILING,1);
+        wash2.put(COLUMN_WASH_DESC,"Sed erat tellus, ornare quis semper sit amet, consequat eget lacus. Suspendisse ipsum enim, " +
+                "vestibulum eget quam quis, feugiat scelerisque ipsum. Donec in elementum leo, et eleifend justo. Fusce consectetur" +
+                " urna scelerisque risus congue condimentum at in orci. Integer eu purus dictum, lobortis lacus vitae, pellentesque lorem.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash2);
+
+        ContentValues wash3 = new ContentValues();
+        wash3.put(COLUMN_WASH_DATE,"23 MAR 2022");
+        wash3.put(COLUMN_WASH_IS_CLEANSING,1);
+        wash3.put(COLUMN_WASH_USED_PEELING,0);
+        wash3.put(COLUMN_WASH_USED_OILING,1);
+        wash3.put(COLUMN_WASH_DESC,"Quisque tempor tempor sapien, id hendrerit lorem venenatis in. Interdum et malesuada fames ac ante " +
+                "ipsum primis in faucibus. Sed volutpat vel mi quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa. Sed" +
+                " pharetra elementum augue, in semper justo convallis eu. Sed lobortis at ligula in aliquet. Etiam faucibus massa eget " +
+                "mi elementum, dictum blandit dui consectetur.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash3);
+
+        ContentValues wash4 = new ContentValues();
+        wash4.put(COLUMN_WASH_DATE,"29 MAR 2022");
+        wash4.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash4.put(COLUMN_WASH_USED_PEELING,0);
+        wash4.put(COLUMN_WASH_USED_OILING,0);
+        wash4.put(COLUMN_WASH_DESC,"Aliquam laoreet risus neque, vitae rhoncus dolor pulvinar sit amet. Aliquam purus urna, vehicula ac " +
+                "tincidunt in, tempor a lorem. Sed id tortor dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur " +
+                "ridiculus mus. Cras vel risus leo. Vestibulum aliquam tincidunt tellus et venenatis.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash4);
+
+        ContentValues wash5 = new ContentValues();
+        wash5.put(COLUMN_WASH_DATE,"3 KWI 2022");
+        wash5.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash5.put(COLUMN_WASH_USED_PEELING,1);
+        wash5.put(COLUMN_WASH_USED_OILING,1);
+        wash5.put(COLUMN_WASH_DESC,"Fusce elementum interdum eros, sit amet pretium arcu sagittis id. Sed velit tellus, venenatis sollicitudin" +
+                " condimentum ac, dictum id nulla. Sed faucibus, magna ac feugiat blandit, risus est finibus lorem, ut tincidunt libero magna " +
+                "a quam. Sed sagittis molestie ante vel pellentesque.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash5);
+
+        ContentValues wash6 = new ContentValues();
+        wash6.put(COLUMN_WASH_DATE,"10 KWI 2022");
+        wash6.put(COLUMN_WASH_IS_CLEANSING,1);
+        wash6.put(COLUMN_WASH_USED_PEELING,0);
+        wash6.put(COLUMN_WASH_USED_OILING,0);
+        wash6.put(COLUMN_WASH_DESC,"Fusce tristique cursus tellus eu mattis. Pellentesque eu nulla fermentum, bibendum nisl nec, dictum nulla." +
+                " Sed erat tellus, ornare quis semper sit amet, consequat eget lacus. Suspendisse ipsum enim, vestibulum eget quam quis," +
+                " feugiat scelerisque ipsum. Donec in elementum leo, et eleifend justo.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash6);
+
+        ContentValues wash7 = new ContentValues();
+        wash7.put(COLUMN_WASH_DATE,"15 KWI 2022");
+        wash7.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash7.put(COLUMN_WASH_USED_PEELING,1);
+        wash7.put(COLUMN_WASH_USED_OILING,1);
+        wash7.put(COLUMN_WASH_DESC,"Duis et nisi auctor, vestibulum arcu ac, pellentesque odio. In at massa in ipsum consectetur hendrerit." +
+                " Phasellus vehicula, purus nec sollicitudin laoreet, odio libero semper tortor, at egestas lectus risus aliquam arcu. " +
+                "Quisque tempor tempor sapien, id hendrerit lorem venenatis in. Interdum et malesuada fames ac ante ipsum primis in faucibus." +
+                " Sed volutpat vel mi quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa. Sed pharetra elementum augue, in " +
+                "semper justo convallis eu. Sed lobortis at ligula in aliquet. Etiam faucibus massa eget mi elementum, dictum blandit dui" +
+                " consectetur.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash7);
+
+        ContentValues wash8 = new ContentValues();
+        wash8.put(COLUMN_WASH_DATE,"20 KWI 2022");
+        wash8.put(COLUMN_WASH_IS_CLEANSING,1);
+        wash8.put(COLUMN_WASH_USED_PEELING,1);
+        wash8.put(COLUMN_WASH_USED_OILING,1);
+        wash8.put(COLUMN_WASH_DESC,"Aliquam purus urna, vehicula ac tincidunt in, tempor a lorem. Sed id tortor dui. Orci varius natoque " +
+                "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras vel risus leo. Vestibulum aliquam tincidunt tellus" +
+                " et venenatis. Aenean varius eu tellus sed vehicula. Duis vitae commodo nibh. Donec nec odio sit amet nisi rutrum auctor. " +
+                "Quisque posuere blandit aliquam.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash8);
+
+        ContentValues wash9 = new ContentValues();
+        wash9.put(COLUMN_WASH_DATE,"24 KWI 2022");
+        wash9.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash9.put(COLUMN_WASH_USED_PEELING,0);
+        wash9.put(COLUMN_WASH_USED_OILING,0);
+        wash9.put(COLUMN_WASH_DESC,"Vivamus sit amet condimentum magna, non vestibulum felis. Phasellus a dolor eget ex finibus egestas. " +
+                "Nam mollis malesuada nisl, a euismod ex vestibulum in. Duis mauris lectus, fringilla ac iaculis quis, tincidunt vel " +
+                "tortor. Nunc dictum dui quis ipsum consequat pulvinar. Nam finibus urna massa, nec molestie lorem vehicula tempus. " +
+                "Phasellus eget dui rutrum, blandit leo ac, finibus elit. Phasellus laoreet sem eu diam placerat laoreet.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash9);
+
+        ContentValues wash10 = new ContentValues();
+        wash10.put(COLUMN_WASH_DATE,"6 MAJ 2022");
+        wash10.put(COLUMN_WASH_IS_CLEANSING,1);
+        wash10.put(COLUMN_WASH_USED_PEELING,0);
+        wash10.put(COLUMN_WASH_USED_OILING,1);
+        wash10.put(COLUMN_WASH_DESC,"Sed vel massa sed quam faucibus varius vel et felis. Pellentesque consequat ultricies ultrices." +
+                " Maecenas lacinia dapibus vestibulum. In aliquet placerat tortor eget eleifend. Fusce elementum interdum eros," +
+                " sit amet pretium arcu sagittis id. Sed velit tellus, venenatis sollicitudin condimentum ac, dictum id nulla. Sed " +
+                "faucibus, magna ac feugiat blandit, risus est finibus lorem, ut tincidunt libero magna a quam. Sed sagittis" +
+                " molestie ante vel pellentesque.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash10);
+
+        ContentValues wash11 = new ContentValues();
+        wash11.put(COLUMN_WASH_DATE,"7 MAR 2022");
+        wash11.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash11.put(COLUMN_WASH_USED_PEELING,0);
+        wash11.put(COLUMN_WASH_USED_OILING,0);
+        wash11.put(COLUMN_WASH_DESC,"Maecenas eu auctor felis. Cras lacinia lacinia nibh, sed sodales sapien porttitor a. Pellentesque" +
+                " egestas est ac ultrices maximus. Vivamus sit amet condimentum magna, non vestibulum felis. Phasellus a dolor eget ex" +
+                " finibus egestas. Nam mollis malesuada nisl, a euismod ex vestibulum in. Duis mauris lectus, fringilla ac iaculis quis," +
+                " tincidunt vel tortor.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash11);
+
+        ContentValues wash12 = new ContentValues();
+        wash12.put(COLUMN_WASH_DATE,"21 MAR 2022");
+        wash12.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash12.put(COLUMN_WASH_USED_PEELING,0);
+        wash12.put(COLUMN_WASH_USED_OILING,1);
+        wash12.put(COLUMN_WASH_DESC,"Sed erat tellus, ornare quis semper sit amet, consequat eget lacus. Suspendisse ipsum enim, " +
+                "vestibulum eget quam quis, feugiat scelerisque ipsum. Donec in elementum leo, et eleifend justo. Fusce consectetur" +
+                " urna scelerisque risus congue condimentum at in orci. Integer eu purus dictum, lobortis lacus vitae, pellentesque lorem.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash12);
+
+        ContentValues wash13 = new ContentValues();
+        wash13.put(COLUMN_WASH_DATE,"16 MAR 2022");
+        wash13.put(COLUMN_WASH_IS_CLEANSING,1);
+        wash13.put(COLUMN_WASH_USED_PEELING,0);
+        wash13.put(COLUMN_WASH_USED_OILING,1);
+        wash13.put(COLUMN_WASH_DESC,"Quisque tempor tempor sapien, id hendrerit lorem venenatis in. Interdum et malesuada fames ac ante " +
+                "ipsum primis in faucibus. Sed volutpat vel mi quis iaculis. Sed et sem faucibus, semper dui ac, sollicitudin massa. Sed" +
+                " pharetra elementum augue, in semper justo convallis eu. Sed lobortis at ligula in aliquet. Etiam faucibus massa eget " +
+                "mi elementum, dictum blandit dui consectetur.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash13);
+
+        ContentValues wash14 = new ContentValues();
+        wash14.put(COLUMN_WASH_DATE,"19 MAR 2022");
+        wash14.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash14.put(COLUMN_WASH_USED_PEELING,0);
+        wash14.put(COLUMN_WASH_USED_OILING,0);
+        wash14.put(COLUMN_WASH_DESC,"Aliquam laoreet risus neque, vitae rhoncus dolor pulvinar sit amet. Aliquam purus urna, vehicula ac " +
+                "tincidunt in, tempor a lorem. Sed id tortor dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur " +
+                "ridiculus mus. Cras vel risus leo. Vestibulum aliquam tincidunt tellus et venenatis.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash14);
+
+        ContentValues wash15 = new ContentValues();
+        wash15.put(COLUMN_WASH_DATE,"30 KWI 2022");
+        wash15.put(COLUMN_WASH_IS_CLEANSING,0);
+        wash15.put(COLUMN_WASH_USED_PEELING,1);
+        wash15.put(COLUMN_WASH_USED_OILING,1);
+        wash15.put(COLUMN_WASH_DESC,"Fusce elementum interdum eros, sit amet pretium arcu sagittis id. Sed velit tellus, venenatis sollicitudin" +
+                " condimentum ac, dictum id nulla. Sed faucibus, magna ac feugiat blandit, risus est finibus lorem, ut tincidunt libero magna " +
+                "a quam. Sed sagittis molestie ante vel pellentesque.");
+        sqLiteDatabase.insert(WASH_TABLE, null, wash5);
+
+        /*      Cosmetic - Ingredient     */
+
+        ContentValues cos_ingr1 = new ContentValues();
+        cos_ingr1.put(COLUMN_COS_ID,1);
+        cos_ingr1.put(COLUMN_INGR_ID,1);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr1);
+
+        ContentValues cos_ingr2 = new ContentValues();
+        cos_ingr2.put(COLUMN_COS_ID,1);
+        cos_ingr2.put(COLUMN_INGR_ID,2);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr2);
+
+        ContentValues cos_ingr3 = new ContentValues();
+        cos_ingr3.put(COLUMN_COS_ID,1);
+        cos_ingr3.put(COLUMN_INGR_ID,3);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr3);
+
+        ContentValues cos_ingr4 = new ContentValues();
+        cos_ingr4.put(COLUMN_COS_ID,1);
+        cos_ingr4.put(COLUMN_INGR_ID,4);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr4);
+
+        ContentValues cos_ingr5 = new ContentValues();
+        cos_ingr5.put(COLUMN_COS_ID,1);
+        cos_ingr5.put(COLUMN_INGR_ID,5);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr5);
+
+        ContentValues cos_ingr6 = new ContentValues();
+        cos_ingr6.put(COLUMN_COS_ID,2);
+        cos_ingr6.put(COLUMN_INGR_ID,4);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr6);
+
+        ContentValues cos_ingr7 = new ContentValues();
+        cos_ingr7.put(COLUMN_COS_ID,2);
+        cos_ingr7.put(COLUMN_INGR_ID,9);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr7);
+
+        ContentValues cos_ingr8 = new ContentValues();
+        cos_ingr8.put(COLUMN_COS_ID,2);
+        cos_ingr8.put(COLUMN_INGR_ID,6);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr8);
+
+        ContentValues cos_ingr9 = new ContentValues();
+        cos_ingr9.put(COLUMN_COS_ID,2);
+        cos_ingr9.put(COLUMN_INGR_ID,3);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr9);
+
+        ContentValues cos_ingr10 = new ContentValues();
+        cos_ingr10.put(COLUMN_COS_ID,2);
+        cos_ingr10.put(COLUMN_INGR_ID,7);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr10);
+
+        ContentValues cos_ingr11 = new ContentValues();
+        cos_ingr11.put(COLUMN_COS_ID,2);
+        cos_ingr11.put(COLUMN_INGR_ID,12);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr11);
+
+        ContentValues cos_ingr12 = new ContentValues();
+        cos_ingr12.put(COLUMN_COS_ID,2);
+        cos_ingr12.put(COLUMN_INGR_ID,2);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr12);
+
+        ContentValues cos_ingr13 = new ContentValues();
+        cos_ingr13.put(COLUMN_COS_ID,2);
+        cos_ingr13.put(COLUMN_INGR_ID,13);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr13);
+
+        ContentValues cos_ingr14 = new ContentValues();
+        cos_ingr14.put(COLUMN_COS_ID,3);
+        cos_ingr14.put(COLUMN_INGR_ID,15);
+        sqLiteDatabase.insert(COSMETIC_INGREDIENT_TABLE, null, cos_ingr14);
+
+
+        /*      Wash - Cosmetic    */
+        ContentValues was_cos1 = new ContentValues();
+        was_cos1.put(COLUMN_WAS_ID,1);
+        was_cos1.put(COLUMN_COS_ID,5);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos1);
+
+        ContentValues was_cos2 = new ContentValues();
+        was_cos2.put(COLUMN_WAS_ID,1);
+        was_cos2.put(COLUMN_COS_ID,6);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos2);
+
+        ContentValues was_cos3 = new ContentValues();
+        was_cos3.put(COLUMN_WAS_ID,1);
+        was_cos3.put(COLUMN_COS_ID,4);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos3);
+
+        ContentValues was_cos4 = new ContentValues();
+        was_cos4.put(COLUMN_WAS_ID,1);
+        was_cos4.put(COLUMN_COS_ID,8);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos4);
+
+        ContentValues was_cos5 = new ContentValues();
+        was_cos5.put(COLUMN_WAS_ID,2);
+        was_cos5.put(COLUMN_COS_ID,12);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos5);
+
+        ContentValues was_cos6 = new ContentValues();
+        was_cos6.put(COLUMN_WAS_ID,2);
+        was_cos6.put(COLUMN_COS_ID,1);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos6);
+
+        ContentValues was_cos7 = new ContentValues();
+        was_cos7.put(COLUMN_WAS_ID,2);
+        was_cos7.put(COLUMN_COS_ID,8);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos7);
+
+        ContentValues was_cos8 = new ContentValues();
+        was_cos8.put(COLUMN_WAS_ID,2);
+        was_cos8.put(COLUMN_COS_ID,4);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos8);
+
+        ContentValues was_cos9 = new ContentValues();
+        was_cos9.put(COLUMN_WAS_ID,3);
+        was_cos9.put(COLUMN_COS_ID,15);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos9);
+
+        ContentValues was_cos10 = new ContentValues();
+        was_cos10.put(COLUMN_WAS_ID,3);
+        was_cos10.put(COLUMN_COS_ID,2);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos10);
+
+        ContentValues was_cos11 = new ContentValues();
+        was_cos11.put(COLUMN_WAS_ID,3);
+        was_cos11.put(COLUMN_COS_ID,7);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos11);
+
+        ContentValues was_cos12 = new ContentValues();
+        was_cos12.put(COLUMN_WAS_ID,3);
+        was_cos12.put(COLUMN_COS_ID,3);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos12);
+
+        ContentValues was_cos13 = new ContentValues();
+        was_cos13.put(COLUMN_WAS_ID,3);
+        was_cos13.put(COLUMN_COS_ID,11);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos13);
+
+        ContentValues was_cos14 = new ContentValues();
+        was_cos14.put(COLUMN_WAS_ID,3);
+        was_cos14.put(COLUMN_COS_ID,10);
+        sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos14);
     }
 
     @Override
