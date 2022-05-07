@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CosmeticEdit">
+    tools:context=".CosmeticAdd">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,65 +15,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_cosmeticName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nazwa"
-                android:layout_marginVertical="10dp"/>
-
-            <EditText
-                android:id="@+id/edt_cosmeticBrand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Producent"
+                app:endIconMode="clear_text"
                 android:layout_marginVertical="10dp"
-                android:layout_below="@id/edt_cosmeticName" />
+                android:layout_marginHorizontal="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_cosmeticNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
-
                 android:id="@+id/edt_relAdditionalCos1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_cosmeticBrand"
+                android:layout_below="@id/edt_cosmeticName"
                 android:layout_marginVertical="10dp" >
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:hint="Typ PEH"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/edt_autoCompleteTVPehType"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none" >
-
-                    </AutoCompleteTextView>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-
-                android:id="@+id/edt_relAdditionalCos2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/edt_relAdditionalCos1"
-                android:layout_marginVertical="10dp" >
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
                     android:hint="Typ Kosmetyku"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginHorizontal="20dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
@@ -88,40 +58,102 @@
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/edt_btnEditIngredientsInInciList"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/edt_relAdditionalCos2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginVertical="10dp"
-                android:text="Zmień Składniki Kosmetyku"
-                android:layout_below="@id/edt_relAdditionalCos2"/>
+                android:layout_below="@id/edt_relAdditionalCos1"
+                android:layout_marginVertical="10dp" >
 
-            <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Typ PEH"
+                    android:layout_marginHorizontal="20dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edt_autoCompleteTVPehType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none">
+
+                    </AutoCompleteTextView>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_cosmeticBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Producent"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@+id/edt_relAdditionalCos2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_cosmeticBrandField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_cosmeticDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Opis"
+                app:endIconMode="clear_text"
                 android:layout_marginVertical="10dp"
-                android:layout_below="@id/edt_btnEditIngredientsInInciList" />
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@+id/edt_cosmeticBrand"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_cosmeticDescField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/edt_btnEditIngredientsInInciList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_cosmeticDesc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Zmień Składniki Kosmetyku"
+                android:textColor="@color/col3" />
 
             <Button
                 android:id="@+id/edt_btnEditCosImg"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                android:layout_below="@id/edt_cosmeticDesc"
+                android:background="@drawable/rounded_corners3"
+                android:textColor="@color/col3"
+                android:layout_below="@id/edt_btnEditIngredientsInInciList"
                 android:text="Zmień zdjęcie" />
 
             <Button
                 android:id="@+id/edt_btnEditCosmetic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_btnEditCosImg"
                 android:layout_centerHorizontal="true"
                 android:layout_marginVertical="10dp"
-                android:text="Zapisz"/>
+                android:textColor="@color/col3"
+                android:background="@drawable/rounded_corners3"
+                android:layout_below="@id/edt_btnEditCosImg"
+                android:text="Zapisz" />
 
         </RelativeLayout>
 

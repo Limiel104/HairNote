@@ -7,68 +7,98 @@
     android:layout_height="match_parent"
     tools:context=".WashAdd">
 
-    <TextView
-        android:id="@+id/tvWashDate"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:text="Wybierz date" />
+        android:layout_height="match_parent">
 
-    <Switch
-        android:id="@+id/swWashIsCleansing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mycie oczyszczające"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/tvWashDate" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Switch
-        android:id="@+id/swWashUsedPeeling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Peeling"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/swWashIsCleansing" />
+            <TextView
+                android:id="@+id/tvWashDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/border2"
+                android:padding="17dp"
+                android:text="Wybierz date"
+                android:textAlignment="center"
+                android:textSize="16dp" />
 
-    <Switch
-        android:id="@+id/swWashUsedOiling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Olejowanie"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/swWashUsedPeeling" />
+            <CheckBox
+                android:id="@+id/cbWashIsCleansing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWashDate"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/col2"
+                android:text="Mycie oczyszczające" />
 
-    <Button
-        android:id="@+id/btnAddCosmeticsToUsedCosmetics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:text="Dodaj użyte kosmetyki"
-        android:layout_below="@+id/swWashUsedOiling"/>
+            <CheckBox
+                android:id="@+id/cbWashUsedPeeling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cbWashIsCleansing"
+                android:layout_marginStart="15dp"
+                android:buttonTint="@color/col2"
+                android:text="Peeling" />
 
-    <EditText
-        android:id="@+id/editWashDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Szczegóły"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@+id/btnAddCosmeticsToUsedCosmetics" />
+            <CheckBox
+                android:id="@+id/cbWashUsedOiling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Olejowanie"
+                android:buttonTint="@color/col2"
+                android:layout_below="@id/cbWashUsedPeeling" />
 
-    <Button
-        android:id="@+id/btnAddWash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editWashDesc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:text="Dodaj"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editWashDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Szczegóły"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_below="@id/cbWashUsedOiling">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editWashDescField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAddCosmeticsToUsedCosmetics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editWashDesc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj użyte kosmetyki"
+                android:textColor="@color/col3" />
+
+            <Button
+                android:id="@+id/btnAddWash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnAddCosmeticsToUsedCosmetics"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj"
+                android:textColor="@color/col3" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

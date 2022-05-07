@@ -110,8 +110,8 @@ public class IngredientEdit extends AppCompatActivity {
         edtIngrType = "";
 
         btn_edtIngredient = findViewById(R.id.edt_btnEditIngredient);
-        edt_ingredientName = findViewById(R.id.edt_ingredientName);
-        edt_ingredientDesc = findViewById(R.id.edt_ingredientDesc);
+        edt_ingredientName = findViewById(R.id.edt_ingredientNameField);
+        edt_ingredientDesc = findViewById(R.id.edt_ingredientDescField);
         edt_autoCompleteTVIngrType = findViewById(R.id.edt_autoCompleteTVIngrType);
 
         edt_autoCompleteTVIngrType.setAdapter(adapterIngrTypes);

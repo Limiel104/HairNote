@@ -89,7 +89,7 @@ public class CosmeticDetails extends AppCompatActivity {
     }
 
     private void initViews(){
-        det_cosName = findViewById(R.id.det_cosName2);
+        det_cosName = findViewById(R.id.det_cosName);
         det_cosBrand = findViewById(R.id.det_cosBrand2);
         det_cosPehType = findViewById(R.id.det_cosPehType2);
         det_cosCosmeticType = findViewById(R.id.det_cosCosmeticType2);

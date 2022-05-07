@@ -35,8 +35,8 @@ public class IngredientAdd extends AppCompatActivity {
         chosenIngrType = "";
 
         btn_addIngredient = findViewById(R.id.btnAddIngredient);
-        et_ingredientName = findViewById(R.id.editIngredientName);
-        et_ingredientDesc = findViewById(R.id.editIngredientDesc);
+        et_ingredientName = findViewById(R.id.editIngredientNameField);
+        et_ingredientDesc = findViewById(R.id.editIngredientDescField);
         autoCompleteTVIngrType = findViewById(R.id.autoCompleteTVIngrType);
 
         autoCompleteTVIngrType.setAdapter(adapterIngrTypes);

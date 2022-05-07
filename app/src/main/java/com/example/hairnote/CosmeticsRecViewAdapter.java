@@ -46,6 +46,7 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
         Glide.with(mContext)
                 .asBitmap()
                 .load(cosmetics.get(position).getImgPath())
+                //.placeholder(R.drawable.ic_place_holder_background)
                 .into(holder.imgCosmetic);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {

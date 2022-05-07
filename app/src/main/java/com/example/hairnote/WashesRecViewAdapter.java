@@ -108,7 +108,7 @@ public class WashesRecViewAdapter extends RecyclerView.Adapter<WashesRecViewAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtWashTitle = itemView.findViewById(R.id.txtWashTitle);
+            txtWashTitle = itemView.findViewById(R.id.washDateTitle);
             parentWash = itemView.findViewById(R.id.parentWash);
         }
     }

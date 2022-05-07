@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -23,7 +24,7 @@ public class WashAdd extends AppCompatActivity {
 
     private TextView tv_washDate;
     private EditText et_washDesc;
-    private Switch sw_washIsCleansing, sw_washUsedPeeling, sw_washUsedOiling;
+    private CheckBox cb_washIsCleansing, cb_washUsedPeeling, cb_washUsedOiling;
     Button btn_addWash, btn_AddCosmeticsToUsedCosmetics;
     Calendar calendar;
     String chosenDate;
@@ -57,10 +58,10 @@ public class WashAdd extends AppCompatActivity {
         btn_addWash = findViewById(R.id.btnAddWash);
         btn_AddCosmeticsToUsedCosmetics = findViewById(R.id.btnAddCosmeticsToUsedCosmetics);
         tv_washDate = findViewById(R.id.tvWashDate);
-        et_washDesc = findViewById(R.id.editWashDesc);
-        sw_washIsCleansing = findViewById(R.id.swWashIsCleansing);
-        sw_washUsedPeeling = findViewById(R.id.swWashUsedPeeling);
-        sw_washUsedOiling = findViewById(R.id.swWashUsedOiling);
+        et_washDesc = findViewById(R.id.editWashDescField);
+        cb_washIsCleansing = findViewById(R.id.cbWashIsCleansing);
+        cb_washUsedPeeling = findViewById(R.id.cbWashUsedPeeling);
+        cb_washUsedOiling = findViewById(R.id.cbWashUsedOiling);
 
         setTodaysDate();
 
@@ -73,7 +74,7 @@ public class WashAdd extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatePickerDialog dialog = new DatePickerDialog(WashAdd.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialog = new DatePickerDialog(WashAdd.this, R.style.DatePickerTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         setDate(day,month,year);
@@ -87,7 +88,7 @@ public class WashAdd extends AppCompatActivity {
         btn_AddCosmeticsToUsedCosmetics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(WashAdd.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(WashAdd.this, R.style.AlertDialogTheme);
                 builder.setTitle("Wybierz użyte kosmetyki z listy");
                 builder.setMultiChoiceItems(listCosmetics, checkedCosmetics, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -109,14 +110,14 @@ public class WashAdd extends AppCompatActivity {
                     }
                 });
 
-                builder.setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
 
-                builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         for (int i = 0; i < checkedCosmetics.length; i++) {
@@ -140,9 +141,9 @@ public class WashAdd extends AppCompatActivity {
                 try {
                     newWash = new Wash(-1,
                             chosenDate,
-                            sw_washIsCleansing.isChecked(),
-                            sw_washUsedPeeling.isChecked(),
-                            sw_washUsedOiling.isChecked(),
+                            cb_washIsCleansing.isChecked(),
+                            cb_washUsedPeeling.isChecked(),
+                            cb_washUsedOiling.isChecked(),
                             et_washDesc.getText().toString(),
                             chosenCosmetics);
 

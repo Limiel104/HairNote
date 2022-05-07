@@ -1,6 +1,10 @@
 package com.example.hairnote;
 
 import android.util.Log;
+import android.widget.TextView;
+
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.DataBindingUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,4 +125,5 @@ public class Wash implements Comparable<Wash>{
 
         return Integer.compare(number1,number2);
    }
+
 }

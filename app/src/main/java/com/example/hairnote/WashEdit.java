@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -26,7 +27,7 @@ public class WashEdit extends AppCompatActivity {
 
     TextView edt_tvWashDate;
     private EditText edt_washDesc;
-    private Switch edt_swWashIsCleansing, edt_swWashUsedPeeling, edt_swWashUsedOiling;
+    private CheckBox edt_cbWashIsCleansing, edt_cbWashUsedPeeling, edt_cbWashUsedOiling;
     Button btn_editCosmeticsInUsedCosmeticsList, btn_edtWash;
     Calendar calendar;
     String edt_chosenDate;
@@ -34,6 +35,7 @@ public class WashEdit extends AppCompatActivity {
     boolean[] edt_checkedCosmetics;
     ArrayList<Integer> edt_chosenCosmetics;
     HashMap<Integer, String> allCosmetics;
+    int year, month, day;
 
     DataBaseHelper dataBaseHelper;
 
@@ -51,11 +53,6 @@ public class WashEdit extends AppCompatActivity {
 
         initViews();
 
-        calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
         Intent intent = getIntent();
         if (intent != null) {
             int washID = intent.getIntExtra(WASH_ID_KEY,-1);
@@ -70,7 +67,7 @@ public class WashEdit extends AppCompatActivity {
         edt_tvWashDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog dialog = new DatePickerDialog(WashEdit.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialog = new DatePickerDialog(WashEdit.this, R.style.DatePickerTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         setDate(day,month,year);
@@ -84,9 +81,9 @@ public class WashEdit extends AppCompatActivity {
         btn_editCosmeticsInUsedCosmeticsList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(WashEdit.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(WashEdit.this, R.style.AlertDialogTheme);
                 builder.setTitle("Wybierz kosmetyki z listy");
-                builder.setMultiChoiceItems(edt_listCosmetics, edt_checkedCosmetics, new DialogInterface.OnMultiChoiceClickListener() {
+                builder.setMultiChoiceItems(edt_listCosmetics, edt_checkedCosmetics,  new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
                         if (isChecked){
@@ -106,14 +103,14 @@ public class WashEdit extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
 
-                builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         for (int i = 0; i < edt_checkedCosmetics.length; i++) {
@@ -138,9 +135,9 @@ public class WashEdit extends AppCompatActivity {
                     updatedWash = new Wash(
                             wash.getId(),
                             edt_chosenDate,
-                            edt_swWashIsCleansing.isChecked(),
-                            edt_swWashUsedPeeling.isChecked(),
-                            edt_swWashUsedOiling.isChecked(),
+                            edt_cbWashIsCleansing.isChecked(),
+                            edt_cbWashUsedPeeling.isChecked(),
+                            edt_cbWashUsedOiling.isChecked(),
                             edt_washDesc.getText().toString(),
                             edt_chosenCosmetics);
 
@@ -178,15 +175,19 @@ public class WashEdit extends AppCompatActivity {
         edt_chosenDate = wash.getDate();
         edt_tvWashDate.setText(wash.getDate());
         edt_washDesc.setText(wash.getDescription());
-        edt_swWashIsCleansing.setChecked(wash.isCleansing());
-        edt_swWashUsedPeeling.setChecked(wash.isUsedPeeling());
-        edt_swWashUsedOiling.setChecked(wash.isUsedOiling());
+        edt_cbWashIsCleansing.setChecked(wash.isCleansing());
+        edt_cbWashUsedPeeling.setChecked(wash.isUsedPeeling());
+        edt_cbWashUsedOiling.setChecked(wash.isUsedOiling());
 
         for (int i = 0; i < wash.getUsedCosmetics().size(); i++) {
             int idx = wash.getUsedCosmetics().get(i);
             edt_checkedCosmetics[idx-1] = true;
             edt_chosenCosmetics.add(idx-1);
         }
+
+        day = Integer.parseInt(wash.getDate().substring(0,2));
+        month = Integer.parseInt(wash.getDate().substring(5,7))-1;
+        year = Integer.parseInt(wash.getDate().substring(10,14));
     }
 
     private void initViews(){
@@ -205,10 +206,10 @@ public class WashEdit extends AppCompatActivity {
         btn_edtWash = findViewById(R.id.edt_btnEditWash);
         btn_editCosmeticsInUsedCosmeticsList = findViewById(R.id.edt_btnEditCosmeticsInUsedCosmeticsList);
         edt_tvWashDate = findViewById(R.id.edt_tvWashDate);
-        edt_washDesc = findViewById(R.id.edt_washDesc);
-        edt_swWashIsCleansing = findViewById(R.id.edt_swWashIsCleansing);
-        edt_swWashUsedPeeling = findViewById(R.id.edt_swWashUsedPeeling);
-        edt_swWashUsedOiling = findViewById(R.id.edt_swWashUsedOiling);
+        edt_washDesc = findViewById(R.id.edt_washDescField);
+        edt_cbWashIsCleansing = findViewById(R.id.edt_cbWashIsCleansing);
+        edt_cbWashUsedPeeling = findViewById(R.id.edt_cbWashUsedPeeling);
+        edt_cbWashUsedOiling = findViewById(R.id.edt_cbWashUsedOiling);
     }
 
     public void setDate(int day, int month, int year){

@@ -7,111 +7,156 @@
     android:layout_height="match_parent"
     tools:context=".CosmeticAdd">
 
-    <EditText
-        android:id="@+id/editCosmeticName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nazwa"
-        android:layout_marginVertical="10dp"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editCosmeticBrand"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Producent"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticName" />
-
-    <RelativeLayout
-
-        android:id="@+id/relAdditionalCos1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editCosmeticBrand"
-        android:layout_marginVertical="10dp" >
-
-        <com.google.android.material.textfield.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:hint="Typ PEH"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+            android:layout_height="match_parent">
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTVPehType"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editCosmeticName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none" >
+                android:layout_height="wrap_content"
+                android:hint="Nazwa"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            </AutoCompleteTextView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editCosmeticNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-
-        android:id="@+id/relAdditionalCos2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relAdditionalCos1"
-        android:layout_marginVertical="10dp" >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:hint="Typ Kosmetyku"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTVCosType"
+            <RelativeLayout
+                android:id="@+id/relAdditionalCos1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none" >
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editCosmeticName"
+                android:layout_marginVertical="10dp" >
 
-            </AutoCompleteTextView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Typ Kosmetyku"
+                    android:layout_marginHorizontal="20dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTVCosType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none" >
 
-    </RelativeLayout>
+                    </AutoCompleteTextView>
 
-    <Button
-        android:id="@+id/btnAddIngredientsToInciList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:text="Dodaj Składniki Kosmetyku"
-        android:layout_below="@id/relAdditionalCos2"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editCosmeticDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Opis"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/btnAddIngredientsToInciList" />
+            </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnAddCosImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/editCosmeticDesc"
-        android:text="Wybierz zdjęcie" />
+            <RelativeLayout
+                android:id="@+id/relAdditionalCos2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relAdditionalCos1"
+                android:layout_marginVertical="10dp" >
 
-    <Button
-        android:id="@+id/btnAddCosmetic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnAddCosImg"
-        android:layout_centerHorizontal="true"
-        android:text="Dodaj" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Typ PEH"
+                    android:layout_marginHorizontal="20dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTVPehType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none">
+
+                    </AutoCompleteTextView>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editCosmeticBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Producent"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@+id/relAdditionalCos2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editCosmeticBrandField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editCosmeticDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Opis"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@+id/editCosmeticBrand"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editCosmeticDescField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAddIngredientsToInciList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editCosmeticDesc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj Składniki Kosmetyku"
+                android:textColor="@color/col3" />
+
+            <Button
+                android:id="@+id/btnAddCosImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:textColor="@color/col3"
+                android:layout_below="@id/btnAddIngredientsToInciList"
+                android:text="Wybierz zdjęcie" />
+
+            <Button
+                android:id="@+id/btnAddCosmetic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnAddCosImg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj"
+                android:textColor="@color/col3" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

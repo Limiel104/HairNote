@@ -20,36 +20,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Nazwa"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineLeftIng"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/det_ingName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:textSize="16dp"
                 android:text="TextView"
-                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/det_ingType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Typ"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftIng"
-                app:layout_constraintTop_toBottomOf="@+id/det_ingName" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/det_ingType2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="TextView"
-                app:layout_constraintLeft_toRightOf="@id/guidelineMiddleIng"
-                app:layout_constraintTop_toBottomOf="@+id/det_ingName2" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/det_constrIngr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:paddingVertical="10dp"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftIng"
+                app:layout_constraintTop_toBottomOf="@id/det_ingName">
+
+                <TextView
+                    android:id="@+id/det_ingType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Typ"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/guidelineLeftInsideIng"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/det_ingType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/guidelineMiddleInsideIng"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineLeftInsideIng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="15dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineMiddleInsideIng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="190dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/det_ingDesc"
@@ -57,16 +75,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Opis"
+                android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftIng"
-                app:layout_constraintTop_toBottomOf="@+id/det_ingType" />
+                app:layout_constraintTop_toBottomOf="@+id/det_constrIngr" />
 
             <TextView
                 android:id="@+id/det_ingDesc2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="TextView"
-                android:padding="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corners"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:textColor="@color/black"
+                android:text="text"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRightIng"
                 app:layout_constraintStart_toStartOf="@id/guidelineLeftIng"
                 app:layout_constraintTop_toBottomOf="@id/det_ingDesc"/>

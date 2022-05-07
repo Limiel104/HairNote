@@ -1,6 +1,6 @@
 package com.example.hairnote;
 
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient>{
 
     private int id;
     private String name;
@@ -54,5 +54,10 @@ public class Ingredient {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Ingredient ingredient) {
+        return this.getName().compareToIgnoreCase(ingredient.getName());
     }
 }

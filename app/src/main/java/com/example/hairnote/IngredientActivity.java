@@ -16,12 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class IngredientActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     private RecyclerView ingredientsRecView;
 
-    Button btn_addIngredientMain;
+    FloatingActionButton btn_addIngredientMain;
     IngredientsRecViewAdapter ingredientAdapter;
     DataBaseHelper dataBaseHelper;
 

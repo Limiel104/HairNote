@@ -17,13 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    Button btn_addWashMain;
+    FloatingActionButton btn_addWashMain;
 
     private RecyclerView washesRecView;
-
     WashesRecViewAdapter washesAdapter;
     DataBaseHelper dataBaseHelper;
 
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         btn_addWashMain = findViewById(R.id.btnAddWashMain);
 
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
-
 
         ShowAllWashesOnRecView(dataBaseHelper);
 

@@ -7,57 +7,88 @@
     android:layout_height="match_parent"
     tools:context=".IngredientAdd">
 
-    <EditText
-        android:id="@+id/editIngredientName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nazwa"
-        android:layout_marginVertical="10dp" />
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-
-        android:id="@+id/relAdditionalIngr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editIngredientName"
-        android:layout_marginVertical="10dp" >
-
-        <com.google.android.material.textfield.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:hint="Typ Składnika"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+            android:layout_height="match_parent">
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTVIngrType"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editIngredientName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none" >
+                android:layout_height="wrap_content"
+                android:hint="Nazwa"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            </AutoCompleteTextView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editIngredientNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relAdditionalIngr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editIngredientName">
 
-    <EditText
-        android:id="@+id/editIngredientDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Szczegóły"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/relAdditionalIngr" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:hint="Typ Składnika"
+                    android:layout_marginHorizontal="20dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
-    <Button
-        android:id="@+id/btnAddIngredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editIngredientDesc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:text="Dodaj"/>
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTVIngrType"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none" >
+
+                    </AutoCompleteTextView>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editIngredientDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Opis"
+                app:endIconMode="clear_text"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@+id/relAdditionalIngr"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editIngredientDescField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAddIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editIngredientDesc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj"
+                android:textColor="@color/col3" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

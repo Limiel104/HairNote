@@ -26,35 +26,46 @@
         <entry key="..\:/Documents/AndroidStudioProjects/HairCutDemo/app/src/main/res/layout/main_toolbar.xml" value="0.24547101449275363" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairCutDemo/app/src/main/res/layout/washes_list_item.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.203" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/border.xml" value="0.1635" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/border2.xml" value="0.2125" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_add.xml" value="0.1875" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.203" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_check.xml" value="0.192" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_circle.xml" value="0.2125" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_clear.xml" value="0.1325" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_launcher_background.xml" value="0.203" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_logo_demo.xml" value="0.203" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_more.xml" value="0.203" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_place_holder_background.xml" value="0.2595" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/ic_search.xml" value="0.193" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic.xml" value="0.176" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_add.xml" value="0.2" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_details.xml" value="0.2" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_edit.xml" value="0.264" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/round_corner.xml" value="0.1665" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/rounded_corners.xml" value="0.118" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/rounded_corners2.xml" value="0.192" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/drawable/rounded_corners3.xml" value="0.2125" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic.xml" value="0.264" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_add.xml" value="0.264" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_details.xml" value="0.264" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_cosmetic_edit.xml" value="0.2" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient.xml" value="0.2" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient_add.xml" value="0.2" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient_add.xml" value="0.1" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient_details.xml" value="0.2" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient_edit.xml" value="0.1" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_ingredient_edit.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_add.xml" value="0.1" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_details.xml" value="0.2" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_edit.xml" value="0.1" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_add.xml" value="0.2" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_details.xml" value="0.19622641509433963" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/activity_wash_edit.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/cosmetics_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/drop_down_item_cosmetic_cos_type.xml" value="0.1" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/drop_down_item_cosmetic_peh_type.xml" value="0.25416666666666665" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/drop_down_item_ingredient_type.xml" value="0.1" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/drop_down_item_ingredient_type.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/est.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/ingredients_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/main_nav_drawer.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/main_toolbar.xml" value="0.264" />
-        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/washes_list_item.xml" value="0.16893115942028986" />
+        <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/layout/washes_list_item.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/menu/more_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/menu/search_menu.xml" value="0.264" />
         <entry key="..\:/Documents/AndroidStudioProjects/HairNote/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.174" />

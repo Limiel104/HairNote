@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -63,6 +64,7 @@ public class IngredientsRecViewAdapter extends RecyclerView.Adapter<IngredientsR
     public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
         this.ingredientsAll = new ArrayList<>(ingredients);
+        Collections.sort(ingredients, Ingredient::compareTo);
         notifyDataSetChanged();
     }
 
@@ -107,7 +109,7 @@ public class IngredientsRecViewAdapter extends RecyclerView.Adapter<IngredientsR
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.txtName);
+            txtName = itemView.findViewById(R.id.ingredientNameTitle);
             parentIngredient = itemView.findViewById(R.id.parentIngredient);
         }
     }

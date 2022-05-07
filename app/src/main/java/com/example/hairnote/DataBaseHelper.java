@@ -444,10 +444,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         wash1.put(COLUMN_WASH_IS_CLEANSING,0);
         wash1.put(COLUMN_WASH_USED_PEELING,0);
         wash1.put(COLUMN_WASH_USED_OILING,0);
-        wash1.put(COLUMN_WASH_DESC,"Maecenas eu auctor felis. Cras lacinia lacinia nibh, sed sodales sapien porttitor a. Pellentesque" +
-                " egestas est ac ultrices maximus. Vivamus sit amet condimentum magna, non vestibulum felis. Phasellus a dolor eget ex" +
-                " finibus egestas. Nam mollis malesuada nisl, a euismod ex vestibulum in. Duis mauris lectus, fringilla ac iaculis quis," +
-                " tincidunt vel tortor.");
+        wash1.put(COLUMN_WASH_DESC,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu euismod dolor. Duis dolor" +
+                " ligula, facilisis at odio vel, dignissim auctor nunc. Sed iaculis pellentesque lacus, vitae scelerisque dolor." +
+                " Maecenas mollis nibh in sodales pharetra. Nulla eleifend ante pretium urna egestas, id blandit mi malesuada. " +
+                "Etiam nec vestibulum orci. Aenean nec hendrerit ligula, non posuere tortor. Morbi bibendum, enim sit amet luctus " +
+                "malesuada, ante libero porta justo, vel dignissim turpis eros ut lectus. Fusce iaculis imperdiet pretium. Ut elit " +
+                "arcu, scelerisque et lorem ut, sodales euismod augue. Integer quis quam lectus. Nullam ut finibus metus. Vestibulum " +
+                "ut elementum risus. Nunc volutpat justo odio, vitae iaculis sem condimentum a. Vivamus faucibus lorem lacinia augue " +
+                "dapibus, at vestibulum neque accumsan. Vestibulum vestibulum elit id sapien accumsan, sed fringilla nisl aliquam. " +
+                "Donec a vulputate nibh. Aenean non augue vulputate ante ultricies maximus. Suspendisse at diam est. Vestibulum ante " +
+                "ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin vitae ante laoreet, vehicula neque non, " +
+                "faucibus metus. Sed urna sapien, bibendum sit amet euismod at, molestie quis nibh. Phasellus sagittis vel augue " +
+                "a maximus. Nullam arcu lorem, efficitur sit amet egestas eu, lobortis ut augue. Donec sem eros, maximus quis " +
+                "accumsan non, accumsan id felis. Sed at dignissim nunc, vitae fermentum justo. Duis porttitor, sem id maximus " +
+                "volutpat, sapien elit porttitor metus, quis pulvinar libero tortor et lorem. Aliquam nec lectus vitae est " +
+                "convallis rhoncus. In vitae euismod sem. Donec a massa eu tortor malesuada sodales in sed lacus. Vestibulum " +
+                "vestibulum nisl nec consequat blandit. Aenean condimentum bibendum interdum. Proin lectus justo, rhoncus eget " +
+                "ex non, vehicula tempus est. Curabitur mollis maximus luctus. Aliquam tristique felis sed sapien commodo feugiat. " +
+                "Cras rutrum massa mi, ac sagittis enim suscipit eget.");
         sqLiteDatabase.insert(WASH_TABLE, null, wash1);
 
         ContentValues wash2 = new ContentValues();

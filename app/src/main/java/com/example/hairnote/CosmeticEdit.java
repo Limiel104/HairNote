@@ -97,7 +97,7 @@ public class CosmeticEdit extends AppCompatActivity {
         btn_editIngredientsInInciList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticEdit.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticEdit.this, R.style.AlertDialogTheme);
                 builder.setTitle("Wybierz składniki z listy");
                 builder.setMultiChoiceItems(edt_listIngredients, edt_checkedIngredients, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -119,14 +119,14 @@ public class CosmeticEdit extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
 
-                builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         for (int i = 0; i < edt_checkedIngredients.length; i++) {
@@ -237,9 +237,9 @@ public class CosmeticEdit extends AppCompatActivity {
         btn_edtCosmetic = findViewById(R.id.edt_btnEditCosmetic);
         btn_editIngredientsInInciList = findViewById(R.id.edt_btnEditIngredientsInInciList);
         btn_editCosImg = findViewById(R.id.edt_btnEditCosImg);
-        edt_cosmeticName = findViewById(R.id.edt_cosmeticName);
-        edt_cosmeticBrand = findViewById(R.id.edt_cosmeticBrand);
-        edt_cosmeticDesc = findViewById(R.id.edt_cosmeticDesc);
+        edt_cosmeticName = findViewById(R.id.edt_cosmeticNameField);
+        edt_cosmeticBrand = findViewById(R.id.edt_cosmeticBrandField);
+        edt_cosmeticDesc = findViewById(R.id.edt_cosmeticDescField);
         edt_autoCompleteTVPehType = findViewById(R.id.edt_autoCompleteTVPehType);
         edt_autoCompleteTVCosType = findViewById(R.id.edt_autoCompleteTVCosType);
 

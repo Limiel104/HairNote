@@ -16,10 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class CosmeticActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    Button btn_addCosmeticMain;
+    FloatingActionButton btn_addCosmeticMain;
 
     private RecyclerView cosmeticsRecView;
     CosmeticsRecViewAdapter cosmeticAdapter;

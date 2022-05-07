@@ -83,9 +83,9 @@ public class CosmeticAdd extends AppCompatActivity {
         btn_addCosmetic = findViewById(R.id.btnAddCosmetic);
         btn_addIngredientsToInciList = findViewById(R.id.btnAddIngredientsToInciList);
         btn_addCosImg = findViewById(R.id.btnAddCosImg);
-        et_cosmeticName = findViewById(R.id.editCosmeticName);
-        et_cosmeticBrand = findViewById(R.id.editCosmeticBrand);
-        et_cosmeticDesc = findViewById(R.id.editCosmeticDesc);
+        et_cosmeticName = findViewById(R.id.editCosmeticNameField);
+        et_cosmeticBrand = findViewById(R.id.editCosmeticBrandField);
+        et_cosmeticDesc = findViewById(R.id.editCosmeticDescField);
         autoCompleteTVPehType = findViewById(R.id.autoCompleteTVPehType);
         autoCompleteTVCosType = findViewById(R.id.autoCompleteTVCosType);
 
@@ -109,7 +109,7 @@ public class CosmeticAdd extends AppCompatActivity {
         btn_addIngredientsToInciList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticAdd.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticAdd.this, R.style.AlertDialogTheme);
                 builder.setTitle("Wybierz składniki z listy");
                 builder.setMultiChoiceItems(listIngredients, checkedIngredients, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -131,14 +131,14 @@ public class CosmeticAdd extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
 
-                builder.setNeutralButton("Clear all", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         for (int i = 0; i < checkedIngredients.length; i++) {

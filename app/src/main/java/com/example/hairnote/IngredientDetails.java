@@ -77,7 +77,7 @@ public class IngredientDetails extends AppCompatActivity {
     }
 
     private void initViews(){
-        det_ingName = findViewById(R.id.det_ingName2);
+        det_ingName = findViewById(R.id.det_ingName);
         det_ingType = findViewById(R.id.det_ingType2);
         det_ingDesc = findViewById(R.id.det_ingDesc2);
     }
