@@ -3,8 +3,9 @@
     package="com.example.hairnote">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,41 +15,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairNote">
         <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".WashEdit"
             android:exported="false"
-            android:parentActivityName=".WashDetails"/>
+            android:parentActivityName=".WashDetails" />
         <activity
             android:name=".CosmeticEdit"
             android:exported="false"
-            android:parentActivityName=".CosmeticDetails"/>
+            android:parentActivityName=".CosmeticDetails" />
         <activity
             android:name=".IngredientEdit"
             android:exported="false"
-            android:parentActivityName=".IngredientDetails"/>
+            android:parentActivityName=".IngredientDetails" />
         <activity
             android:name=".IngredientAdd"
             android:exported="false"
-            android:parentActivityName=".IngredientActivity"/>
+            android:parentActivityName=".IngredientActivity" />
         <activity
             android:name=".IngredientDetails"
             android:exported="false"
-            android:parentActivityName=".IngredientActivity"/>
+            android:parentActivityName=".IngredientActivity" />
         <activity
             android:name=".WashDetails"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CosmeticAdd"
             android:exported="false"
-            android:parentActivityName=".CosmeticActivity"/>
+            android:parentActivityName=".CosmeticActivity" />
         <activity
             android:name=".WashAdd"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CosmeticDetails"
             android:exported="false"
-            android:parentActivityName=".CosmeticActivity"/>
+            android:parentActivityName=".CosmeticActivity" />
         <activity
             android:name=".IngredientActivity"
             android:exported="true" />
@@ -64,6 +68,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

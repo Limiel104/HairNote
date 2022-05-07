@@ -16,13 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    FloatingActionButton btn_addWashMain;
+    FloatingActionButton btn_addWashMain, btn_goToMap;
 
     private RecyclerView washesRecView;
     WashesRecViewAdapter washesAdapter;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         washesRecView = findViewById(R.id.washesRecView);
         btn_addWashMain = findViewById(R.id.btnAddWashMain);
+        btn_goToMap = findViewById(R.id.btnGoToMap);
 
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
@@ -47,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, WashAdd.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        btn_goToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
