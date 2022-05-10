@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,9 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int ERROR_DIALOG_REQUEST = 1001;
 
     DrawerLayout drawerLayout;
     FloatingActionButton btn_addWashMain, btn_goToMap;
@@ -53,13 +58,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_goToMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                MainActivity.this.startActivity(intent);
-            }
-        });
+        if (isGoogleServicesInstalled()) {
+            btn_goToMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+        }
 
     }
 
@@ -115,6 +122,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean isGoogleServicesInstalled(){
+        int isAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+
+        if (isAvailable == ConnectionResult.SUCCESS){
+            return  true;
+        }
+        else if (GoogleApiAvailability.getInstance().isUserResolvableError(isAvailable)) {
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, isAvailable, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Can't make map request", Toast.LENGTH_SHORT).show();
+        }
+        return  false;
+
     }
 
     public void ClickMenu(View view){
