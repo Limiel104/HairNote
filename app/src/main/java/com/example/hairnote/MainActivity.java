@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             btn_goToMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    Intent intent = new Intent(MainActivity.this, MapActivity2.class);
                     MainActivity.this.startActivity(intent);
                 }
             });

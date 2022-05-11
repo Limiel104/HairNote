@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairNote">
         <activity
+            android:name=".MapActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="false" />
         <activity

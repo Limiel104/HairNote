@@ -1,5 +1,7 @@
 package com.example.hairnote;
 
+import static com.example.hairnote.BuildConfig.MAPS_API_KEY;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -43,8 +45,27 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -61,6 +82,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
     Location currentLocation;
+    String searchForShop = "hospital";
+    double latitude = 50.068826;
+    double longitude = 19.9031067;
+    int proximityRadius = 10000;
+    FloatingActionButton btnShowOnMap;
+    Object transferData[];
 
     private Boolean locationPermissionsGranted;
 
@@ -71,10 +98,47 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         drawerLayout = findViewById(R.id.drawer_layout);
         setActionBar();
+        btnShowOnMap = findViewById(R.id.btnShowOnMap);
+
+        transferData = new Object[2];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         getLocationPermissions();
+        //displayFoundShops();
+
+        btnShowOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG,"przed czyszzceniem mapy");
+                map.clear();
+                Log.e(TAG,"za czyszczeniem");
+                String url = getUrl(latitude, longitude, "hospital");
+                Log.e(TAG,"za url");
+                transferData[0] = map;
+                transferData[1] = url;
+
+                getNearbyPlaces.execute(transferData);
+                Log.e(TAG,"po transferze");
+                Toast.makeText(MapActivity.this, "Searching for shops", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this, "Showing found shops", Toast.LENGTH_SHORT).show();
+                //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.068826%2C19.9031067&type=hospital&key=AIzaSyBvJpLSFlsneiDhcTh-NtkwOgeywbaGguo
+                //"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY")
+                /*OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+                Request request = new Request.Builder()
+                        .url(url)
+                        .method("GET", null)
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+            }
+        });
 
     }
 
@@ -178,6 +242,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                     locationPermissionsGranted = true;
                     initializeMap();
+                    getUserCurrentLocation();
                 }
         }
     }
@@ -194,7 +259,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         currentLocation = (Location) task.getResult();
                         if (currentLocation != null) {
                             Log.e(TAG, "onComplete: last known location is not null");
-                            LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            //LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            //latitude = currentLocation.getLatitude();
+                            //longitude = currentLocation.getLongitude();
+                            LatLng latLng = new LatLng(latitude, longitude);
                             centralizeCamera(latLng,DEFAULT_ZOOM);
                         }
                         else {
@@ -222,6 +290,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         actionBar.setTitle("Mapa");
     }
 
+    public String getUrl(double latitude, double longitude, String string){
+
+        StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        stringBuilder.append("location=" + latitude + "," + longitude);
+        //stringBuilder.append("&radius=" + proximityRadius);
+        stringBuilder.append("&type=" + "hospital");
+        //stringBuilder.append("&sensor=true");
+        stringBuilder.append("&key=" + MAPS_API_KEY);
+
+        Log.e(TAG,"url = " + stringBuilder.toString());
+
+        return stringBuilder.toString();
+    }
+
+    public void displayFoundShops(){
+        //map.clear();
+        Log.e(TAG,"przed nearbyplaces");
+        String url = getUrl(latitude, longitude, searchForShop);
+        Object transferData[] = new Object[2];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+        Log.e(TAG,"za nearbyplaces");
+        transferData[0] = map;
+        transferData[1] = url;
+
+        getNearbyPlaces.execute(transferData);
+        Toast.makeText(MapActivity.this, "Searching for shops", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MapActivity.this, "Showing found shops", Toast.LENGTH_SHORT).show();
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -236,6 +334,116 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public static String readUrl(String placeUrl) throws IOException {
+
+        String Data = "";
+        InputStream inputStream = null;
+        HttpURLConnection httpURLConnection = null;
+
+        try {
+            URL url = new URL(placeUrl);
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.connect();
+
+            inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer stringBuffer = new StringBuffer();
+
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuffer.append(line);
+            }
+
+            Data = stringBuffer.toString();
+            bufferedReader.close();
+
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            inputStream.close();
+            httpURLConnection.disconnect();
+        }
+        
+        return Data;
+
+    }
+
+    public HashMap<String, String> getNearbyPlace(JSONObject placeJSON){
+
+        HashMap<String, String> placeMap = new HashMap<>();
+        String placeName = "-NA-";
+        String vicinity = "-NA-";
+        String latitude = "-NA-";
+        String longitude = "-NA-";
+        String reference = "-NA-";
+
+        try {
+            if (!placeJSON.isNull("name")){
+                placeName = placeJSON.getString("name");
+            }
+            if (!placeJSON.isNull("vicinity")){
+                vicinity = placeJSON.getString("vicinity");
+            }
+            latitude = placeJSON.getJSONObject("geometry").getJSONObject("location").getString("lat");
+            longitude= placeJSON.getJSONObject("geometry").getJSONObject("location").getString("lng");
+            reference = placeJSON.getString("reference");
+
+            placeMap.put("place_name", placeName);
+            placeMap.put("vicinity", vicinity);
+            placeMap.put("lat", latitude);
+            placeMap.put("lng", longitude);
+            placeMap.put("reference", reference);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return placeMap;
+    }
+
+    public List<HashMap<String, String>> getAllNearByPlaces(JSONArray jsonArray){
+
+        int counter = jsonArray.length();
+        List<HashMap<String, String>> placesList = new ArrayList<>();
+        HashMap<String, String> placeMap = null;
+
+        for (int i = 0; i < counter; i++) {
+            try {
+                placeMap = getNearbyPlace((JSONObject) jsonArray.get(i));
+                placesList.add(placeMap);
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return placesList;
+    }
+
+    public List<HashMap<String, String>> parseData(String data){
+
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject;
+
+        try {
+            jsonObject = new JSONObject(data);
+            jsonArray = jsonObject.getJSONArray("results");
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return getAllNearByPlaces(jsonArray);
+    }
+
+
 
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
