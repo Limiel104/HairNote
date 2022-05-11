@@ -123,20 +123,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Log.e(TAG,"po transferze");
                 Toast.makeText(MapActivity.this, "Searching for shops", Toast.LENGTH_SHORT).show();
                 Toast.makeText(MapActivity.this, "Showing found shops", Toast.LENGTH_SHORT).show();
-                //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.068826%2C19.9031067&type=hospital&key=AIzaSyBvJpLSFlsneiDhcTh-NtkwOgeywbaGguo
-                //"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY")
-                /*OkHttpClient client = new OkHttpClient().newBuilder().build();
-
-                Request request = new Request.Builder()
-                        .url(url)
-                        .method("GET", null)
-                        .build();
-                try {
-                    Response response = client.newCall(request).execute();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
 
@@ -259,9 +245,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         currentLocation = (Location) task.getResult();
                         if (currentLocation != null) {
                             Log.e(TAG, "onComplete: last known location is not null");
-                            //LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            //latitude = currentLocation.getLatitude();
-                            //longitude = currentLocation.getLongitude();
                             LatLng latLng = new LatLng(latitude, longitude);
                             centralizeCamera(latLng,DEFAULT_ZOOM);
                         }
@@ -294,9 +277,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         stringBuilder.append("location=" + latitude + "," + longitude);
-        //stringBuilder.append("&radius=" + proximityRadius);
+        stringBuilder.append("&radius=" + proximityRadius);
         stringBuilder.append("&type=" + "hospital");
-        //stringBuilder.append("&sensor=true");
+        stringBuilder.append("&sensor=true");
         stringBuilder.append("&key=" + MAPS_API_KEY);
 
         Log.e(TAG,"url = " + stringBuilder.toString());
