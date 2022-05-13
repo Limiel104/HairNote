@@ -3,19 +3,32 @@ package com.example.hairnote;
 import static com.example.hairnote.BuildConfig.MAPS_API_KEY;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -32,10 +45,15 @@ import com.google.android.gms.tasks.Task;
 
 public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallback {
 
+    private static final String TAG = "MapActivity2";
+
+    private static final int REQUEST_CODE = 3001;
+    private static final int PERMISSION_REQUEST_ENABLE_GPS = 3002;
+
+    DrawerLayout drawerLayout;
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_CODE = 3001;
     private double lat, lng;
     ImageButton btn1, btn2, btn3, btn4;
 
@@ -43,6 +61,9 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map2);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        setActionBar();
 
         btn1 = findViewById(R.id.imagebtn);
         btn2 = findViewById(R.id.imagebtn2);
@@ -68,12 +89,12 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
 
                 String url = stringBuilder.toString();
 
-                Object dataFech[] = new Object[2];
-                dataFech[0] = mMap;
-                dataFech[1] = url;
+                Object dataFetch[] = new Object[2];
+                dataFetch[0] = mMap;
+                dataFetch[1] = url;
 
                 FetchData fetchData = new FetchData();
-                fetchData.execute(dataFech);
+                fetchData.execute(dataFetch);
 
             }
         });
@@ -147,17 +168,17 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-
-
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         //mMap = googleMap;
+
         Toast.makeText(this, "Mapa jest gotowa", Toast.LENGTH_SHORT).show();
         mMap = googleMap;
         getCurrentLocation();
         Log.e("Map2","onMapReady");
+
     }
 
     @SuppressLint("MissingPermission")
@@ -168,6 +189,11 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
+        }
+
+        if (!isGpsEnabled()) {
+
+            askToTurnOnGps();
         }
 
         Log.e("Map2","getCurrentLocation");
@@ -230,4 +256,107 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     }
+
+    public boolean isGpsEnabled(){
+
+        final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Log.e(TAG, "isGpsEnabled: called");
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Log.e(TAG, "isGpsEnabled: false");
+            //askToTurnOnGps();
+            return false;
+        }
+        else {
+            Log.e(TAG, "isGpsEnabled: true");
+        }
+
+        return true;
+    }
+
+    public void askToTurnOnGps(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity2.this);
+        builder.setMessage("Ta funkcja aplikacji wymaga włączonej lokalizacji do działania. Czy chcesz ją włączyć?")
+                .setCancelable(false)
+                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent enableGps = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(enableGps, PERMISSION_REQUEST_ENABLE_GPS);
+                    }
+                });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "onActivityResult: called");
+        switch (requestCode) {
+            case PERMISSION_REQUEST_ENABLE_GPS:
+                getCurrentLocation();
+        }
+    }
+
+    public void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setTitle("Mapa");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }else{
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void ClickMenu(View view){
+        MainActivity.openDrawer(drawerLayout);
+    }
+
+    public void ClickLogo(View view){
+        MainActivity.closeDrawer(drawerLayout);
+    }
+
+    public void  ClickWash(View view){
+        MainActivity.redirectActivity(this, MainActivity.class);
+        finish();
+    }
+
+    public void ClickCosmetic(View view){
+        MainActivity.redirectActivity(this, CosmeticActivity.class);
+        finish();
+    }
+
+    public void ClickIngredient(View view){
+        MainActivity.redirectActivity(this,IngredientActivity.class);
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MainActivity.closeDrawer(drawerLayout);
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        if (isGpsEnabled()) {
+            getCurrentLocation();
+        }
+
+    }
+
 }

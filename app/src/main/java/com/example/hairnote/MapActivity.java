@@ -101,7 +101,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         btnShowOnMap = findViewById(R.id.btnShowOnMap);
 
         transferData = new Object[2];
-        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+        //GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -119,7 +119,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 transferData[0] = map;
                 transferData[1] = url;
 
-                getNearbyPlaces.execute(transferData);
+                //getNearbyPlaces.execute(transferData);
                 Log.e(TAG,"po transferze");
                 Toast.makeText(MapActivity.this, "Searching for shops", Toast.LENGTH_SHORT).show();
                 Toast.makeText(MapActivity.this, "Showing found shops", Toast.LENGTH_SHORT).show();
@@ -292,12 +292,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.e(TAG,"przed nearbyplaces");
         String url = getUrl(latitude, longitude, searchForShop);
         Object transferData[] = new Object[2];
-        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+        //GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
         Log.e(TAG,"za nearbyplaces");
         transferData[0] = map;
         transferData[1] = url;
 
-        getNearbyPlaces.execute(transferData);
+        //getNearbyPlaces.execute(transferData);
         Toast.makeText(MapActivity.this, "Searching for shops", Toast.LENGTH_SHORT).show();
         Toast.makeText(MapActivity.this, "Showing found shops", Toast.LENGTH_SHORT).show();
 
