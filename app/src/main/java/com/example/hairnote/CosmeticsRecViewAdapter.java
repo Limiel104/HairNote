@@ -4,12 +4,16 @@ import static com.example.hairnote.CosmeticDetails.COSMETIC_ID_KEY;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -28,6 +32,8 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
     private ArrayList<Cosmetic> cosmetics = new ArrayList<>();
     private ArrayList<Cosmetic> cosmeticsAll = new ArrayList<>();
     private Context mContext;
+    private boolean isSelectMode = false;
+    private ArrayList<Cosmetic> selectedCosmetics = new ArrayList<>();
 
     public CosmeticsRecViewAdapter(Context mContext) {
         this.mContext = mContext;
@@ -52,11 +58,55 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CosmeticDetails.class);
-                intent.putExtra(COSMETIC_ID_KEY,cosmetics.get(position).getId());
-                mContext.startActivity(intent);
+
+                if (isSelectMode){
+                    if (selectedCosmetics.contains(cosmetics.get(position))) {
+                        holder.imgCosmetic.clearColorFilter();
+                        selectedCosmetics.remove(cosmetics.get(position));
+                    }
+                    else {
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        colorMatrix.setSaturation(0);
+                        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+                        holder.imgCosmetic.setColorFilter(filter);
+                        selectedCosmetics.add(cosmetics.get(position));
+                    }
+
+                    if (selectedCosmetics.size() == 0){
+                        isSelectMode = false;
+                    }
+                }
+                else {
+                    Intent intent = new Intent(mContext, CosmeticDetails.class);
+                    intent.putExtra(COSMETIC_ID_KEY,cosmetics.get(position).getId());
+                    mContext.startActivity(intent);
+                }
             }
         });
+
+        holder.parent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                isSelectMode = true;
+                if (selectedCosmetics.contains(cosmetics.get(position))) {
+                    holder.imgCosmetic.clearColorFilter();
+                    selectedCosmetics.remove(cosmetics.get(position));
+                }
+                else {
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.setSaturation(0);
+                    ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+                    holder.imgCosmetic.setColorFilter(filter);
+                    selectedCosmetics.add(cosmetics.get(position));
+                }
+
+                if (selectedCosmetics.size() == 0) {
+                    isSelectMode = false;
+                }
+                return true;
+            }
+        });
+
     }
 
     @Override
