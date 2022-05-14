@@ -82,8 +82,8 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.clear();
                 StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
                 stringBuilder.append("location=" + lat + "," + lng);
-                stringBuilder.append("&radius=1000");
-                stringBuilder.append("&type=atm");
+                stringBuilder.append("&radius=3000");
+                stringBuilder.append("&type=hair_care");
                 stringBuilder.append("&sensor=true");
                 stringBuilder.append("&key=" + MAPS_API_KEY);
 
@@ -105,8 +105,8 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.clear();
                 StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
                 stringBuilder.append("location=" + lat + "," + lng);
-                stringBuilder.append("&radius=1000");
-                stringBuilder.append("&type=hospital");
+                stringBuilder.append("&radius=3000");
+                stringBuilder.append("&type=drugstore");
                 stringBuilder.append("&sensor=true");
                 stringBuilder.append("&key=" + MAPS_API_KEY);
 
@@ -126,11 +126,15 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 mMap.clear();
-                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                stringBuilder.append("location=" + lat + "," + lng);
-                stringBuilder.append("&radius=1000");
-                stringBuilder.append("&type=restaurant");
-                stringBuilder.append("&sensor=true");
+//                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+//                stringBuilder.append("location=" + lat + "," + lng);
+//                stringBuilder.append("&radius=3000");
+//                stringBuilder.append("&type=pharmacy");
+//                stringBuilder.append("&sensor=true");
+//                stringBuilder.append("&key=" + MAPS_API_KEY);
+
+                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+                stringBuilder.append("query=rossmann%20Krakow");
                 stringBuilder.append("&key=" + MAPS_API_KEY);
 
                 String url = stringBuilder.toString();
@@ -149,21 +153,22 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 mMap.clear();
-                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                stringBuilder.append("location=" + lat + "," + lng);
-                stringBuilder.append("&radius=1000");
-                stringBuilder.append("&type=bank");
-                stringBuilder.append("&sensor=true");
+
+                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?");
+                stringBuilder.append("fields=name,geometry");
+                stringBuilder.append("&input=biedronka");
+                stringBuilder.append("&inputtype=textquery");
+                stringBuilder.append("&inputtype=textquery");
                 stringBuilder.append("&key=" + MAPS_API_KEY);
 
                 String url = stringBuilder.toString();
 
-                Object dataFech[] = new Object[2];
-                dataFech[0] = mMap;
-                dataFech[1] = url;
+                Object dataFech2[] = new Object[2];
+                dataFech2[0] = mMap;
+                dataFech2[1] = url;
 
-                FetchData fetchData = new FetchData();
-                fetchData.execute(dataFech);
+                FetchData2 fetchData2 = new FetchData2();
+                fetchData2.execute(dataFech2);
 
             }
         });
@@ -234,7 +239,8 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                     Log.e("Map2","Task");
 
                     LatLng latLng = new LatLng(lat, lng);
-                    mMap.addMarker(new MarkerOptions().position(latLng).title("current location"));
+                    //mMap.addMarker(new MarkerOptions().position(latLng).title("current location"));
+                    mMap.setMyLocationEnabled(true);
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                 }
