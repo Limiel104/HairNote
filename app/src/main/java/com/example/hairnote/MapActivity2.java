@@ -22,6 +22,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -43,6 +45,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapActivity2";
@@ -55,7 +60,6 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
     SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private double lat, lng;
-    ImageButton btn1, btn2, btn3, btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +69,13 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         drawerLayout = findViewById(R.id.drawer_layout);
         setActionBar();
 
-        btn1 = findViewById(R.id.imagebtn);
-        btn2 = findViewById(R.id.imagebtn2);
-        btn3 = findViewById(R.id.imagebtn3);
-        btn4 = findViewById(R.id.imagebtn4);
-
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2);
         mapFragment.getMapAsync(MapActivity2.this);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity2.this);
 
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        /*btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mMap.clear();
@@ -171,7 +170,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                 fetchData2.execute(dataFech2);
 
             }
-        });
+        });*/
 
     }
 
@@ -305,11 +304,64 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    public void locateShops(String shopName){
+
+        if (shopName == "drogeria%20rossmann") {
+            mMap.clear();
+
+            ArrayList<LatLng> latLng = new ArrayList<LatLng>();
+            latLng.add(new LatLng(50.073322,19.916177));
+            latLng.add(new LatLng(50.013344,19.923848));
+            latLng.add(new LatLng(50.069254,20.014574));
+            latLng.add(new LatLng(50.022131,20.018576));
+
+            for (int i = 0; i < 4; i++) {
+                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+                stringBuilder.append("query=" + shopName);
+                stringBuilder.append("&location=" + latLng.get(i).latitude + "," + latLng.get(i).longitude);
+                stringBuilder.append("&key=" + MAPS_API_KEY);
+
+                String url = stringBuilder.toString();
+
+                Object dataFetch[] = new Object[2];
+                dataFetch[0] = mMap;
+                dataFetch[1] = url;
+
+                FetchData fetchData = new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        }
+        else {
+            mMap.clear();
+
+            StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+            stringBuilder.append("query=" + shopName);
+            stringBuilder.append("%20Krakow");
+            stringBuilder.append("&key=" + MAPS_API_KEY);
+
+            String url = stringBuilder.toString();
+
+            Object dataFetch[] = new Object[2];
+            dataFetch[0] = mMap;
+            dataFetch[1] = url;
+
+            FetchData fetchData = new FetchData();
+            fetchData.execute(dataFetch);
+        }
+    }
+
     public void setActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setTitle("Mapa");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.locate_menu, menu);
+        return true;
     }
 
     @Override
@@ -323,8 +375,24 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
                 return true;
+            case R.id.action_hebe:
+                locateShops("drogeria%20hebe");
+                return true;
+            case R.id.action_natura:
+                locateShops("drogeria%20natura");
+                return true;
+            case R.id.action_pigment:
+                locateShops("drogeria%20pigment");
+                return true;
+            case R.id.action_rossmann:
+                locateShops("drogeria%20rossmann");
+                return true;
+            case R.id.action_ziaja:
+                locateShops("ziaja%20dla%20ciebie");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void ClickMenu(View view){

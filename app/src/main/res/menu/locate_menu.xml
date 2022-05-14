@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_hebe"
+        android:title="Hebe"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_natura"
+        android:title="Natura"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_pigment"
+        android:title="Pigment"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_rossmann"
+        android:title="Rossmann"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_ziaja"
+        android:title="Ziaja"
+        app:showAsAction="never"/>
+
+</menu>
