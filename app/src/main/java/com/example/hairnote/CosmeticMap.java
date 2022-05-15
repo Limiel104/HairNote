@@ -53,6 +53,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private double lat, lng;
+    ArrayList<Cosmetic> selectedCosmetics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +68,16 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(CosmeticMap.this);
 
-        ArrayList<String> shopNameList = new ArrayList<>();
-        shopNameList.add("hebe");
-        shopNameList.add("ziaja%20dla%ciebie");
-        shopNameList.add("rossmann");
+        selectedCosmetics = new ArrayList<>();
+        selectedCosmetics = (ArrayList<Cosmetic>) getIntent().getSerializableExtra("CosmeticsListExtra");
 
+        /*String s = "";
+        for (int i=0; i<selectedCosmetics.size(); i++) {
+            s = s + selectedCosmetics.get(i).getName() + ", ";
+        }
 
-
+        Toast.makeText(CosmeticMap.this, s, Toast.LENGTH_SHORT).show();
+        Log.e(TAG, s);*/
 
 
     }
@@ -81,7 +85,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
 
-        Toast.makeText(this, "Mapa jest gotowa", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Mapa jest gotowa", Toast.LENGTH_SHORT).show();
         mMap = googleMap;
         getCurrentLocation();
         Log.e("Map2","onMapReady");
@@ -111,7 +115,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         LocationCallback locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
-                Toast.makeText(CosmeticMap.this, "location result is = " + locationResult, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CosmeticMap.this, "location result is = " + locationResult, Toast.LENGTH_SHORT).show();
 
                 if (locationResult == null) {
                     Toast.makeText(CosmeticMap.this, "Current location is null ", Toast.LENGTH_SHORT).show();
@@ -120,7 +124,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
 
                 for (Location location:locationResult.getLocations()){
                     if (location != null) {
-                        Toast.makeText(CosmeticMap.this, "location result is = " + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(CosmeticMap.this, "location result is = " + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

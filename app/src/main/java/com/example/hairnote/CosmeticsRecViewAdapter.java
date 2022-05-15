@@ -120,6 +120,10 @@ public class CosmeticsRecViewAdapter extends RecyclerView.Adapter<CosmeticsRecVi
         notifyDataSetChanged();
     }
 
+    public ArrayList<Cosmetic> getSelectedCosmeticsList(){
+        return selectedCosmetics;
+    }
+
     public Filter getFilter() {
         return filter;
     }

@@ -1607,11 +1607,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         ArrayList<Shop> returnAList = new ArrayList<>();
 
-        //String queryString = "SELECT * FROM " + SHOP_TABLE + " WHERE " + COLUMN_SHOP_NAME + " = " + brandName;
-        //String queryString =
-
         SQLiteDatabase db = this.getReadableDatabase();
-        //Cursor cursor = db.rawQuery(queryString, null);
 
         Cursor cursor = db.rawQuery("SELECT * FROM SHOP_TABLE WHERE SHOP_NAME = ?; ", new String[] {brandName});
 

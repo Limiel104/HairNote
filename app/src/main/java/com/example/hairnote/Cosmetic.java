@@ -1,8 +1,9 @@
 package com.example.hairnote;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Cosmetic {
+public class Cosmetic implements Serializable {
 
     private int id;
     private String name;

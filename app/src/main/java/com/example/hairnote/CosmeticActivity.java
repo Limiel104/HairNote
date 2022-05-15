@@ -11,21 +11,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class CosmeticActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    FloatingActionButton btn_addCosmeticMain;
+    FloatingActionButton btn_addCosmeticMain, btn_setRoute;
 
     private RecyclerView cosmeticsRecView;
     CosmeticsRecViewAdapter cosmeticAdapter;
     DataBaseHelper dataBaseHelper;
+    ArrayList<Cosmetic> selectedCosmetics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,21 @@ public class CosmeticActivity extends AppCompatActivity {
 
         cosmeticsRecView = findViewById(R.id.cosmeticsRecView);
         btn_addCosmeticMain = findViewById(R.id.btnAddCosmeticMain);
+        btn_setRoute = findViewById(R.id.btnSetRoute);
 
         dataBaseHelper = new DataBaseHelper(CosmeticActivity.this);
+        selectedCosmetics = new ArrayList<>();
 
         ShowAllCosmeticsOnRecView(dataBaseHelper);
+
+        btn_setRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CosmeticActivity.this, CosmeticMap.class);
+                intent.putExtra("CosmeticsListExtra", selectedCosmetics);
+                CosmeticActivity.this.startActivity(intent);
+            }
+        });
 
         btn_addCosmeticMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +65,6 @@ public class CosmeticActivity extends AppCompatActivity {
                 CosmeticActivity.this.startActivity(intent);
             }
         });
-
     }
 
     public void ShowAllCosmeticsOnRecView(DataBaseHelper dataBaseHelper) {
@@ -57,6 +72,7 @@ public class CosmeticActivity extends AppCompatActivity {
         cosmeticsRecView.setAdapter(cosmeticAdapter);
         cosmeticsRecView.setLayoutManager(new GridLayoutManager(this, 3));
         cosmeticAdapter.setCosmetics(dataBaseHelper.getAllCosmetics());
+        selectedCosmetics = cosmeticAdapter.getSelectedCosmeticsList();
     }
 
     public void setActionBar(){
