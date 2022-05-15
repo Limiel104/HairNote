@@ -51,6 +51,7 @@ public class CosmeticEdit extends AppCompatActivity {
     String[] edt_pehTypes, edt_cosTypes, edt_listIngredients;
     boolean[] edt_checkedIngredients;
     ArrayList<Integer> edt_chosenIngredients;
+    ArrayList<String> edt_shopList;
     HashMap<Integer, String> allIngredients;
 
     DataBaseHelper dataBaseHelper;
@@ -165,7 +166,8 @@ public class CosmeticEdit extends AppCompatActivity {
                             edtCosType,
                             edt_cosmeticDesc.getText().toString(),
                             imgPath,
-                            edt_chosenIngredients);
+                            edt_chosenIngredients,
+                            edt_shopList);
 
                 }catch (Exception e) {
                     updatedCosmetic = new Cosmetic(-1,"","","","","","");
@@ -227,6 +229,8 @@ public class CosmeticEdit extends AppCompatActivity {
             edt_listIngredients[index] = mapEntry.getValue();
             index++;
         }
+
+        ArrayList<String> edt_shopList = new ArrayList<>();
 
         adapterPehTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_peh_type, edt_pehTypes);
         adapterCosTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_cos_type, edt_cosTypes);

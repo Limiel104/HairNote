@@ -55,6 +55,7 @@ public class FetchData extends AsyncTask<Object, String, String> {
         catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

@@ -48,7 +48,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallback {
+public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallback{
 
     private static final String TAG = "MapActivity2";
 
@@ -259,7 +259,6 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
                     getCurrentLocation();
                 }
         }
-
     }
 
     public boolean isGpsEnabled(){
@@ -354,7 +353,7 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        actionBar.setTitle("Mapa");
+        actionBar.setTitle("Mapa 2");
     }
 
     @Override
@@ -432,5 +431,4 @@ public class MapActivity2 extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     }
-
 }

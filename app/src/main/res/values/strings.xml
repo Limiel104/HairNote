@@ -35,4 +35,12 @@
         <item>Kwas</item>
     </string-array>
 
+    <string-array name="ShopBrands">
+        <item>Hebe</item>
+        <item>Natura</item>
+        <item>Pigment</item>
+        <item>Rossmann</item>
+        <item>Ziaja dla Ciebie</item>
+    </string-array>
+
 </resources>

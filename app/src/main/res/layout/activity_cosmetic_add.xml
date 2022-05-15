@@ -133,6 +133,18 @@
                 android:textColor="@color/col3" />
 
             <Button
+                android:id="@+id/btnAddShopsToShopList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnAddIngredientsToInciList"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/rounded_corners3"
+                android:text="Dodaj Sklepy"
+                android:textColor="@color/col3" />
+
+            <Button
                 android:id="@+id/btnAddCosImg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,7 +153,7 @@
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/rounded_corners3"
                 android:textColor="@color/col3"
-                android:layout_below="@id/btnAddIngredientsToInciList"
+                android:layout_below="@id/btnAddShopsToShopList"
                 android:text="Wybierz zdjęcie" />
 
             <Button

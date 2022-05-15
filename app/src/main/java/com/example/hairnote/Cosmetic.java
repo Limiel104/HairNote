@@ -13,8 +13,9 @@ public class Cosmetic {
     //private boolean cgCompatible;
     private String imgPath;
     private List<Integer> inciList;
+    private List<String> shopList;
 
-    public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String description, String imgPath, List<Integer> inciList) {
+    public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String description, String imgPath, List<Integer> inciList, List<String> shopList) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -24,6 +25,7 @@ public class Cosmetic {
         //this.cgCompatible = cgCompatible;
         this.imgPath = imgPath;
         this.inciList = inciList;
+        this.shopList = shopList;
     }
 
     public Cosmetic(int id, String name, String brand, String pehType, String cosmeticType, String description, String imgPath) {

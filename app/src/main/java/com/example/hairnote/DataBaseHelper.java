@@ -42,6 +42,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String WASH_COSMETIC_TABLE = "WASH_COSMETIC_TABLE";
     public static final String COLUMN_WASH_COSMETIC_ID = "WASH_COSMETIC_ID";
     public static final String COLUMN_WAS_ID = "WAS_ID";
+    public static final String SHOP_TABLE = "SHOP_TABLE";
+    public static final String COLUMN_SHOP_ID = "SHOP_ID";
+    public static final String COLUMN_SHOP_NAME = "SHOP_NAME";
+    public static final String COLUMN_SHOP_ADDRESS = "SHOP_ADDRESS";
+    public static final String SHOP_COSMETIC_TABLE = "SHOP_COSMETIC_TABLE";
+    public static final String COLUMN_SHOP_COSMETIC_ID = "SHOP_COSMETIC_ID";
+    public static final String COLUMN_SHOP_BRAND_NAME = "SHOP_BRAND_NAME";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "appDatabase.db", null, 1);
@@ -97,8 +104,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(createTableStatement5);
 
+        String createTableStatement6 = "CREATE TABLE " + SHOP_TABLE + " ("
+                + COLUMN_SHOP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_SHOP_NAME + " TEXT, "
+                + COLUMN_SHOP_ADDRESS + " TEXT)";
+
+        sqLiteDatabase.execSQL(createTableStatement6);
+
+        /*String createTableStatement7 = "CREATE TABLE " + SHOP_BRAND_TABLE + " ("
+                + COLUMN_SHOP_BRAND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_SHOP_BRAND_NAME + " TEXT)";
+
+        sqLiteDatabase.execSQL(createTableStatement7);*/
+
         /*String createTableStatement6 = "CREATE TABLE COSMETIC_INGREDIENT_TABLE (COSMETIC_INGREDIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, COS_ID INTEGER, INGR_ID INTEGER, FOREIGN KEY (COS_ID) REFERENCES COSMETIC_TABLE(COSMETIC_ID), FOREIGN KEY (INGR_ID) REFERENCES INGREDIENT_TABLE(INGREDIENT_ID))";
         sqLiteDatabase.execSQL(createTableStatement6);*/
+
+        String createTableStatement7 = "CREATE TABLE " + SHOP_COSMETIC_TABLE + " ("
+                + COLUMN_SHOP_COSMETIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_COS_ID + " INTEGER, "
+                + COLUMN_SHOP_BRAND_NAME + " TEXT, "
+                + "FOREIGN KEY (" + COLUMN_COS_ID + ") REFERENCES " + COSMETIC_TABLE + "(" + COLUMN_COSMETIC_ID + "))";
+        sqLiteDatabase.execSQL(createTableStatement7);
+
 
         /*      INGREDIENTS     */
 
@@ -757,6 +785,192 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         was_cos14.put(COLUMN_WAS_ID,3);
         was_cos14.put(COLUMN_COS_ID,10);
         sqLiteDatabase.insert(WASH_COSMETIC_TABLE, null, was_cos14);
+
+
+        /*      SHOP BRAND     */
+
+        /*ContentValues brand1 = new ContentValues();
+        brand1.put(COLUMN_SHOP_BRAND_NAME,"Hebe");
+        sqLiteDatabase.insert(SHOP_BRAND_TABLE, null, brand1);
+
+        ContentValues brand2 = new ContentValues();
+        brand2.put(COLUMN_SHOP_BRAND_NAME,"Natura");
+        sqLiteDatabase.insert(SHOP_BRAND_TABLE, null, brand2);
+
+        ContentValues brand3 = new ContentValues();
+        brand3.put(COLUMN_SHOP_BRAND_NAME,"Pigment");
+        sqLiteDatabase.insert(SHOP_BRAND_TABLE, null, brand3);
+
+        ContentValues brand4 = new ContentValues();
+        brand4.put(COLUMN_SHOP_BRAND_NAME,"Rossmann");
+        sqLiteDatabase.insert(SHOP_BRAND_TABLE, null, brand4);
+
+        ContentValues brand5 = new ContentValues();
+        brand5.put(COLUMN_SHOP_BRAND_NAME,"Ziaja dla Ciebie");
+        sqLiteDatabase.insert(SHOP_BRAND_TABLE, null, brand5);*/
+
+
+        /*      SHOP     */
+
+        ContentValues shop1 = new ContentValues();
+        shop1.put(COLUMN_SHOP_NAME,"Hebe");
+        shop1.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 1");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop1);
+
+        ContentValues shop2 = new ContentValues();
+        shop2.put(COLUMN_SHOP_NAME,"Hebe");
+        shop2.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 2");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop2);
+
+        ContentValues shop3 = new ContentValues();
+        shop3.put(COLUMN_SHOP_NAME,"Hebe");
+        shop3.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 3");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop3);
+
+        ContentValues shop4 = new ContentValues();
+        shop4.put(COLUMN_SHOP_NAME,"Hebe");
+        shop4.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 4");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop4);
+
+
+        ContentValues shop5 = new ContentValues();
+        shop5.put(COLUMN_SHOP_NAME,"Natura");
+        shop5.put(COLUMN_SHOP_ADDRESS, "Adres Natura 1");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop5);
+
+        ContentValues shop6 = new ContentValues();
+        shop6.put(COLUMN_SHOP_NAME,"Natura");
+        shop6.put(COLUMN_SHOP_ADDRESS, "Adres Natura 2");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop6);
+
+        ContentValues shop7 = new ContentValues();
+        shop7.put(COLUMN_SHOP_NAME,"Natura");
+        shop7.put(COLUMN_SHOP_ADDRESS, "Adres Natura 3");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop7);
+
+        ContentValues shop8 = new ContentValues();
+        shop8.put(COLUMN_SHOP_NAME,"Natura");
+        shop8.put(COLUMN_SHOP_ADDRESS, "Adres Natura 4");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop8);
+
+
+        ContentValues shop9 = new ContentValues();
+        shop9.put(COLUMN_SHOP_NAME,"Pigment");
+        shop9.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 1");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop9);
+
+        ContentValues shop10 = new ContentValues();
+        shop10.put(COLUMN_SHOP_NAME,"Pigment");
+        shop10.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 2");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop10);
+
+        ContentValues shop11 = new ContentValues();
+        shop11.put(COLUMN_SHOP_NAME,"Pigment");
+        shop11.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 3");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop11);
+
+
+        ContentValues shop12 = new ContentValues();
+        shop12.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop12.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 1");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop12);
+
+        ContentValues shop13 = new ContentValues();
+        shop13.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop13.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 2");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop13);
+
+        ContentValues shop14 = new ContentValues();
+        shop14.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop14.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 3");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop14);
+
+        ContentValues shop15 = new ContentValues();
+        shop15.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop15.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 4");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop15);
+
+        ContentValues shop16 = new ContentValues();
+        shop16.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop16.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 5");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop16);
+
+        ContentValues shop17 = new ContentValues();
+        shop17.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop17.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 6");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop17);
+
+        ContentValues shop18 = new ContentValues();
+        shop18.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop18.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 7");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop18);
+
+        ContentValues shop19 = new ContentValues();
+        shop19.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop19.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 8");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop19);
+
+        ContentValues shop20 = new ContentValues();
+        shop20.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop20.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 9");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop20);
+
+        ContentValues shop21 = new ContentValues();
+        shop21.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop21.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 10");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop21);
+
+        ContentValues shop22 = new ContentValues();
+        shop22.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop22.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 11");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop22);
+
+        ContentValues shop23 = new ContentValues();
+        shop23.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop23.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 12");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop23);
+
+        ContentValues shop24 = new ContentValues();
+        shop24.put(COLUMN_SHOP_NAME,"Rossmann");
+        shop24.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 13");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop24);
+
+
+        ContentValues shop25 = new ContentValues();
+        shop25.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop25.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 1");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop25);
+
+        ContentValues shop26 = new ContentValues();
+        shop26.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop26.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 2");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop26);
+
+        ContentValues shop27 = new ContentValues();
+        shop27.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop27.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 3");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop27);
+
+        ContentValues shop28 = new ContentValues();
+        shop28.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop28.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 4");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop28);
+
+        ContentValues shop29 = new ContentValues();
+        shop29.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop29.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 5");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop29);
+
+        ContentValues shop30 = new ContentValues();
+        shop30.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop30.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 6");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop30);
+
+        ContentValues shop31 = new ContentValues();
+        shop31.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
+        shop31.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 7");
+        sqLiteDatabase.insert(SHOP_TABLE, null, shop31);
+
     }
 
     @Override
@@ -1092,7 +1306,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
 
         if(cursor.moveToFirst()){
-            //int cosmeticID2 = cursor.getInt(0);
             String cosmeticName = cursor.getString(1);
             String cosmeticBrand = cursor.getString(2);
             String cosmeticPehType = cursor.getString(3);
@@ -1101,8 +1314,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             String cosmeticImgPath = cursor.getString(6);
 
             ArrayList<Integer> inciList = getAllCosmeticIngredientsIDs(cosmeticID);
+            ArrayList<String > shopList = getAllShopBrandsFromCosmetic(cosmeticID);
 
-            Cosmetic returnCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList);
+            Cosmetic returnCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList, shopList);
             cursor.close();
             db.close();
             return returnCosmetic;
@@ -1288,8 +1502,136 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //--------------------------------------- SHOP_BRANDS METHODS ------------------------------------------------
 
 
+    /*public ArrayList<ShopBrand> getAllShopBrands() {
+
+        ArrayList<ShopBrand> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + SHOP_BRAND_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                int brandID = cursor.getInt(0);
+                String brandName = cursor.getString(1);
+
+                ShopBrand newShopBrand = new ShopBrand(brandID,brandName);
+                returnAList.add(newShopBrand);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }*/
+
+    //--------------------------------------- SHOP METHODS ------------------------------------------------
+
+
+    public ArrayList<Shop> getAllShops() {
+
+        ArrayList<Shop> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + SHOP_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                int shopID = cursor.getInt(0);
+                String shopName = cursor.getString(1);
+                String shopAddress = cursor.getString(2);
+
+                Shop newShop = new Shop(shopID, shopName, shopAddress);
+                returnAList.add(newShop);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
+
+    public ArrayList<Shop> getAllShopsFromOneBrand(String brand) {
+
+        ArrayList<Shop> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + SHOP_TABLE + " WHERE " + COLUMN_SHOP_NAME + " = " + brand;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                int shopID = cursor.getInt(0);
+                String shopName = cursor.getString(1);
+                String shopAddress = cursor.getString(2);
+
+                Shop newShop = new Shop(shopID, shopName, shopAddress);
+                returnAList.add(newShop);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
+
+    //--------------------------------------- SHOP_BRANDS METHODS ------------------------------------------------
+
+    public boolean addShopCosmetic(int cosmeticID, String shopBrandName) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_COS_ID, cosmeticID);
+        cv.put(COLUMN_SHOP_BRAND_NAME, shopBrandName);
+
+        long insert = db.insert(SHOP_COSMETIC_TABLE, null, cv);
+
+        if (insert == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public ArrayList<String> getAllShopBrandsFromCosmetic(int cosmeticID) {
+
+        ArrayList<String> returnAList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + SHOP_COSMETIC_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+                String shopBrandName = cursor.getString(2);
+                returnAList.add(shopBrandName);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
 
 
 

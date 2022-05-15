@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ERROR_DIALOG_REQUEST = 1001;
 
     DrawerLayout drawerLayout;
-    FloatingActionButton btn_addWashMain, btn_goToMap;
+    FloatingActionButton btn_addWashMain, btn_goToMap, btn_goToMap2, btn_goToMap3, btn_goToMap4;
 
     private RecyclerView washesRecView;
     WashesRecViewAdapter washesAdapter;
@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         washesRecView = findViewById(R.id.washesRecView);
         btn_addWashMain = findViewById(R.id.btnAddWashMain);
         btn_goToMap = findViewById(R.id.btnGoToMap);
+        btn_goToMap2 = findViewById(R.id.btnGoToMap2);
+        btn_goToMap3 = findViewById(R.id.btnGoToMap3);
+        btn_goToMap4 = findViewById(R.id.btnGoToMap4);
 
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
@@ -63,10 +66,36 @@ public class MainActivity extends AppCompatActivity {
             btn_goToMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+
+            btn_goToMap2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
                     Intent intent = new Intent(MainActivity.this, MapActivity2.class);
                     MainActivity.this.startActivity(intent);
                 }
             });
+
+            btn_goToMap3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, CosmeticMap.class);
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+
+            btn_goToMap4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Intent intent = new Intent(MainActivity.this, CosmeticMap2.class);
+                    //MainActivity.this.startActivity(intent);
+                }
+            });
+
         }
 
     }

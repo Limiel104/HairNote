@@ -39,13 +39,14 @@ public class CosmeticAdd extends AppCompatActivity {
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
 
     private EditText et_cosmeticName, et_cosmeticBrand, et_cosmeticDesc;
-    Button btn_addCosmetic, btn_addIngredientsToInciList, btn_addCosImg;
+    Button btn_addCosmetic, btn_addIngredientsToInciList, btn_addShopsToShopList, btn_addCosImg;
     AutoCompleteTextView autoCompleteTVPehType, autoCompleteTVCosType;
     ArrayAdapter adapterPehTypes, adapterCosTypes;
     String chosenPehType, chosenCosType, imgPath;
-    String[] pehTypes, cosTypes, listIngredients;
-    boolean[] checkedIngredients;
-    ArrayList<Integer> chosenIngredients;
+    String[] pehTypes, cosTypes, shopBrands, listIngredients;
+    boolean[] checkedIngredients, checkedShopBrands;
+    ArrayList<Integer> chosenIngredients, chosenShopBrands;
+    ArrayList<String> shopList;
     HashMap<Integer, String> allIngredients;
 
     @Override
@@ -60,6 +61,7 @@ public class CosmeticAdd extends AppCompatActivity {
 
         pehTypes = getResources().getStringArray(R.array.PehTypes);
         cosTypes = getResources().getStringArray(R.array.CosTypes);
+        shopBrands = getResources().getStringArray(R.array.ShopBrands);
 
         allIngredients = dataBaseHelper.getAllIngredientsNameAndID();
 
@@ -69,6 +71,8 @@ public class CosmeticAdd extends AppCompatActivity {
             listIngredients[index] = mapEntry.getValue();
             index++;
         }
+
+        shopList = new ArrayList<>();
 
         adapterPehTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_peh_type, pehTypes);
         adapterCosTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_cos_type, cosTypes);
@@ -80,8 +84,12 @@ public class CosmeticAdd extends AppCompatActivity {
         checkedIngredients = new boolean[listIngredients.length];
         chosenIngredients = new ArrayList<>();
 
+        checkedShopBrands = new boolean[shopBrands.length];
+        chosenShopBrands = new ArrayList<>();
+
         btn_addCosmetic = findViewById(R.id.btnAddCosmetic);
         btn_addIngredientsToInciList = findViewById(R.id.btnAddIngredientsToInciList);
+        btn_addShopsToShopList = findViewById(R.id.btnAddShopsToShopList);
         btn_addCosImg = findViewById(R.id.btnAddCosImg);
         et_cosmeticName = findViewById(R.id.editCosmeticNameField);
         et_cosmeticBrand = findViewById(R.id.editCosmeticBrandField);
@@ -153,6 +161,53 @@ public class CosmeticAdd extends AppCompatActivity {
             }
         });
 
+        btn_addShopsToShopList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticAdd.this, R.style.AlertDialogTheme);
+                builder.setTitle("Wybierz sklepy z listy");
+                builder.setMultiChoiceItems(shopBrands, checkedShopBrands, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                        if (isChecked){
+                            chosenShopBrands.add(position);
+                        }
+                        else {
+                            chosenShopBrands.remove(Integer.valueOf(position));
+                        }
+                    }
+                });
+
+                builder.setCancelable(false);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < checkedShopBrands.length; i++) {
+                            checkedShopBrands[i] = false;
+                            chosenShopBrands.clear();
+                        }
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
         btn_addCosImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +223,10 @@ public class CosmeticAdd extends AppCompatActivity {
 
                 Cosmetic newCosmetic;
 
+                for (int i = 0; i < chosenShopBrands.size(); i++) {
+                    shopList.add(shopBrands[chosenShopBrands.get(i)]);
+                }
+
                 try {
                     newCosmetic = new Cosmetic(-1,
                             et_cosmeticName.getText().toString(),
@@ -176,16 +235,21 @@ public class CosmeticAdd extends AppCompatActivity {
                             chosenCosType,
                             et_cosmeticDesc.getText().toString(),
                             imgPath,
-                            chosenIngredients);
+                            chosenIngredients,
+                            shopList);
 
                 }catch (Exception e) {
-                    newCosmetic = new Cosmetic(-1,"error","","","","","", chosenIngredients);
+                    newCosmetic = new Cosmetic(-1,"error","","","","","", chosenIngredients, shopList);
                 }
 
                 int cosmeticID = (int) dataBaseHelper.addCosmetic(newCosmetic);
                 for (int i = 0; i < chosenIngredients.size(); i++) {
                     int ingredientID = findIngredientID(allIngredients,listIngredients[chosenIngredients.get(i)]);
                     boolean success = dataBaseHelper.addCosmeticIngredient(cosmeticID,ingredientID);
+                }
+                for (int i = 0; i < chosenShopBrands.size(); i++) {
+                    String shopBrandName = shopList.get(i);
+                    boolean success = dataBaseHelper.addShopCosmetic(cosmeticID, shopBrandName);
                 }
                 Toast.makeText(CosmeticAdd.this, "Dodano Kosmetyk", Toast.LENGTH_SHORT).show();
 

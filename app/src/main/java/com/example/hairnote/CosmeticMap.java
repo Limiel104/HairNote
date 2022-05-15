@@ -39,12 +39,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+import java.util.ArrayList;
+
+public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "CosmeticMap";
 
-    private static final int REQUEST_CODE = 2001;
-    private static final int PERMISSION_REQUEST_ENABLE_GPS = 2002;
+    private static final int REQUEST_CODE = 5001;
+    private static final int PERMISSION_REQUEST_ENABLE_GPS = 5002;
 
     DrawerLayout drawerLayout;
     private GoogleMap mMap;
@@ -61,9 +63,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setActionBar();
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2);
-        mapFragment.getMapAsync(MapActivity.this);
+        mapFragment.getMapAsync(CosmeticMap.this);
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(CosmeticMap.this);
+
+        ArrayList<String> shopNameList = new ArrayList<>();
+        shopNameList.add("hebe");
+        shopNameList.add("ziaja%20dla%ciebie");
+        shopNameList.add("rossmann");
+
+
+
+
 
     }
 
@@ -100,16 +111,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LocationCallback locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
-                Toast.makeText(MapActivity.this, "location result is = " + locationResult, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CosmeticMap.this, "location result is = " + locationResult, Toast.LENGTH_SHORT).show();
 
                 if (locationResult == null) {
-                    Toast.makeText(MapActivity.this, "Current location is null ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CosmeticMap.this, "Current location is null ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 for (Location location:locationResult.getLocations()){
                     if (location != null) {
-                        Toast.makeText(MapActivity.this, "location result is = " + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CosmeticMap.this, "location result is = " + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -129,7 +140,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Log.e("Map2","Task");
 
                     LatLng latLng = new LatLng(lat, lng);
-                    mMap.setMyLocationEnabled(true);
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                 }
@@ -169,7 +179,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void askToTurnOnGps(){
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticMap.this);
         builder.setMessage("Ta funkcja aplikacji wymaga włączonej lokalizacji do działania. Czy chcesz ją włączyć?")
                 .setCancelable(false)
                 .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
@@ -197,14 +207,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        actionBar.setTitle("Mapa");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.locate_menu, menu);
-        return true;
+        actionBar.setTitle("Wybrane kosmetyki - trasa");
     }
 
     @Override
@@ -218,27 +221,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
                 return true;
-            case R.id.action_hebe:
-                locateShops("drogeria%20hebe");
-                return true;
-            case R.id.action_natura:
-                locateShops("drogeria%20natura");
-                return true;
-            case R.id.action_pigment:
-                locateShops("drogeria%20pigment");
-                return true;
-            case R.id.action_rossmann:
-                locateShops("drogeria%20rossmann");
-                return true;
-            case R.id.action_ziaja:
-                locateShops("ziaja%20dla%20ciebie");
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void locateShops(String s) {
     }
 
     public void ClickMenu(View view){
