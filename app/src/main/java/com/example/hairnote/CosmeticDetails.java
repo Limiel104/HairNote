@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 public class CosmeticDetails extends AppCompatActivity {
 
     public static final String COSMETIC_ID_KEY = "cosmeticID";
-    private TextView det_cosName, det_cosBrand, det_cosPehType, det_cosCosmeticType, det_cosInciList, det_cosDesc;
+    private TextView det_cosName, det_cosBrand, det_cosPehType, det_cosCosmeticType, det_cosInciList, det_cosShopList, det_cosDesc;
     private ImageView imgCosDet;
 
     DataBaseHelper dataBaseHelper;
@@ -81,6 +81,7 @@ public class CosmeticDetails extends AppCompatActivity {
         det_cosCosmeticType.setText(cosmetic.getCosmeticType());
         //det_cosCG.setText(String.valueOf(cosmetic.isCgCompatible()));
         det_cosInciList.setText(inciListToString());
+        det_cosShopList.setText(shopListToString());
         det_cosDesc.setText(cosmetic.getDescription());
         Glide.with(this)
                 .asBitmap()
@@ -95,6 +96,7 @@ public class CosmeticDetails extends AppCompatActivity {
         det_cosCosmeticType = findViewById(R.id.det_cosCosmeticType2);
         //det_cosCG = findViewById(R.id.det_cosCG);
         det_cosInciList = findViewById(R.id.det_cosInciList2);
+        det_cosShopList = findViewById(R.id.det_cosShopList2);
         det_cosDesc = findViewById(R.id.det_cosDesc2);
         imgCosDet = findViewById(R.id.imgCosDet);
     }
@@ -119,4 +121,19 @@ public class CosmeticDetails extends AppCompatActivity {
         return inciList;
     }
 
+    private String shopListToString() {
+
+        String shopList = "";
+
+        for (int i = 0;  i < cosmetic.getShopList().size(); i++) {
+            if ( i+1 == cosmetic.getShopList().size()) {
+                shopList = shopList + cosmetic.getShopList().get(i);
+            }
+            else{
+                shopList = shopList + cosmetic.getShopList().get(i) + "\n";
+            }
+        }
+
+        return shopList;
+    }
 }

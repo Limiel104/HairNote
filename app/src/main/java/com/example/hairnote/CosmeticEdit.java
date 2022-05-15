@@ -44,13 +44,13 @@ public class CosmeticEdit extends AppCompatActivity {
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
 
     private EditText edt_cosmeticName, edt_cosmeticBrand, edt_cosmeticDesc;
-    Button btn_editIngredientsInInciList, btn_edtCosmetic, btn_editCosImg;
+    Button btn_editIngredientsInInciList, btn_editShopsInShopList, btn_edtCosmetic, btn_editCosImg;
     AutoCompleteTextView edt_autoCompleteTVPehType, edt_autoCompleteTVCosType;
     ArrayAdapter adapterPehTypes, adapterCosTypes;
     String edtPehType, edtCosType, imgPath;
-    String[] edt_pehTypes, edt_cosTypes, edt_listIngredients;
-    boolean[] edt_checkedIngredients;
-    ArrayList<Integer> edt_chosenIngredients;
+    String[] edt_pehTypes, edt_cosTypes, edt_shopBrands, edt_listIngredients;
+    boolean[] edt_checkedIngredients, edt_checkedShopBrands;
+    ArrayList<Integer> edt_chosenIngredients, edt_chosenShopBrands;
     ArrayList<String> edt_shopList;
     HashMap<Integer, String> allIngredients;
 
@@ -142,6 +142,53 @@ public class CosmeticEdit extends AppCompatActivity {
             }
         });
 
+        btn_editShopsInShopList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticEdit.this, R.style.AlertDialogTheme);
+                builder.setTitle("Wybierz składniki z listy");
+                builder.setMultiChoiceItems(edt_shopBrands, edt_checkedShopBrands, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                        if (isChecked){
+                            edt_chosenShopBrands.add(position);
+                        }
+                        else {
+                            edt_chosenShopBrands.remove(Integer.valueOf(position));
+                        }
+                    }
+                });
+
+                builder.setCancelable(false);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setNeutralButton("Wyczyść", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < edt_checkedShopBrands.length; i++) {
+                            edt_checkedShopBrands[i] = false;
+                            edt_chosenShopBrands.clear();
+                        }
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
         btn_editCosImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,6 +203,10 @@ public class CosmeticEdit extends AppCompatActivity {
             public void onClick(View view) {
 
                 Cosmetic updatedCosmetic;
+
+                for (int i = 0; i < edt_chosenShopBrands.size(); i++) {
+                    edt_shopList.add(edt_shopBrands[edt_chosenShopBrands.get(i)]);
+                }
 
                 try {
                     updatedCosmetic = new Cosmetic(
@@ -175,10 +226,16 @@ public class CosmeticEdit extends AppCompatActivity {
 
                 boolean success = dataBaseHelper.updateCosmetic(updatedCosmetic);
                 dataBaseHelper.deleteAllIngredientsInCosmetic(updatedCosmetic.getId());
+                dataBaseHelper.deleteAllShopsInCosmetic(updatedCosmetic.getId());
 
                 for (int i = 0; i < edt_chosenIngredients.size(); i++) {
                     int ingredientID = findIngredientID(allIngredients,edt_listIngredients[edt_chosenIngredients.get(i)]);
                     boolean success2 = dataBaseHelper.addCosmeticIngredient(updatedCosmetic.getId(),ingredientID);
+                }
+
+                for (int i = 0; i < edt_chosenShopBrands.size(); i++) {
+                    String shopBrandName = edt_shopList.get(i);
+                    boolean success2 = dataBaseHelper.addShopCosmetic(updatedCosmetic.getId(), shopBrandName);
                 }
 
                 Intent intent = new Intent(CosmeticEdit.this, CosmeticActivity.class);
@@ -208,11 +265,23 @@ public class CosmeticEdit extends AppCompatActivity {
         imgPath = cosmetic.getImgPath();
 
         Collections.sort(cosmetic.getInciList());
+        Collections.sort(cosmetic.getShopList());
 
         for (int i = 0; i < cosmetic.getInciList().size(); i++) {
             int idx = cosmetic.getInciList().get(i);
             edt_checkedIngredients[idx-1] = true;
             edt_chosenIngredients.add(idx-1);
+        }
+
+        for (int i = 0; i < cosmetic.getShopList().size(); i++) {
+
+            for (int j = 0; j<edt_shopBrands.length; j++) {
+                if (cosmetic.getShopList().get(i).equals(edt_shopBrands[j])) {
+                    edt_checkedShopBrands[j] = true;
+                    edt_chosenShopBrands.add(j);
+                    break;
+                }
+            }
         }
     }
 
@@ -220,6 +289,7 @@ public class CosmeticEdit extends AppCompatActivity {
 
         edt_pehTypes = getResources().getStringArray(R.array.PehTypes);
         edt_cosTypes = getResources().getStringArray(R.array.CosTypes);
+        edt_shopBrands = getResources().getStringArray(R.array.ShopBrands);
 
         allIngredients = dataBaseHelper.getAllIngredientsNameAndID();
 
@@ -230,7 +300,7 @@ public class CosmeticEdit extends AppCompatActivity {
             index++;
         }
 
-        ArrayList<String> edt_shopList = new ArrayList<>();
+        edt_shopList = new ArrayList<>();
 
         adapterPehTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_peh_type, edt_pehTypes);
         adapterCosTypes = new ArrayAdapter<>(this, R.layout.drop_down_item_cosmetic_cos_type, edt_cosTypes);
@@ -238,8 +308,12 @@ public class CosmeticEdit extends AppCompatActivity {
         edt_checkedIngredients = new boolean[edt_listIngredients.length];
         edt_chosenIngredients = new ArrayList<>();
 
+        edt_checkedShopBrands = new boolean[edt_shopBrands.length];
+        edt_chosenShopBrands = new ArrayList<>();
+
         btn_edtCosmetic = findViewById(R.id.edt_btnEditCosmetic);
         btn_editIngredientsInInciList = findViewById(R.id.edt_btnEditIngredientsInInciList);
+        btn_editShopsInShopList = findViewById(R.id.btnEditShopsInShopList);
         btn_editCosImg = findViewById(R.id.edt_btnEditCosImg);
         edt_cosmeticName = findViewById(R.id.edt_cosmeticNameField);
         edt_cosmeticBrand = findViewById(R.id.edt_cosmeticBrandField);

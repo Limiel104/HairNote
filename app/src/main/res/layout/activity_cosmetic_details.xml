@@ -124,6 +124,28 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/det_cosShopList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="16sp"
+                android:text="Można kupić w:"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_constrCos" />
+
+            <TextView
+                android:id="@+id/det_cosShopList2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/border"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
+                app:layout_constraintTop_toBottomOf="@id/det_cosShopList"
+                app:layout_constraintRight_toLeftOf="@id/guidelineRightCos"/>
+
+            <TextView
                 android:id="@+id/det_cosInciList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,7 +153,7 @@
                 android:textSize="16sp"
                 android:text="Skład"
                 app:layout_constraintLeft_toRightOf="@id/guidelineLeftCos"
-                app:layout_constraintTop_toBottomOf="@id/det_constrCos" />
+                app:layout_constraintTop_toBottomOf="@id/det_cosShopList2" />
 
             <TextView
                 android:id="@+id/det_cosInciList2"

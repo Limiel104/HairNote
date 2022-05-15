@@ -243,10 +243,12 @@ public class CosmeticAdd extends AppCompatActivity {
                 }
 
                 int cosmeticID = (int) dataBaseHelper.addCosmetic(newCosmetic);
+
                 for (int i = 0; i < chosenIngredients.size(); i++) {
                     int ingredientID = findIngredientID(allIngredients,listIngredients[chosenIngredients.get(i)]);
                     boolean success = dataBaseHelper.addCosmeticIngredient(cosmeticID,ingredientID);
                 }
+
                 for (int i = 0; i < chosenShopBrands.size(); i++) {
                     String shopBrandName = shopList.get(i);
                     boolean success = dataBaseHelper.addShopCosmetic(cosmeticID, shopBrandName);

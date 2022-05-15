@@ -1314,7 +1314,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             String cosmeticImgPath = cursor.getString(6);
 
             ArrayList<Integer> inciList = getAllCosmeticIngredientsIDs(cosmeticID);
-            ArrayList<String > shopList = getAllShopBrandsFromCosmetic(cosmeticID);
+            ArrayList<String> shopList = getAllShopBrandsFromCosmetic(cosmeticID);
 
             Cosmetic returnCosmetic= new Cosmetic(cosmeticID, cosmeticName, cosmeticBrand, cosmeticPehType, cosmeticCosmeticType, cosmeticDesc, cosmeticImgPath, inciList, shopList);
             cursor.close();
@@ -1357,6 +1357,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
 
         deleteAllIngredientsInCosmetic(cosmetic.getId());
+        deleteAllShopsInCosmetic(cosmetic.getId());
         deleteCosmeticInAllWashes(cosmetic.getId());
 
         if (cursor.moveToFirst()) {
@@ -1388,7 +1389,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         ArrayList<Integer> returnAList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + COSMETIC_INGREDIENT_TABLE+ " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+        String queryString = "SELECT * FROM " + COSMETIC_INGREDIENT_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
@@ -1463,8 +1464,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()){
             do{
-                int ingredientID = cursor.getInt(2);
-                returnAList.add(ingredientID);
+                int cosmeticID = cursor.getInt(2);
+                returnAList.add(cosmeticID);
 
             }while (cursor.moveToNext());
         }else {
@@ -1633,9 +1634,42 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnAList;
     }
 
+    public ArrayList<Integer> geatAllCosmeticIngredientsIDs(int cosmeticID) {
 
+        ArrayList<Integer> returnAList = new ArrayList<>();
 
+        String queryString = "SELECT * FROM " + COSMETIC_INGREDIENT_TABLE+ " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
 
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            do{
+                int ingredientID = cursor.getInt(2);
+                returnAList.add(ingredientID);
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnAList;
+    }
+
+    public boolean deleteAllShopsInCosmetic(int cosmeticID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + SHOP_COSMETIC_TABLE + " WHERE " + COLUMN_COS_ID + " = " + cosmeticID;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 

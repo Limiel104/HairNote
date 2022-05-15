@@ -102,6 +102,14 @@ public class Cosmetic {
         this.inciList = inciList;
     }
 
+    public List<String> getShopList() {
+        return shopList;
+    }
+
+    public void setShopList(List<String> shopList) {
+        this.shopList = shopList;
+    }
+
     @Override
     public String toString() {
         return "Cosmetic{" +
@@ -112,7 +120,8 @@ public class Cosmetic {
                 ", cosmeticType='" + cosmeticType + '\'' +
                 ", description='" + description + '\'' +
                 ", imgPath='" + imgPath + '\'' +
-                ", inciList2=" + inciList +
+                ", inciList=" + inciList +
+                ", shopList=" + shopList +
                 '}';
     }
 }
