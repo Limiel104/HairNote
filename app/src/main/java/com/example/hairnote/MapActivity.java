@@ -1,5 +1,7 @@
 package com.example.hairnote;
 
+import static com.example.hairnote.BuildConfig.MAPS_API_KEY;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -39,9 +41,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final String TAG = "CosmeticMap";
+    private static final String TAG = "MapActivity";
 
     private static final int REQUEST_CODE = 2001;
     private static final int PERMISSION_REQUEST_ENABLE_GPS = 2002;
@@ -51,6 +55,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private double lat, lng;
+    DataBaseHelper dataBaseHelper;
+    ArrayList<Shop> shopList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(MapActivity.this);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
+
+        dataBaseHelper = new DataBaseHelper(MapActivity.this);
+        shopList = new ArrayList<>();
 
     }
 
@@ -193,6 +202,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    public void locateShops(String shopName){
+
+        mMap.clear();
+        shopList.clear();
+        shopList = dataBaseHelper.getAllShopsFromOneBrand(shopName);
+
+        for (int i = 0; i < shopList.size(); i++) {
+
+            LatLng latLng = new LatLng(shopList.get(i).getLat(), shopList.get(i).getLng());
+
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.title(shopList.get(i).getName());
+            markerOptions.position(latLng);
+            markerOptions.snippet(shopList.get(i).getAddress());
+            mMap.addMarker(markerOptions);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+        }
+    }
+
     public void setActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -219,26 +247,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 return true;
             case R.id.action_hebe:
-                locateShops("drogeria%20hebe");
+                locateShops("Hebe");
                 return true;
             case R.id.action_natura:
-                locateShops("drogeria%20natura");
+                locateShops("Natura");
                 return true;
             case R.id.action_pigment:
-                locateShops("drogeria%20pigment");
+                locateShops("Pigment");
                 return true;
             case R.id.action_rossmann:
-                locateShops("drogeria%20rossmann");
+                locateShops("Rossmann");
                 return true;
             case R.id.action_ziaja:
-                locateShops("ziaja%20dla%20ciebie");
+                locateShops("Ziaja dla Ciebie");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void locateShops(String s) {
     }
 
     public void ClickMenu(View view){
