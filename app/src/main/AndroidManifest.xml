@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairNote">
         <activity
+            android:name=".CosmeticMap2Helper"
+            android:exported="false" />
+        <activity
+            android:name=".CosmeticMap2"
+            android:exported="false" />
+        <activity
             android:name=".CosmeticMap"
             android:exported="false" />
         <activity

@@ -20,9 +20,9 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -38,19 +38,27 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
+import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback {
+public class CosmeticMap2 extends AppCompatActivity implements OnMapReadyCallback{
 
-    private static final String TAG = "CosmeticMap";
+    private static final String TAG = "CosmeticMap2";
 
     private static final int REQUEST_CODE = 5001;
     private static final int PERMISSION_REQUEST_ENABLE_GPS = 5002;
+    private static final int REQUEST_DISTANCE_CALCULATION = 5003;
 
     DrawerLayout drawerLayout;
     private GoogleMap mMap;
@@ -61,63 +69,47 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
     private GeoApiContext mGeoApiContext = null;
     ArrayList<String> shopsToLocate;
     DataBaseHelper dataBaseHelper;
+    private boolean lock = false;
+    LatLng userLatLng;
+    ArrayList<Shop> finalShops;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cosmetic_map);
+        setContentView(R.layout.activity_cosmetic_map2);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         setActionBar();
 
-        dataBaseHelper = new DataBaseHelper(CosmeticMap.this);
+        dataBaseHelper = new DataBaseHelper(CosmeticMap2.this);
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2);
-        mapFragment.getMapAsync(CosmeticMap.this);
+        mapFragment.getMapAsync(CosmeticMap2.this);
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(CosmeticMap.this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(CosmeticMap2.this);
 
         selectedCosmetics = new ArrayList<>();
         selectedCosmetics = (ArrayList<Cosmetic>) getIntent().getSerializableExtra("CosmeticsListExtra");
 
         shopsToLocate = new ArrayList<>();
 
-        String s = "";
-        for (int i=0; i<selectedCosmetics.size(); i++) {
-            s = s + selectedCosmetics.get(i).getName() + ", ";
-        }
-
-        Log.e(TAG, s);
-
-
         if(mGeoApiContext == null) {
             mGeoApiContext = new GeoApiContext.Builder().apiKey(MAPS_API_KEY).build();
         }
 
-        //Toast.makeText(CosmeticMap.this, "elo elo", Toast.LENGTH_SHORT).show();
-
         filterShops();
-
-        String d = "";
-        for (int i=0; i<shopsToLocate.size(); i++) {
-            d = d + shopsToLocate.get(i)+ ", ";
-        }
-
-        Log.e(TAG, d);
-
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
 
-        //Toast.makeText(this, "Mapa jest gotowa", Toast.LENGTH_SHORT).show();
         mMap = googleMap;
-        setRoute();
+        calculateDistances();
         Log.e("Map2","onMapReady");
     }
 
     @SuppressLint("MissingPermission")
-    private void setRoute(){
+    private void calculateDistances(){
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -131,8 +123,6 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
             askToTurnOnGps();
         }
 
-        Log.e("Map2","getCurrentLocation");
-
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setInterval(6000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -140,16 +130,15 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         LocationCallback locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
-                //Toast.makeText(CosmeticMap.this, "location result is = " + locationResult, Toast.LENGTH_SHORT).show();
 
                 if (locationResult == null) {
-                    Toast.makeText(CosmeticMap.this, "Nie pobrano lokalizacji", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CosmeticMap2.this, "Nie pobrano lokalizacji", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 for (Location location:locationResult.getLocations()){
                     if (location != null) {
-                        //Toast.makeText(CosmeticMap.this, "location result is = " + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
@@ -168,12 +157,22 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
 
                     Log.e("Map2","Task");
 
-                    LatLng userLatLng = new LatLng(lat, lng);
+                    userLatLng = new LatLng(lat, lng);
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLng));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 13));
 
-                    //setShopMarkers(userLatLng); !!!!!!
+                    if(lock == false) {
+                        lock = true;
+                        String latSend = String.valueOf(userLatLng.latitude);
+                        String lngSend = String.valueOf(userLatLng.longitude);
+                        shopsToLocate.add(latSend);
+                        shopsToLocate.add(lngSend);
 
+                        Intent intent = new Intent(CosmeticMap2.this, CosmeticMap2Helper.class);
+                        intent.putExtra("ShopsToLocateExtra", shopsToLocate);
+                        startActivityForResult(intent, REQUEST_DISTANCE_CALCULATION);
+
+                    }
                 }
             }
         });
@@ -194,13 +193,115 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public void setShopMarkers(LatLng userLatLng){
+    public  void filterReturnedDistance(ArrayList<Double> allDistanceList, ArrayList<Integer> allIdList){
 
-        for (int i = 0; i < shopsToLocate.size(); i++){
+        finalShops = new ArrayList<>();
 
+        for (int i = 0; i < shopsToLocate.size()-2; i++) { //bo tam jest jeszcze userLocation
+            finalShops.add(new Shop(-1,"default","default",0,0));
         }
 
+        int k = 0;
 
+        for (int i = 0; i < shopsToLocate.size()-2; i++) {
+
+            double minDistance = 100000000;
+            int numberOfShops = dataBaseHelper.getNumberOfAllShopsFromOneBrand(shopsToLocate.get(i));
+            Log.e(TAG, "numer sklepow dla marki " + shopsToLocate.get(i) + ": " + numberOfShops);
+
+            for (int j = 0; j < numberOfShops; j++) {
+                if(allDistanceList.get(k) < minDistance) {
+                    Shop shop = dataBaseHelper.findShop(allIdList.get(k));
+                    finalShops.set(i, shop);
+                    minDistance = allDistanceList.get(k);
+                    Log.e(TAG, "distance k = " + k + " " + "meters = " + allDistanceList.get(k));
+                }
+                k++;
+            }
+        }
+
+        Log.e(TAG, finalShops.toString());
+        setShopMarkers();
+
+    }
+
+    public void setShopMarkers(){
+
+        MarkerOptions userMarkerOptions = new MarkerOptions();
+        userMarkerOptions.position(userLatLng);
+        userMarkerOptions.title("Twoja pozycja");
+
+        mMap.addMarker(userMarkerOptions);
+
+        for (int i = 0; i < finalShops.size(); i++) {
+
+            Log.e(TAG, "punkt: " + i + " lat = " + finalShops.get(i).getLat() + " lng = " + finalShops.get(i).getLng() + " name = " + finalShops.get(i).getName() + " id = " + finalShops.get(i).getId());
+
+            LatLng latLng = new LatLng(finalShops.get(i).getLat(), finalShops.get(i).getLng());
+
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.title(finalShops.get(i).getName());
+            markerOptions.position(latLng);
+            markerOptions.snippet(finalShops.get(i).getAddress());
+
+            mMap.addMarker(markerOptions);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+        }
+
+        finalShops.add(0,new Shop(-1, "Twoja pozycja", "Twoj adres", userLatLng.latitude, userLatLng.longitude));
+        Log.e(TAG, finalShops.toString());
+
+        for (int i = 0; i < finalShops.size()-1; i++) {
+
+            LatLng latLngOrigin = new LatLng(finalShops.get(i).getLat(), finalShops.get(i).getLng());
+            LatLng latLngDest = new LatLng(finalShops.get(i+1).getLat(), finalShops.get(i+1).getLng());
+
+            calculateRoutesForMarkers(latLngOrigin, latLngDest, finalShops.get(i).getName(), finalShops.get(i+1).getName());
+        }
+    }
+
+    public  void  calculateRoutesForMarkers(LatLng latLngOrigin, LatLng latLngDest, String origin, String dest){
+
+        DirectionsApiRequest directionsApiRequest = new DirectionsApiRequest(mGeoApiContext);
+        directionsApiRequest.alternatives(false);
+
+        directionsApiRequest.origin(new com.google.maps.model.LatLng(latLngOrigin.latitude, latLngOrigin.longitude));
+        directionsApiRequest.destination(new com.google.maps.model.LatLng(latLngDest.latitude, latLngDest.longitude)).setCallback(new PendingResult.Callback<DirectionsResult>() {
+            @Override
+            public void onResult(DirectionsResult result) {
+                Log.e(TAG, "kalkulacja dla " + origin + " " + dest + ": " + result.routes[0].legs[0].distance);
+                setPolylinesForRoutes(result);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    public void setPolylinesForRoutes(final DirectionsResult directionsResult){
+        
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+
+                for (DirectionsRoute route: directionsResult.routes) {
+                    List<com.google.maps.model.LatLng> path = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
+
+                    List<LatLng> newPath = new ArrayList<>();
+
+                    for (com.google.maps.model.LatLng latLng: path) {
+                        newPath.add(new LatLng(latLng.lat, latLng.lng));
+                    }
+
+                    Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(newPath));
+                    polyline.setColor(R.color.col5);
+                    polyline.setClickable(true);
+                    polyline.setZIndex(1);
+                }
+            }
+        });
     }
 
     @SuppressLint("MissingSuperCall")
@@ -211,7 +312,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         switch (REQUEST_CODE) {
             case REQUEST_CODE:
                 if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    setRoute();
+                    calculateDistances();
                 }
         }
     }
@@ -234,7 +335,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
 
     public void askToTurnOnGps(){
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticMap.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(CosmeticMap2.this);
         builder.setMessage("Ta funkcja aplikacji wymaga włączonej lokalizacji do działania. Czy chcesz ją włączyć?")
                 .setCancelable(false)
                 .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
@@ -254,7 +355,16 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         Log.e(TAG, "onActivityResult: called");
         switch (requestCode) {
             case PERMISSION_REQUEST_ENABLE_GPS:
-                setRoute();
+                calculateDistances();
+            case REQUEST_DISTANCE_CALCULATION:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<Double> allDistances = (ArrayList<Double>) data.getSerializableExtra("AllShopsExtra");
+                    ArrayList<Integer> allShopIds = (ArrayList<Integer>) data.getSerializableExtra("AllShopIdsExtra");
+                    Log.e(TAG, "dostalam dystanse: " + allDistances.toString());
+                    Log.e(TAG, "dostalam id: " + allShopIds.toString());
+
+                    filterReturnedDistance(allDistances, allShopIds);
+                }
         }
     }
 
@@ -262,7 +372,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        actionBar.setTitle("Wybrane kosmetyki - trasa");
+        actionBar.setTitle("Wybrane kosmetyki - trasa2");
     }
 
     @Override
@@ -314,7 +424,7 @@ public class CosmeticMap extends AppCompatActivity implements OnMapReadyCallback
         super.onResume();
 
         if (isGpsEnabled()) {
-            setRoute();
+            calculateDistances();
         }
 
     }

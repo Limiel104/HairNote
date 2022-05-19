@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
             btn_goToMap3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, CosmeticMap.class);
-                    MainActivity.this.startActivity(intent);
+                    //Intent intent = new Intent(MainActivity.this, CosmeticMap.class);
+                    //MainActivity.this.startActivity(intent);
                 }
             });
 

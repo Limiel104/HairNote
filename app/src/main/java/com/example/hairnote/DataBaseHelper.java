@@ -790,88 +790,88 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop1 = new ContentValues();
         shop1.put(COLUMN_SHOP_NAME,"Hebe");
         shop1.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 1");
-        shop1.put(COLUMN_SHOP_LAT,50.03234);
-        shop1.put(COLUMN_SHOP_LNG,19.987);
+        shop1.put(COLUMN_SHOP_LAT,50.293429);
+        shop1.put(COLUMN_SHOP_LNG,21.458889);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop1);
 
         ContentValues shop2 = new ContentValues();
         shop2.put(COLUMN_SHOP_NAME,"Hebe");
         shop2.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 2");
-        shop2.put(COLUMN_SHOP_LAT,50.0234);
-        shop2.put(COLUMN_SHOP_LNG,19.93434);
+        shop2.put(COLUMN_SHOP_LAT,50.306588);
+        shop2.put(COLUMN_SHOP_LNG,21.463009);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop2);
 
         ContentValues shop3 = new ContentValues();
         shop3.put(COLUMN_SHOP_NAME,"Hebe");
         shop3.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 3");
-        shop3.put(COLUMN_SHOP_LAT,50.0231);
-        shop3.put(COLUMN_SHOP_LNG,19.9875);
+        shop3.put(COLUMN_SHOP_LAT,50.293868);
+        shop3.put(COLUMN_SHOP_LNG,21.414257);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop3);
 
         ContentValues shop4 = new ContentValues();
         shop4.put(COLUMN_SHOP_NAME,"Hebe");
         shop4.put(COLUMN_SHOP_ADDRESS, "Adres Hebe 4");
-        shop4.put(COLUMN_SHOP_LAT,50.0423);
-        shop4.put(COLUMN_SHOP_LNG,19.9345);
+        shop4.put(COLUMN_SHOP_LAT,50.282242);
+        shop4.put(COLUMN_SHOP_LNG,19.444813);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop4);
 
 
         ContentValues shop5 = new ContentValues();
         shop5.put(COLUMN_SHOP_NAME,"Natura");
         shop5.put(COLUMN_SHOP_ADDRESS, "Adres Natura 1");
-        shop5.put(COLUMN_SHOP_LAT,50.063);
-        shop5.put(COLUMN_SHOP_LNG,19.867);
+        shop5.put(COLUMN_SHOP_LAT,50.298130);
+        shop5.put(COLUMN_SHOP_LNG,21.417793);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop5);
 
         ContentValues shop6 = new ContentValues();
         shop6.put(COLUMN_SHOP_NAME,"Natura");
         shop6.put(COLUMN_SHOP_ADDRESS, "Adres Natura 2");
-        shop6.put(COLUMN_SHOP_LAT,50.06598);
-        shop6.put(COLUMN_SHOP_LNG,19.9568);
+        shop6.put(COLUMN_SHOP_LAT,50.280706);
+        shop6.put(COLUMN_SHOP_LNG,21.440060);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop6);
 
         ContentValues shop7 = new ContentValues();
         shop7.put(COLUMN_SHOP_NAME,"Natura");
         shop7.put(COLUMN_SHOP_ADDRESS, "Adres Natura 3");
-        shop7.put(COLUMN_SHOP_LAT,50.025);
-        shop7.put(COLUMN_SHOP_LNG,19.9987);
+        shop7.put(COLUMN_SHOP_LAT,50.307684);
+        shop7.put(COLUMN_SHOP_LNG,21.426960);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop7);
 
         ContentValues shop8 = new ContentValues();
         shop8.put(COLUMN_SHOP_NAME,"Natura");
         shop8.put(COLUMN_SHOP_ADDRESS, "Adres Natura 4");
-        shop8.put(COLUMN_SHOP_LAT,50.0436);
-        shop8.put(COLUMN_SHOP_LNG,19.996);
+        shop8.put(COLUMN_SHOP_LAT,50.269574);
+        shop8.put(COLUMN_SHOP_LNG,21.467472);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop8);
 
 
         ContentValues shop9 = new ContentValues();
         shop9.put(COLUMN_SHOP_NAME,"Pigment");
         shop9.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 1");
-        shop9.put(COLUMN_SHOP_LAT,50.023845);
-        shop9.put(COLUMN_SHOP_LNG,19.92368);
+        shop9.put(COLUMN_SHOP_LAT,50.285533);
+        shop9.put(COLUMN_SHOP_LNG,21.405331);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop9);
 
         ContentValues shop10 = new ContentValues();
         shop10.put(COLUMN_SHOP_NAME,"Pigment");
         shop10.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 2");
-        shop10.put(COLUMN_SHOP_LAT,50.0423);
-        shop10.put(COLUMN_SHOP_LNG,19.9243);
+        shop10.put(COLUMN_SHOP_LAT,50.292234);
+        shop10.put(COLUMN_SHOP_LNG,21.452796);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop10);
 
         ContentValues shop11 = new ContentValues();
         shop11.put(COLUMN_SHOP_NAME,"Pigment");
         shop11.put(COLUMN_SHOP_ADDRESS, "Adres Pigment 3");
-        shop11.put(COLUMN_SHOP_LAT,50.0456);
-        shop11.put(COLUMN_SHOP_LNG,19.9234);
+        shop11.put(COLUMN_SHOP_LAT,50.304236);
+        shop11.put(COLUMN_SHOP_LNG,21.449388);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop11);
 
 
         ContentValues shop12 = new ContentValues();
         shop12.put(COLUMN_SHOP_NAME,"Rossmann");
         shop12.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 1");
-        shop12.put(COLUMN_SHOP_LAT,50.04534);
-        shop12.put(COLUMN_SHOP_LNG,19.91234);
+        shop12.put(COLUMN_SHOP_LAT,50.276183);
+        shop12.put(COLUMN_SHOP_LNG,21.448902);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop12);
 
         ContentValues shop13 = new ContentValues();
@@ -884,8 +884,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop14 = new ContentValues();
         shop14.put(COLUMN_SHOP_NAME,"Rossmann");
         shop14.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 3");
-        shop14.put(COLUMN_SHOP_LAT,50.0342);
-        shop14.put(COLUMN_SHOP_LNG,19.9234);
+        shop14.put(COLUMN_SHOP_LAT,50.280048);
+        shop14.put(COLUMN_SHOP_LNG,19.481205);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop14);
 
         ContentValues shop15 = new ContentValues();
@@ -905,22 +905,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop17 = new ContentValues();
         shop17.put(COLUMN_SHOP_NAME,"Rossmann");
         shop17.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 6");
-        shop17.put(COLUMN_SHOP_LAT,50.0128763);
-        shop17.put(COLUMN_SHOP_LNG,19.93423);
+        shop17.put(COLUMN_SHOP_LAT,50.308780);
+        shop17.put(COLUMN_SHOP_LNG,21.456829);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop17);
 
         ContentValues shop18 = new ContentValues();
         shop18.put(COLUMN_SHOP_NAME,"Rossmann");
         shop18.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 7");
-        shop18.put(COLUMN_SHOP_LAT,50.08465);
-        shop18.put(COLUMN_SHOP_LNG,19.968532);
+        shop18.put(COLUMN_SHOP_LAT,50.296061);
+        shop18.put(COLUMN_SHOP_LNG,21.435886);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop18);
 
         ContentValues shop19 = new ContentValues();
         shop19.put(COLUMN_SHOP_NAME,"Rossmann");
         shop19.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 8");
-        shop19.put(COLUMN_SHOP_LAT,50.0432);
-        shop19.put(COLUMN_SHOP_LNG,19.9762);
+        shop19.put(COLUMN_SHOP_LAT,50.277635);
+        shop19.put(COLUMN_SHOP_LNG,21.482921);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop19);
 
         ContentValues shop20 = new ContentValues();
@@ -933,8 +933,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop21 = new ContentValues();
         shop21.put(COLUMN_SHOP_NAME,"Rossmann");
         shop21.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 10");
-        shop21.put(COLUMN_SHOP_LAT,50.0465);
-        shop21.put(COLUMN_SHOP_LNG,19.9345);
+        shop21.put(COLUMN_SHOP_LAT,50.312069);
+        shop21.put(COLUMN_SHOP_LNG,21.440693);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop21);
 
         ContentValues shop22 = new ContentValues();
@@ -947,8 +947,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop23 = new ContentValues();
         shop23.put(COLUMN_SHOP_NAME,"Rossmann");
         shop23.put(COLUMN_SHOP_ADDRESS, "Adres Rossmann 12");
-        shop23.put(COLUMN_SHOP_LAT,50.097634);
-        shop23.put(COLUMN_SHOP_LNG,19.9243);
+        shop23.put(COLUMN_SHOP_LAT,50.277854);
+        shop23.put(COLUMN_SHOP_LNG,21.4557299);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop23);
 
         ContentValues shop24 = new ContentValues();
@@ -962,50 +962,50 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues shop25 = new ContentValues();
         shop25.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop25.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 1");
-        shop2.put(COLUMN_SHOP_LAT,50.0342);
-        shop2.put(COLUMN_SHOP_LNG,19.92354);
+        shop25.put(COLUMN_SHOP_LAT,50.305942);
+        shop25.put(COLUMN_SHOP_LNG,21.432408);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop25);
 
         ContentValues shop26 = new ContentValues();
         shop26.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop26.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 2");
-        shop26.put(COLUMN_SHOP_LAT,50.0978);
-        shop26.put(COLUMN_SHOP_LNG,19.9234);
+        shop26.put(COLUMN_SHOP_LAT,50.295184);
+        shop26.put(COLUMN_SHOP_LNG,21.475712);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop26);
 
         ContentValues shop27 = new ContentValues();
         shop27.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop27.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 3");
-        shop27.put(COLUMN_SHOP_LAT,50.0678);
-        shop27.put(COLUMN_SHOP_LNG,19.9679);
+        shop27.put(COLUMN_SHOP_LAT,50.279390);
+        shop27.put(COLUMN_SHOP_LNG,21.470219);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop27);
 
         ContentValues shop28 = new ContentValues();
         shop28.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop28.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 4");
-        shop28.put(COLUMN_SHOP_LAT,50.0234);
-        shop28.put(COLUMN_SHOP_LNG,19.8435);
+        shop28.put(COLUMN_SHOP_LAT,50.307903);
+        shop28.put(COLUMN_SHOP_LNG,21.481892);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop28);
 
         ContentValues shop29 = new ContentValues();
         shop29.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop29.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 5");
-        shop29.put(COLUMN_SHOP_LAT,50.0357);
-        shop29.put(COLUMN_SHOP_LNG,19.93809);
+        shop29.put(COLUMN_SHOP_LAT,50.269077);
+        shop29.put(COLUMN_SHOP_LNG,21.481892);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop29);
 
         ContentValues shop30 = new ContentValues();
         shop30.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop30.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 6");
-        shop30.put(COLUMN_SHOP_LAT,50.04543);
-        shop30.put(COLUMN_SHOP_LNG,19.93465);
+        shop30.put(COLUMN_SHOP_LAT,50.278512);
+        shop30.put(COLUMN_SHOP_LNG,21.437260);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop30);
 
         ContentValues shop31 = new ContentValues();
         shop31.put(COLUMN_SHOP_NAME,"Ziaja dla Ciebie");
         shop31.put(COLUMN_SHOP_ADDRESS, "Adres Ziaja dla Ciebie 7");
-        shop31.put(COLUMN_SHOP_LAT,50.057546);
-        shop31.put(COLUMN_SHOP_LNG,19.8534);
+        shop31.put(COLUMN_SHOP_LAT,50.313604);
+        shop31.put(COLUMN_SHOP_LNG,21.498371);
         sqLiteDatabase.insert(SHOP_TABLE, null, shop31);
 
     }
@@ -1603,6 +1603,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnAList;
     }
 
+    public Shop findShop(int shopID) {
+
+        String queryString = "SELECT * FROM " + SHOP_TABLE + " WHERE " + COLUMN_SHOP_ID + "=" + shopID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            String shopName = cursor.getString(1);
+            String shopAddress = cursor.getString(2);
+            double shopLat = cursor.getDouble(3);
+            double shopLng = cursor.getDouble(4);
+
+
+            Shop returnShop= new Shop(shopID, shopName, shopAddress, shopLat, shopLng);
+            cursor.close();
+            db.close();
+            return returnShop;
+        }else{
+            cursor.close();
+            db.close();
+            return null;
+        }
+    }
+
     public ArrayList<Shop> getAllShopsFromOneBrand(String brandName) {
 
         ArrayList<Shop> returnAList = new ArrayList<>();
@@ -1630,6 +1655,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnAList;
+    }
+
+    public int getNumberOfAllShopsFromOneBrand(String brandName) {
+
+        int returnNumber = 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM SHOP_TABLE WHERE SHOP_NAME = ?; ", new String[] {brandName});
+
+        if (cursor.moveToFirst()) {
+            do{
+                returnNumber = returnNumber + 1;
+
+            }while (cursor.moveToNext());
+        }else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnNumber;
     }
 
     //--------------------------------------- SHOP_BRANDS METHODS ------------------------------------------------

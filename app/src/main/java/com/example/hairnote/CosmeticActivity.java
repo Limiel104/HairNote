@@ -25,12 +25,13 @@ import java.util.ArrayList;
 public class CosmeticActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    FloatingActionButton btn_addCosmeticMain, btn_setRoute;
+    FloatingActionButton btn_addCosmeticMain, btn_setRoute, btn_setRoute2;
 
     private RecyclerView cosmeticsRecView;
     CosmeticsRecViewAdapter cosmeticAdapter;
     DataBaseHelper dataBaseHelper;
     ArrayList<Cosmetic> selectedCosmetics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class CosmeticActivity extends AppCompatActivity {
         cosmeticsRecView = findViewById(R.id.cosmeticsRecView);
         btn_addCosmeticMain = findViewById(R.id.btnAddCosmeticMain);
         btn_setRoute = findViewById(R.id.btnSetRoute);
+        btn_setRoute2 = findViewById(R.id.btnSetRoute2);
 
         dataBaseHelper = new DataBaseHelper(CosmeticActivity.this);
         selectedCosmetics = new ArrayList<>();
@@ -53,6 +55,15 @@ public class CosmeticActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CosmeticActivity.this, CosmeticMap.class);
+                intent.putExtra("CosmeticsListExtra", selectedCosmetics);
+                CosmeticActivity.this.startActivity(intent);
+            }
+        });
+
+        btn_setRoute2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CosmeticActivity.this, CosmeticMap2.class);
                 intent.putExtra("CosmeticsListExtra", selectedCosmetics);
                 CosmeticActivity.this.startActivity(intent);
             }
