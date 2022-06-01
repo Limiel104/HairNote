@@ -50,7 +50,10 @@ import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CosmeticMap2 extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -182,15 +185,114 @@ public class CosmeticMap2 extends AppCompatActivity implements OnMapReadyCallbac
     public void filterShops(){
 
         for (int i = 0; i < selectedCosmetics.size(); i++) {
+            selectedCosmetics.get(i).setShopList(dataBaseHelper.getAllShopBrandsFromCosmetic(selectedCosmetics.get(i).getId()));
+        }
 
-            List<String> cosmeticShops =  dataBaseHelper.getAllShopBrandsFromCosmetic(selectedCosmetics.get(i).getId());
+        for (int i = 0; i < selectedCosmetics.size(); i++) {
+            Log.e(TAG, String.valueOf(selectedCosmetics.get(i).getShopList()));
+        }
 
-            for (int j = 0; j < cosmeticShops.size(); j++) {
-                if (!shopsToLocate.contains(cosmeticShops.get(j))) {
-                    shopsToLocate.add(cosmeticShops.get(j));
+        ArrayList<Cosmetic> toFoundCos = (ArrayList<Cosmetic>) selectedCosmetics.clone();
+        ArrayList<Integer> foundCos = new ArrayList<>();
+        boolean finish = false;
+
+        while (!finish){
+
+            String foundShop = findBestMatch(toFoundCos);
+            shopsToLocate.add(foundShop);
+            toFoundCos.clear();
+            Log.e(TAG, "ello");
+
+            for (int i = 0; i < selectedCosmetics.size(); i++) {
+                List<String> list = selectedCosmetics.get(i).getShopList();
+
+                if (!foundCos.contains(selectedCosmetics.get(i).getId())) {
+                    for (int j = 0; j < list.size(); j++) {
+                        if (list.get(j).equals(foundShop)) {
+                            Log.e(TAG, "tak " + list.get(j) + " " + foundShop);
+                            foundCos.add(selectedCosmetics.get(i).getId());
+                        } else {
+                            Log.e(TAG, "nie " + list.get(j) + " " + foundShop);
+                        }
+                    }
+                }
+
+            }
+
+            Log.e(TAG, "Rozmiar: " + foundCos.size());
+
+            if (selectedCosmetics.size() != foundCos.size()) {
+                Log.e(TAG, "jeszcze nie");
+                Log.e(TAG,"Juz znalezione:" + foundCos.toString());
+
+                for (int i=0; i<selectedCosmetics.size(); i++){
+                    if (!foundCos.contains(selectedCosmetics.get(i).getId())){
+                        toFoundCos.add(selectedCosmetics.get(i));
+                    }
+                }
+
+            } else {
+                Log.e(TAG, "juz tak");
+                finish = true;
+            }
+
+            for (int g=0; g<toFoundCos.size(); g++){
+                Log.e(TAG, "Zostalo do znalezienia: " + toFoundCos.toString());
+            }
+
+
+        }
+
+        for (int i=0; i<shopsToLocate.size(); i++) {
+            Log.e(TAG, "Wszystkie sklepy " + shopsToLocate.get(i).toString());
+        }
+
+    }
+
+    public String findBestMatch(ArrayList<Cosmetic> selectedCosmetics2){
+
+        HashMap<String, Integer> test = new HashMap<>();
+        test.put("Hebe", 0);
+        test.put("Rossmann", 0);
+        test.put("Natura", 0);
+        test.put("Pigment", 0);
+        test.put("Ziaja dla Ciebie", 0);
+
+        String returnShop = "";
+
+        for (int i =0; i<selectedCosmetics2.size(); i++) {
+            for (int j = 0; j<selectedCosmetics2.get(i).getShopList().size(); j++) {
+
+                String shopName = selectedCosmetics2.get(i).getShopList().get(j);
+
+                if (shopName.equals("Hebe")){
+                    test.put("Hebe", test.get("Hebe") + 1);
+                }
+                else if (shopName.equals("Rossmann")){
+                    test.put("Rossmann", test.get("Rossmann") + 1);
+                }
+                else if (shopName.equals("Pigment")){
+                    test.put("Pigment", test.get("Pigment") + 1);
+                }
+                else if (shopName.equals("Natura")){
+                    test.put("Natura", test.get("Natura") + 1);
+                }
+                else if (shopName.equals("Ziaja dla Ciebie")){
+                    test.put("Ziaja dla Ciebie", test.get("Ziaja dla Ciebie") + 1);
                 }
             }
         }
+
+        int maxValueInMap=(Collections.max(test.values()));
+        for (Map.Entry<String, Integer> entry : test.entrySet()) {
+            if (entry.getValue()==maxValueInMap) {
+                returnShop = entry.getKey();
+            }
+        }
+
+        Log.e(TAG, returnShop + "    ret ");
+        return returnShop;
+
     }
 
     public  void filterReturnedDistance(ArrayList<Double> allDistanceList, ArrayList<Integer> allIdList){
